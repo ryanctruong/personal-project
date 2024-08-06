@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './navBar.css';
 
 const NavBar = () => {
-    const [selected, setSelected] = useState(0); // Default to 'Home'
+    const [selected, setSelected] = useState(0);
 
     const handleSelect = (index) => {
         setSelected(index);
