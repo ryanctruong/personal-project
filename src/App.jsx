@@ -1,11 +1,14 @@
 import { useState } from 'react'
 
+import NavBar from './components/menu/navBar';
+import './styles/style.css'
+
 function App() {
 
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className='parent-container'>
+      <NavBar />
+    </div>
   )
 }
 

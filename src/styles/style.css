@@ -1,0 +1,10 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.parent-container {
+    height: 100vh;
+    background-color: var(--Gray-0, #F6F6F6);
+}
