@@ -11,6 +11,7 @@ function App() {
     <div className='parent-container'>
       <NavBar />
       <div className='content'>
+        <p>This is to test deployment</p>
       </div>
       <Footer className='footer' />
     </div>
