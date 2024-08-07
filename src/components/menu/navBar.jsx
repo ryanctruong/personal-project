@@ -10,15 +10,15 @@ const NavBar = () => {
 
     return (
         <div className='nav-header'>
-            <div className='blue-bar'>
+            <div className='red-bar'>
                 <h4>Ryan Truong</h4>
             </div>
             <div className='nav-list'>
                 <ul>
                     {['Home', 'About me', 'Skills', 'Extra', 'CV'].map((item, index) => (
-                        <li 
-                            key={index} 
-                            className={selected === index ? 'selected' : ''} 
+                        <li
+                            key={index}
+                            className={selected === index ? 'selected' : ''}
                             onClick={() => handleSelect(index)}
                         >
                             {item}
