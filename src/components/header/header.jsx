@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './navBar.css';
+import './header.css';
 
 const NavBar = () => {
     const [selected, setSelected] = useState(0);

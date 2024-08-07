@@ -2,9 +2,22 @@ html,
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 .parent-container {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-color: var(--Gray-0, #F6F6F6);
+}
+
+.content {
+    flex: 1;
 }
