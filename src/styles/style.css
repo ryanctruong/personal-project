@@ -22,5 +22,37 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
-    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-content {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    transform: translateX(-100%);
+}
+
+.tab-content.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.tab-content.right {
+    transform: translateX(100%);
+}
+
+.tab-content.left {
+    transform: translateX(-100%);
+}
+
+.tab-content.active.left {
+    transform: translateX(0);
+}
+
+.tab-content.active.right {
+    transform: translateX(0);
 }

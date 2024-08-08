@@ -56,3 +56,7 @@
     border-bottom: 2px solid var(--Primary-100, #DC143C);
     text-align: center;
 }
+
+.selected {
+    border-bottom: 2px solid var(--Primary-100, #DC143C);
+}
