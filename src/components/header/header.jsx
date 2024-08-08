@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import './header.css';
 
-const NavBar = ({ selectedTab, setSelectedTab }) => {
+const NavBar = () => {
+    const [selected, setSelected] = useState(0);
 
     const handleSelect = (index) => {
-        setSelectedTab(index);
+        setSelected(index);
     };
 
     return (
@@ -14,10 +15,10 @@ const NavBar = ({ selectedTab, setSelectedTab }) => {
             </div>
             <div className='nav-list'>
                 <ul>
-                    {['Home', 'Skills', 'Projects', 'CV', 'Extra '].map((item, index) => (
+                    {['Home', 'About me', 'Skills', 'Extra', 'CV'].map((item, index) => (
                         <li
                             key={index}
-                            className={selectedTab === index ? 'selected' : ''}
+                            className={selected === index ? 'selected' : ''}
                             onClick={() => handleSelect(index)}
                         >
                             {item}
@@ -26,7 +27,7 @@ const NavBar = ({ selectedTab, setSelectedTab }) => {
                 </ul>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default NavBar;
