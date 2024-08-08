@@ -20,4 +20,7 @@ body {
 
 .content {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
 }
