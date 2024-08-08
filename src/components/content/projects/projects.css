@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* PARENT CONTAINER */
+.projects-main-box {
+    font-family: 'Montserrat';
+    /* border: 1px solid red; */
+    width: 70%;
+    height: 75vh;
+    margin: 2% auto;
+    background-color: white;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
+    display: grid;
+    grid-template-columns: 30% 70%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
