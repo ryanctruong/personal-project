@@ -196,7 +196,7 @@
 
 .pb-header p {
     margin: 0;
-    font-size: 1.2vw;
+    font-size: 21px;
     font-weight: 600;
 }
 
@@ -211,7 +211,7 @@
 }
 
 .pb-full-desc p {
-    font-size: 0.9vw;
+    font-size: 18px;
     font-weight: 500;
     line-height: 1.5;
     margin-top: 0;
