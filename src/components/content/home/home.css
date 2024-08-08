@@ -8,7 +8,6 @@
 .home-main-box {
     font-family: 'Montserrat';
     /* border: 1px solid red; */
-    height: 75vh;
     width: 70%;
     margin: 2% auto;
     background-color: white;
@@ -17,6 +16,7 @@
     grid-template-columns: 30% 70%;
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 }
 
 /* FIRST DIV IN PC */
@@ -49,7 +49,7 @@
     height: 200px;
     background-color: white;
     border-radius: 50%;
-    box-shadow: 0px 0px 15px hsl(0deg 0% 0% / 0.38);;
+    box-shadow: 0px 0px 15px hsl(0deg 0% 0% / 0.38);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,7 +91,7 @@
     font-weight: 300;
 }
 
-.basic-desc a, 
+.basic-desc a,
 .pb-full-desc a {
     color: red;
     text-decoration: none;
@@ -101,7 +101,7 @@
 }
 
 .basic-desc a:hover,
-.pb-full-desc a:hover{
+.pb-full-desc a:hover {
     font-weight: 700;
     text-decoration: underline;
 }
@@ -167,7 +167,7 @@
     opacity: 0;
     transition: opacity 0.5s;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .social-media-btn:hover .social-media-text {
@@ -176,30 +176,42 @@
 
 /* SECOND DIV IN PC */
 .profile-detail {
-    /* background-color: #c0c0c0; */
     padding: 20px;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 10% 50% 40%;
+    grid-template-rows: auto 1fr 1fr;
+}
+
+@media (max-width: 800px) {
+    .profile-detail {
+        grid-template-rows: auto 1fr;
+    }
 }
 
 .pb-header {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .pb-header p {
     margin: 0;
-    font-size: 28px;
+    font-size: 1.2vw;
     font-weight: 600;
 }
 
 .pb-full-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .pb-full-desc p {
-    font-size: 18px;
+    font-size: 0.9vw;
     font-weight: 500;
     line-height: 1.5;
     margin-top: 0;
@@ -209,18 +221,15 @@
     overflow: hidden;
     display: grid;
     grid-template-columns: 50% 50%;
+    gap: 10px;
 }
 
-.educ-history {
-    background-color: lightcoral;
+.box1 {
+    background-color: cornflowerblue;
+    border-radius: 10px;
 }
 
-.educ-history p {
-    margin: 0;
-    font-size: 28px;
-    font-weight: 600;
-}
-
-.career-history {
-    background-color: lightblue;
+.box2 {
+    background-color: lightgreen;
+    border-radius: 10px;
 }

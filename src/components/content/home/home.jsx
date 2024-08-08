@@ -3,6 +3,8 @@ import ProfilePic from '/images/dog-profile-pic.png'
 import Github from '/images/github.png'
 import Linkedin from '/images/linkedin.png'
 import Gmail from '/images/gmail.png'
+import Jirachi from '/images/jirachi.png'
+import Octopus from '/images/octopus.png'
 
 const Home = () => {
     return (
@@ -17,7 +19,7 @@ const Home = () => {
                     <ul>
                         <li id='full-name'>Ryan Truong</li>
                         <li id='job-title'>Software Engineer</li>
-                        <li id='company'><a href="https://careers.hcahealthcare.com/" target='__blank'>HCA Healthcare</a></li>
+                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank'>HCA Healthcare</a></li>
                         <li id='university'><a href="https://www.belmont.edu/" target='__blank'>Belmont University</a></li>
                     </ul>
                 </div>
@@ -67,13 +69,11 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="pb-lists">
-                    <div className='educ-history'>
-                    </div>
-                    <div className='career-history'>
-                    </div>
+                    <div className='box1'></div>
+                    <div className='box2'></div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
