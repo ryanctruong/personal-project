@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import './header.css';
 
-const NavBar = () => {
+const NavBar = ({ onTabSelect }) => {
     const [selected, setSelected] = useState(0);
 
     const handleSelect = (index) => {
         setSelected(index);
+        onTabSelect(index);
     };
 
     return (
@@ -15,7 +16,7 @@ const NavBar = () => {
             </div>
             <div className='nav-list'>
                 <ul>
-                    {['Home', 'About me', 'Skills', 'Extra', 'CV'].map((item, index) => (
+                    {['Home', 'Skills', 'Extra', 'CV'].map((item, index) => (
                         <li
                             key={index}
                             className={selected === index ? 'selected' : ''}
