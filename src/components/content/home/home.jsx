@@ -3,8 +3,6 @@ import ProfilePic from '/images/dog-profile-pic.png'
 import Github from '/images/github.png'
 import Linkedin from '/images/linkedin.png'
 import Gmail from '/images/gmail.png'
-import Jirachi from '/images/jirachi.png'
-import Octopus from '/images/octopus.png'
 
 const Home = () => {
     return (
