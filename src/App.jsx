@@ -1,23 +1,32 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react';
 import NavBar from './components/header/header';
 import Home from './components/content/home/home';
+import Skills from './components/content/skills/skills';
 import Footer from './components/footer/footer';
-
-import './styles/style.css'
+import './styles/style.css';
 
 function App() {
+  const [selectedTab, setSelectedTab] = useState(0);
+  const getTransformValue = () => {
+    return `translateX(-${selectedTab * 100}%)`;
+  };
 
   return (
     <div className='parent-container'>
-      <NavBar />
+      <NavBar onTabSelect={(index) => setSelectedTab(index)} />
       <div className='content'>
-        <Home />
+        <div className='content-wrapper' style={{ transform: getTransformValue() }}>
+          <div className='content-item'>
+            <Home />
+          </div>
+          <div className='content-item'>
+            <Skills />
+          </div>
+        </div>
       </div>
       <Footer className='footer' />
     </div>
-
-  )
+  );
 }
 
 export default App;

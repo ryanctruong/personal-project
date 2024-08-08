@@ -51,8 +51,8 @@
     color: var(--Primary-100, #DC143C);
 }
 
-.selected li {
-    height: 95%;
+.nav-list .selected {
     border-bottom: 2px solid var(--Primary-100, #DC143C);
-    text-align: center;
+    color: var(--Primary-100, #DC143C);
+    font-weight: bold;
 }
