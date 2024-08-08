@@ -39,6 +39,9 @@
     color: #696969;
     font-weight: 500;
     height: 100%;
+    padding: 10px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
 }
 
 .nav-list ul li:first-child {
@@ -47,16 +50,11 @@
 
 .nav-list li:hover {
     border-bottom: 2px solid var(--Primary-100, #DC143C);
-    cursor: pointer;
     color: var(--Primary-100, #DC143C);
 }
 
-.selected li {
-    height: 95%;
+.nav-list .selected {
     border-bottom: 2px solid var(--Primary-100, #DC143C);
-    text-align: center;
-}
-
-.selected {
-    border-bottom: 2px solid var(--Primary-100, #DC143C);
+    color: var(--Primary-100, #DC143C);
+    font-weight: bold;
 }

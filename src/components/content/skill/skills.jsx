@@ -1,6 +1,8 @@
+import './skills.css'
+
 const Skills = () => {
     return (
-        <>Hello World</>
+        <div className='home-main-box'> </div>
     );
 }
 
