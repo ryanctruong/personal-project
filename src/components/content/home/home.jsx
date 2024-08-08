@@ -3,7 +3,6 @@ import ProfilePic from '/images/dog-profile-pic.png'
 import Github from '/images/github.png'
 import Linkedin from '/images/linkedin.png'
 import Gmail from '/images/gmail.png'
-import Graduation from '/images/graduation-cap.png'
 
 const Home = () => {
     return (
@@ -58,7 +57,7 @@ const Home = () => {
                 </div>
                 <div className="pb-full-desc">
                     <p>
-                        I am Ryan Truong, a Software Engineer at <a href={''} id='text-link'>HCA Healthcare</a>, currently contributing to the HR Transformation and Analytics Teams, with a particular focus on Advanced Analytics and Innovative Projects.
+                        I am Ryan Truong, a Software Engineer at <a href={''} id='text-link'>HCA Healthcare</a>, currently contributing to the HR Transformation and Analytics team, with a particular focus on Advanced Analytics and Innovative Projects.
                     </p>
                     <p>
                         I completed my Bachelor's degree at <a href={''} id='text-link'>Belmont University</a>, earning dual degrees in Computer Science and Economics. During my time there, I developed a strong foundation in both technical and analytical skills, which have been instrumental in my professional career. My academic journey included various projects and internships that provided hands-on experience and deepened my understanding of the practical applications of these fields.
