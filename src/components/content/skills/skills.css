@@ -13,7 +13,6 @@
     overflow: hidden;
     border-radius: 10px;
     padding: 20px;
-    gap: 10px;
 }
 
 .s-title {
@@ -36,10 +35,8 @@
     gap: 10px;
 }
 
-.skills-title,
-.frameworks,
-.tools {
-    /* border: 1px solid black; */
+.skills-main-box h3{
+    margin-top: 0;
 }
 
 .sl-list {
