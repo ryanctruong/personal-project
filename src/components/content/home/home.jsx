@@ -1,5 +1,7 @@
 import './home.css'
-import ProfilePic from './images/dog-profile-pic.png'
+import Github from '/images/github.png'
+import Linkedin from '/images/linkedin.png'
+import Gmail from '/images/gmail.png'
 
 const Home = () => {
     return (
@@ -7,7 +9,7 @@ const Home = () => {
             <div className='profile-title'>
                 <div className='picture common-styles'>
                     <div className='profile-picture'>
-                        <img src={ProfilePic} id='profile-pic'></img>
+                        <img src={''} id='profile-pic'></img>
                     </div>
                 </div>
                 <div className='basic-desc common-styles'>
@@ -20,21 +22,31 @@ const Home = () => {
                 </div>
                 <div className='links common-styles'>
                     <ul>
-                        <li>
-                            <a href="#" class="button">
-                                <span class="icon"></span>
-                                <span class="text">Github</span>
-                            </a>
+                        <li className="li-github">
+                            <div className="sti_container">
+                                <button className="btn">
+                                    <span className="btn-icon"><img src={Github} /></span>
+                                    <span className="btn-text">Github</span>
+                                </button>
+                            </div>
                         </li>
-                        <li>
-                            <a href="#" class="button">
-                                <span class="icon"></span>
-                                <span class="text">Linkedin</span>
-                            </a>
+                        <li className="li-linkedin">
+                            <div className="sti_container">
+                                <button className="btn">
+                                    <span className="btn-icon"><img src={Linkedin} /></span>
+                                    <span className="btn-text">Linkedin</span>
+                                </button>
+                            </div>
+                        </li>
+                        <li className="li-gmail">
+                            <div className="sti_container">
+                                <button className="btn">
+                                    <span className="btn-icon"><img src={Gmail} /></span>
+                                    <span className="btn-text">Gmail</span>
+                                </button>
+                            </div>
                         </li>
                     </ul>
-
-
                 </div>
             </div>
             <div className='profile-desc'>
