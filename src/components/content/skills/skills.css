@@ -61,6 +61,12 @@
     width: 150px;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
     border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sl-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 
 .sl-icon {
