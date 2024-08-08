@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavBar from './components/header/header';
 import Home from './components/content/home/home';
 import Skills from './components/content/skills/skills';
+import Projects from './components/content/projects/projects';
 import Footer from './components/footer/footer';
 import './styles/style.css';
 
@@ -21,6 +22,9 @@ function App() {
           </div>
           <div className='content-item'>
             <Skills />
+          </div>
+          <div className='content-item'>
+            <Projects />
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ const NavBar = ({ onTabSelect }) => {
             </div>
             <div className='nav-list'>
                 <ul>
-                    {['Home', 'Skills', 'Extra', 'CV'].map((item, index) => (
+                    {['Home', 'Skills', 'Projects', 'CV'].map((item, index) => (
                         <li
                             key={index}
                             className={selected === index ? 'selected' : ''}
