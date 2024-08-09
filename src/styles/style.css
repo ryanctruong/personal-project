@@ -17,6 +17,7 @@ body {
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
 
 .content {
@@ -25,6 +26,13 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+
+@media (max-height: 999px) {
+    .parent-container {
+        overflow: auto;
+    }
 }
 
 .content-wrapper {
