@@ -7,7 +7,6 @@
     grid-template-rows: auto 1fr;
     position: relative;
     overflow: hidden;
-    width: 50vw;
     height: 75vh;
     max-width: 100%;
     max-height: 100%;
