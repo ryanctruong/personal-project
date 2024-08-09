@@ -18,68 +18,7 @@
     border-radius: 10px;
     height: 600px;
     transition: grid-template-columns 0.3s ease;
-}
-
-@media (max-width: 1499px) {
-    .home-main-box {
-        grid-template-columns: 1fr !important;
-        height: auto;
-        width: 600px;
-        overflow: auto;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
-        border-radius: 0 !important;
-    }
-
-    .pb-full-desc p {
-        font-size: 12px !important;
-    }
-
-    .profile-card,
-    .pb-header {
-        display: none !important;
-    }
-
-    .profile-detail {
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-        padding: 0.26vw !important;
-    }
-
-    .pb-full-desc {
-        margin: 0 !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .home-main-box {
-        grid-template-columns: 1fr !important;
-        height: auto;
-        width: 300px;
-        overflow: auto;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
-        border-radius: 0 !important;
-    }
-
-    .pb-full-desc p {
-        font-size: 6px !important;
-    }
-
-    .profile-card,
-    .pb-header {
-        display: none !important;
-    }
-
-    .profile-detail {
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-        padding: 0.26vw !important;
-    }
-
-    .pb-full-desc {
-        margin: 0 !important;
-    }
+    transition: width 0.5s ease, height 0.5s ease;
 }
 
 /* FIRST DIV IN PC */
