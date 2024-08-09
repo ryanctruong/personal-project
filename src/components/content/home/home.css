@@ -146,7 +146,7 @@
     padding: 1.042vw;
     overflow: hidden;
     display: grid;
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-rows: auto 1fr;
 }
 
 .pb-header {
@@ -180,12 +180,4 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.521vw;
-}
-
-.box1 {
-    background-color: salmon;
-}
-
-.box2 {
-    background-color: aqua;
 }
