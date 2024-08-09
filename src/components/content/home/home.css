@@ -45,7 +45,7 @@
 
 .picture-container {
     width: 10.417vw;
-    height: 10.417vw;
+    height: 20vh;
     background-color: white;
     border-radius: 50%;
     box-shadow: 0px 0px 15px hsl(0deg 0% 0% / 0.38);
@@ -157,15 +157,15 @@
 }
 
 .social-media-icon img {
-    width: 30px;
-    height: 30px;
+    width: 1.563vw;
+    height: 3vh;
 }
 
 .social-media-text {
     margin: 0 15px;
     opacity: 0;
     transition: opacity 0.5s;
-    font-size: 18px;
+    font-size: 0.938vw;
     font-weight: 500;
 }
 
