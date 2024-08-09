@@ -7,25 +7,52 @@
 /* PARENT CONTAINER */
 .home-main-box {
     font-family: 'Montserrat';
-    width: 70%;
+    width: 67.708vw;
     margin: 2% auto;
     background-color: white;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: auto 1fr;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+    height: 55vh;
+    transition: grid-template-columns 0.3s ease;
 }
+
+@media (max-width: 768px) {
+    .home-main-box {
+        grid-template-columns: 1fr;
+        height: 80vh;
+        overflow: auto;
+    }
+
+    .profile-card,
+    .pb-header {
+        display: none !important;
+    }
+
+    .profile-detail {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10px !important; 
+    }
+
+    .profile-detail p {
+        font-size: 1.2vw !important;
+    }
+}
+
 
 /* FIRST DIV IN PC */
 .profile-card {
     padding: 20px;
     border-right: 2px lightgray solid;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
     overflow: hidden;
-    justify-content: center;
 }
 
 .picture,
@@ -181,12 +208,6 @@
     grid-template-rows: auto 1fr;
 }
 
-@media (max-width: 800px) {
-    .profile-detail {
-        grid-template-rows: auto 1fr;
-    }
-}
-
 .pb-header {
     display: flex;
     align-items: center;
@@ -202,7 +223,6 @@
 .pb-full-desc {
     display: flex;
     flex-direction: column;
-    height: 100%;
     overflow: hidden;
     margin-bottom: 10px;
 }
