@@ -67,8 +67,6 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="pb-lists">
-                    <div className='box1'></div>
-                    <div className='box2'></div>
                 </div>
             </div>
         </div >
