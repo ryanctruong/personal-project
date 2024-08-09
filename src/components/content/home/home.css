@@ -24,13 +24,9 @@
 @media (max-width: 768px) {
     .home-main-box {
         grid-template-columns: 1fr;
-        /* Switch to a single column layout */
         grid-template-rows: auto auto;
-        /* Stack items vertically */
         width: 90vw;
-        /* Adjust width for smaller screens */
         height: auto;
-        /* Let the height adjust naturally */
     }
 }
 
