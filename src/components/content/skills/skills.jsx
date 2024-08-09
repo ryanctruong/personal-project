@@ -78,7 +78,7 @@ const Skills = () => {
                     <h3>Tools / Platforms</h3>
                     <div className='sl-list'>
                         <div className='sl-box'>
-                            <div className='sl-icon'><img src={Kubernetes} id='jira-png' /></div>
+                            <div className='sl-icon'><img src={Kubernetes} /></div>
                             <div className='sl-title'>Kubernetes</div>
                         </div>
                         <div className='sl-box'>
