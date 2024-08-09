@@ -10,7 +10,7 @@ import VueJS from '/images/skills-icons/vuejs.svg'
 import PostgreSQL from '/images/skills-icons/postgresql.png'
 import MongoDB from '/images/skills-icons/mongodb.png'
 import NodeJS from '/images/skills-icons/nodejs.png'
-import Jira from '/images/skills-icons/jira.png'
+import Kubernetes from '/images/skills-icons/kubernetes.png'
 import Docker from '/images/skills-icons/docker.png'
 import Postman from '/images/skills-icons/postman-icon.svg'
 import GCP from '/images/skills-icons/google-cloud.png'
@@ -78,8 +78,8 @@ const Skills = () => {
                     <h3>Tools / Platforms</h3>
                     <div className='sl-list'>
                         <div className='sl-box'>
-                            <div className='sl-icon'><img src={Jira} id='jira-png' /></div>
-                            <div className='sl-title'>JIRA</div>
+                            <div className='sl-icon'><img src={Kubernetes} id='jira-png' /></div>
+                            <div className='sl-title'>Kubernetes</div>
                         </div>
                         <div className='sl-box'>
                             <div className='sl-icon'><img src={Docker} /></div>
