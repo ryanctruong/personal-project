@@ -3,7 +3,7 @@
 /* PARENT CONTAINER */
 .projects-main-box {
     font-family: 'Montserrat';
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 70%;
     height: 75vh;
     margin: 2% auto;
