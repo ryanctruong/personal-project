@@ -1,4 +1,5 @@
 import './skills.css'
+import './skills-mq.css'
 
 import Python from '/images/skills-icons/python.png'
 import Java from '/images/skills-icons/java.png'

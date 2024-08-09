@@ -1,4 +1,5 @@
 import './home.css'
+import './home-mq.css'
 import ProfilePic from '/images/dog-profile-pic.png'
 import Github from '/images/github.png'
 import Linkedin from '/images/linkedin.png'
