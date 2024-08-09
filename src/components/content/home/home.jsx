@@ -22,33 +22,6 @@ const Home = () => {
                     </ul>
                 </div>
                 <div className='social-media'>
-                    <ul>
-                        <li className="li-github">
-                            <div className="sti_container">
-                                <button className="social-media-btn" onClick={() => window.open("https://github.com/ryanctruong", "_blank", "noopener,noreferrer")}>
-                                    <span className="social-media-icon"><img src={Github} alt="Github Icon" /></span>
-                                    <span className="social-media-text">Github</span>
-                                </button>
-                            </div>
-                        </li>
-                        <li className="li-linkedin">
-                            <div className="sti_container">
-                                <button className="social-media-btn" onClick={() => window.open("https://www.linkedin.com/in/ryanctruong/", "_blank", "noopener,noreferrer")}>
-                                    <span className="social-media-icon"><img src={Linkedin} /></span>
-                                    <span className="social-media-text">Linkedin</span>
-                                </button>
-                            </div>
-                        </li>
-                        <li className="li-gmail">
-                            <div className="sti_container">
-                                <button className="social-media-btn" onClick={() => window.location.href = "mailto:rtruong.cs@gmail.com"}>
-                                    <span className="social-media-icon"><img src={Gmail} alt="Gmail Icon" /></span>
-                                    <span className="social-media-text">Gmail</span>
-                                </button>
-                            </div>
-
-                        </li>
-                    </ul>
                 </div>
             </div>
             <div className='profile-detail'>
@@ -67,6 +40,8 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="pb-lists">
+                    <div className='box1'></div>
+                    <div className='box2'></div>
                 </div>
             </div>
         </div >
