@@ -211,7 +211,7 @@
     padding: 20px;
     overflow: hidden;
     display: grid;
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-rows: auto 1fr;
 }
 
 @media (max-width: 800px) {
@@ -235,14 +235,13 @@
 .pb-full-desc {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     height: 100%;
     overflow: hidden;
     margin-bottom: 10px;
 }
 
 .pb-full-desc p {
-    font-size: 0.9vw;
+    font-size: 0.85vw;
     font-weight: 500;
     line-height: 1.5;
     margin-top: 0;
