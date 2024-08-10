@@ -32,8 +32,7 @@ body {
 
     html,
     body,
-    .parent-container,
-    .content {
+    .parent-container {
         overflow-x: hidden !important;
         overflow-y: auto !important;
     }
