@@ -3,16 +3,17 @@
 /* PARENT CONTAINER */
 .skills-main-box {
     font-family: 'Montserrat';
-    /* border: 1px solid red; */
-    margin: 2% auto;
     background-color: white;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
+    transition: width 0.5s ease, height 0.5s ease;
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px;
+    height: 700px;
+    width: 750px;
 }
 
 .s-title {
@@ -20,7 +21,6 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    /* border: 1px solid black; */
 }
 
 .s-title p {
@@ -35,8 +35,9 @@
     gap: 10px;
 }
 
-.skills-main-box h3{
+.skills-main-box h3 {
     margin-top: 0;
+    font-size: 16px;
 }
 
 .sl-list {
@@ -51,14 +52,19 @@
     display: flex;
     justify-content: center;
     font-weight: 600;
+    font-size: 14px;
 }
 
 .sl-box {
-    height: 150px;
-    width: 150px;
+    height: 130px;
+    width: 130px;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
 }
 
 .sl-box:hover {
@@ -68,7 +74,6 @@
 
 .sl-icon {
     background-color: white;
-    height: 85%;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -76,11 +81,6 @@
 }
 
 .sl-icon img {
-    height: 60%;
-    width: 55%;
-}
-
-#jira-png {
-    height: 50%;
-    width: 45%;
+    height: 60px;
+    width: 60px;
 }

@@ -3,15 +3,14 @@
 /* PARENT CONTAINER */
 .projects-main-box {
     font-family: 'Montserrat';
-    /* border: 1px solid red; */
-    width: 70%;
-    height: 75vh;
+    width: 67.708vw;
     margin: 2% auto;
     background-color: white;
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: auto 1fr;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+    height: 55vh;
 }

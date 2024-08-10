@@ -7,16 +7,15 @@
 /* PARENT CONTAINER */
 .home-main-box {
     font-family: 'Montserrat';
-    /* border: 1px solid red; */
-    width: 70%;
-    margin: 2% auto;
     background-color: white;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 3fr 7fr;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+    transition: grid-template-columns 0.3s ease;
+    transition: width 0.5s ease, height 0.5s ease;
 }
 
 /* FIRST DIV IN PC */
@@ -25,14 +24,15 @@
     border-right: 2px lightgray solid;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     justify-content: center;
+    gap: 20px;
+    overflow: hidden;
 }
 
 .picture,
 .basic-desc,
 .social-media {
-    padding: 10px;
+    padding: 2px;
     text-align: center;
 }
 
@@ -49,12 +49,17 @@
     height: 200px;
     background-color: white;
     border-radius: 50%;
-    box-shadow: 0px 0px 15px hsl(0deg 0% 0% / 0.38);
+    box-shadow: 0 0 15px hsl(0deg 0% 0% / 0.38);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     border: 2px solid black;
+}
+
+#profile-pic {
+    width: 230px;
+    height: 230px;
 }
 
 /* SECOND SUB-DIV */
@@ -65,7 +70,7 @@
     flex-direction: column;
     overflow: hidden;
     text-align: center;
-    padding: 10px;
+    padding: 2px;
 }
 
 .basic-desc ul {
@@ -77,7 +82,7 @@
 
 .basic-desc li {
     padding: 10px;
-    font-size: 1.25em;
+    font-size: 19px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -107,111 +112,37 @@
 }
 
 /* LAST SUB-DIV */
-.social-media ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    overflow: hidden;
-}
-
-.social-media li {
-    float: left;
-    overflow: hidden;
-}
-
-.sti_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.social-media-btn {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: width 0.5s, padding 0.5s;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 50px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 25px;
-    justify-content: space-between;
-}
-
-.li-github .social-media-btn:hover,
-.li-gmail .social-media-btn:hover {
-    width: 140px;
-    padding: 10px 20px;
-}
-
-.li-linkedin .social-media-btn:hover {
-    width: 155px;
-    padding: 10px 20px;
-}
-
-.social-media-icon img {
-    width: 30px;
-    height: 30px;
-}
-
-.social-media-text {
-    margin: 0 15px;
-    opacity: 0;
-    transition: opacity 0.5s;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.social-media-btn:hover .social-media-text {
-    opacity: 1;
-}
 
 /* SECOND DIV IN PC */
 .profile-detail {
     padding: 20px;
     overflow: hidden;
     display: grid;
-    grid-template-rows: auto 1fr 1fr;
-}
-
-@media (max-width: 800px) {
-    .profile-detail {
-        grid-template-rows: auto 1fr;
-    }
+    grid-template-rows: auto 1fr;
 }
 
 .pb-header {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 19.2px;
 }
 
 .pb-header p {
     margin: 0;
-    font-size: 21px;
-    font-weight: 600;
+    font-size: 23px;
+    font-weight: 550;
 }
 
 .pb-full-desc {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 100%;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 19px;
 }
 
 .pb-full-desc p {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 15.5px;
+    font-weight: 450;
     line-height: 1.5;
     margin-top: 0;
 }
@@ -219,16 +150,6 @@
 .pb-lists {
     overflow: hidden;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
-}
-
-.box1 {
-    background-color: cornflowerblue;
-    border-radius: 10px;
-}
-
-.box2 {
-    background-color: lightgreen;
-    border-radius: 10px;
 }

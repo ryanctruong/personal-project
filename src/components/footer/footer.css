@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .white-bar {
-    height: 2rem;
+    height: 3.2vh;
     background-color: white;
     width: 100%;
-    box-shadow: 0.25rem -0.5rem 0.5rem hsl(0deg 0% 0% / 0.38);
+    box-shadow: 0.4vh -0.8vh 0.8vh hsl(0deg 0% 0% / 0.38);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,5 +12,5 @@
 
 .white-bar p {
     font-family: 'Montserrat';
-    font-size: 0.75em;
+    font-size: 1.2vh;
 }
