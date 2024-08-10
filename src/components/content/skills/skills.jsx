@@ -9,7 +9,7 @@ import C from '/images/skills-icons/c-.png'
 import JavaScript from '/images/skills-icons/js.png'
 import SQL from '/images/skills-icons/sql.png'
 import ReactJS from '/images/skills-icons/react.png'
-import VueJS from '/images/skills-icons/vuejs.svg'
+import VueJS from '/images/skills-icons/vue-js.svg'
 import PostgreSQL from '/images/skills-icons/postgresql.png'
 import MongoDB from '/images/skills-icons/mongodb.png'
 import NodeJS from '/images/skills-icons/nodejs.png'
@@ -77,7 +77,7 @@ const Skills = ({ selectedTab }) => {
             <div className='smb-details'>
                 <div className='smb-details-box'>
                     <div className='smb-details-title'>
-                        <h4>Programming Languages</h4>
+                        <h4>Programming</h4>
                     </div>
                     <div className='smb-details-cards'>
                         {shuffledLanguages.map((language, index) => (
@@ -90,7 +90,7 @@ const Skills = ({ selectedTab }) => {
                         ))}
                     </div>
                 </div>
-                <div className='smb-details-box pyramid'>
+                <div className='smb-details-box'>
                     <div className='smb-details-title'>
                         <h4>Frameworks</h4>
                     </div>
