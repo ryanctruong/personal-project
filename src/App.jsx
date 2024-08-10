@@ -21,7 +21,7 @@ function App() {
             <Home />
           </div>
           <div className='content-item'>
-            <Skills />
+            <Skills selectedTab={selectedTab} />
           </div>
           <div className='content-item'>
             <Projects />
