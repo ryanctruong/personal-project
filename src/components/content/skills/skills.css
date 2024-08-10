@@ -13,8 +13,6 @@
     transition: grid-template-columns 0.3s ease;
     transition: width 0.5s ease, height 0.5s ease;
     gap: 10px;
-    width: 1200px;
-    height: 600px;
     padding: 20px;
 }
 
@@ -48,7 +46,6 @@
     font-style: italic;
     text-align: center;
 }
-
 
 .smb-details-box {
     display: grid;
