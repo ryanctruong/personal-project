@@ -7,8 +7,6 @@
 /* PARENT CONTAINER */
 .home-main-box {
     font-family: 'Montserrat';
-    width: 1200px;
-    margin: 2% auto;
     background-color: white;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
     display: grid;
@@ -16,7 +14,6 @@
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    height: 600px;
     transition: grid-template-columns 0.3s ease;
     transition: width 0.5s ease, height 0.5s ease;
 }
