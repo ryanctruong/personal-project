@@ -2,7 +2,6 @@
     .home-main-box {
         width: 62.5vw;
         height: 62.5vh;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
         grid-template-columns: auto auto;
     }
 

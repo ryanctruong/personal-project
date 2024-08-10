@@ -4,48 +4,93 @@
 .skills-main-box {
     font-family: 'Montserrat';
     background-color: white;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
-    transition: width 0.5s ease, height 0.5s ease;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    padding: 30px;
-    height: 700px;
-    width: 750px;
+    transition: grid-template-columns 0.3s ease;
+    transition: width 0.5s ease, height 0.5s ease;
+    gap: 10px;
+    padding: 20px;
 }
 
-.s-title {
+.smb-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
 }
 
-.s-title p {
-    color: #696969;
-    font-size: 14px;
+.smb-header h3 {
+    font-size: 24px;
+    margin: 0;
 }
 
-.skills-list {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    height: 100%;
-    gap: 10px;
-}
-
-.skills-main-box h3 {
-    margin-top: 0;
+.smb-header p {
     font-size: 16px;
+    color: #808080;
+    margin: 0;
 }
 
-.sl-list {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.smb-details {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
+}
+
+.smb-details h4 {
+    margin: 0;
+    font-weight: 500;
+    font-style: italic;
+    text-align: center;
+}
+
+.smb-details-box {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+}
+
+.smb-details-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.smb-details-cards>.sl-box:last-child {
+    flex-basis: 75%;
+}
+
+.pyramid .smb-details-cards {
+    display: grid;
+    gap: 30px;
+    justify-items: center;
+}
+
+.pyramid .smb-details-cards .sl-box:first-child {
+    grid-column: span 2;
+    width: 100%;
+    justify-self: center;
+}
+
+.pyramid .smb-details-cards .sl-box:nth-child(2),
+.pyramid .smb-details-cards .sl-box:nth-child(3) {
+    grid-column: span 1;
+}
+
+.pyramid .smb-details-cards .sl-box:nth-child(4),
+.pyramid .smb-details-cards .sl-box:nth-child(5) {
+    grid-column: span 1;
+}
+
+.pyramid .smb-details-cards .sl-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .sl-title {

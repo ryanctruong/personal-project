@@ -1,13 +1,15 @@
+import React, { useEffect, useState } from 'react';
+
 import './skills.css'
 import './skills-mq.css'
 
 import Python from '/images/skills-icons/python.png'
 import Java from '/images/skills-icons/java.png'
 import C from '/images/skills-icons/c-.png'
-import JS from '/images/skills-icons/js.png'
+import JavaScript from '/images/skills-icons/js.png'
 import SQL from '/images/skills-icons/sql.png'
-import React from '/images/skills-icons/react.png'
-import VueJS from '/images/skills-icons/vuejs.svg'
+import ReactJS from '/images/skills-icons/react.png'
+import VueJS from '/images/skills-icons/vue-js.svg'
 import PostgreSQL from '/images/skills-icons/postgresql.png'
 import MongoDB from '/images/skills-icons/mongodb.png'
 import NodeJS from '/images/skills-icons/nodejs.png'
@@ -17,87 +19,105 @@ import Postman from '/images/skills-icons/postman-icon.svg'
 import GCP from '/images/skills-icons/google-cloud.png'
 import PowerBI from '/images/skills-icons/power-bi.svg'
 
-const Skills = () => {
+const Skills = ({ selectedTab }) => {
+    const [shuffledLanguages, setShuffledLanguages] = useState([]);
+    const [shuffledFrameworks, setShuffledFrameworks] = useState([]);
+    const [shuffledTools, setShuffledTools] = useState([]);
+
+    const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const categories = {
+        languages: [
+            { name: 'Python', imgSrc: Python },
+            { name: 'Java', imgSrc: Java },
+            { name: 'C/C++', imgSrc: C },
+            { name: 'JavaScript', imgSrc: JavaScript },
+            { name: 'SQL', imgSrc: SQL }
+        ],
+        frameworks: [
+            { name: 'ReactJS', imgSrc: ReactJS },
+            { name: 'VueJS', imgSrc: VueJS },
+            { name: 'PostgreSQL', imgSrc: PostgreSQL },
+            { name: 'MongoDB', imgSrc: MongoDB },
+            { name: 'NodeJS', imgSrc: NodeJS }
+        ],
+        tools: [
+            { name: 'Kubernetes', imgSrc: Kubernetes },
+            { name: 'Docker', imgSrc: Docker },
+            { name: 'Postman', imgSrc: Postman },
+            { name: 'GCP', imgSrc: GCP },
+            { name: 'PowerBI', imgSrc: PowerBI }
+        ]
+    };
+
+    const shuffleAndSet = (category, setter) => {
+        if (selectedTab === 1) {
+            setter(shuffleArray([...categories[category]]));
+        }
+    };
+
+    useEffect(() => {
+        shuffleAndSet('languages', setShuffledLanguages);
+        shuffleAndSet('frameworks', setShuffledFrameworks);
+        shuffleAndSet('tools', setShuffledTools);
+    }, [selectedTab]);
+
     return (
         <div className='skills-main-box'>
-            <div className='s-title'>
-                <h2>Skills</h2>
-                <p>These are some of my favorite techonolgoies I've worked with</p>
+            <div className='smb-header'>
+                <h3>Skills</h3>
+                <p>These are some of my favorite technologies I've worked with</p>
             </div>
-            <div className='skills-list'>
-                <div className='skills-title'>
-                    <h3>Programming Lanuages</h3>
-                    <div className='sl-list'>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={Python}></img></div>
-                            <div className='sl-title'>Python</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={Java}></img></div>
-                            <div className='sl-title'>Java</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={C}></img></div>
-                            <div className='sl-title'>C/C++</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={JS}></img></div>
-                            <div className='sl-title'>JavaScript</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={SQL}></img></div>
-                            <div className='sl-title'>SQL</div>
-                        </div>
+            <div className='smb-details'>
+                <div className='smb-details-box'>
+                    <div className='smb-details-title'>
+                        <h4>Programming</h4>
+                    </div>
+                    <div className='smb-details-cards'>
+                        {shuffledLanguages.map((language, index) => (
+                            <div className='sl-box' key={index}>
+                                <div className='sl-icon'>
+                                    <img src={language.imgSrc} alt={language.name} />
+                                </div>
+                                <div className='sl-title'>{language.name}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <div className='frameworks'>
-                    <h3>Libraries / Frameworks / Databases</h3>
-                    <div className='sl-list'>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={React}></img></div>
-                            <div className='sl-title'>ReactJS</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={VueJS}></img></div>
-                            <div className='sl-title'>Vue</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={PostgreSQL}></img></div>
-                            <div className='sl-title'>PostgreSQL</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={MongoDB}></img></div>
-                            <div className='sl-title'>MongoDB</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={NodeJS}></img></div>
-                            <div className='sl-title'>NodeJS</div>
-                        </div>
+                <div className='smb-details-box pyramid'>
+                    <div className='smb-details-title'>
+                        <h4>Frameworks</h4>
+                    </div>
+                    <div className='smb-details-cards'>
+                        {shuffledFrameworks.map((framework, index) => (
+                            <div className='sl-box' key={index}>
+                                <div className='sl-icon'>
+                                    <img src={framework.imgSrc} alt={framework.name} />
+                                </div>
+                                <div className='sl-title'>{framework.name}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <div className='tools'>
-                    <h3>Tools / Platforms</h3>
-                    <div className='sl-list'>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={Kubernetes} id='jira-png' /></div>
-                            <div className='sl-title'>Kubernetes</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={Docker} /></div>
-                            <div className='sl-title'>Docker</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={Postman} /></div>
-                            <div className='sl-title'>Postman</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={GCP} /></div>
-                            <div className='sl-title'>GCP</div>
-                        </div>
-                        <div className='sl-box'>
-                            <div className='sl-icon'><img src={PowerBI} /></div>
-                            <div className='sl-title'>PowerBI</div>
-                        </div>
+                <div className='smb-details-box'>
+                    <div className='smb-details-title'>
+                        <h4>Tools</h4>
+                    </div>
+                    <div className='smb-details-cards'>
+                        {shuffledTools.map((tool, index) => (
+                            <div className='sl-box' key={index}>
+                                <div className='sl-icon'>
+                                    <img src={tool.imgSrc} alt={tool.name} />
+                                </div>
+                                <div className='sl-title'>{tool.name}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

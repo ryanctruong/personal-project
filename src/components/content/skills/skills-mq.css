@@ -1,0 +1,82 @@
+@media (max-width: 1919px) {
+    .skills-main-box {
+        width: 62.5vw;
+        height: 62.5vh;
+        padding: calc(1vw + 1vh);
+        gap: calc(0.5vw + 0.5vh);
+        overflow-y: auto;
+    }
+
+    .smb-header h3 {
+        font-size: calc(0.9vw + 0.9vh);
+    }
+
+    .smb-header p {
+        font-size: calc(0.65vw + 0.65vh);
+    }
+
+    .smb-details h4 {
+        font-size: calc(0.7vw + 0.7vh);
+    }
+
+    .smb-details-box {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: calc(1vw + 1vh);
+    }
+
+    .smb-details-cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: calc(1.5vw + 1.5vh);
+    }
+
+    .smb-details-cards>.sl-box:last-child {
+        flex-basis: 75%;
+    }
+
+    .pyramid .smb-details-cards {
+        gap: calc(1.5vw + 1.5vh);
+    }
+
+    .sl-title {
+        font-weight: 600;
+        font-size: calc(0.5vw + 0.5vh);
+    }
+
+    .sl-box {
+        height: calc(4vw + 4vh);
+        width: calc(4vw + 4vh);
+        border-radius: 0.7vw;
+        gap: calc(0.5vw + 0.5vh);
+        box-shadow: 0 0 0.836vw rgba(0, 0, 0, 0.38);
+    }
+
+    .sl-box:hover {
+        box-shadow: 0 0 calc(1vw + 1vh) rgba(0, 0, 0, 0.5);
+    }
+
+    .sl-icon {
+        border-radius: 0.7vw;
+    }
+
+    .sl-icon img {
+        height: calc(1.5vw + 1.5vh);
+        width: calc(1.5vw + 1.5vh);
+    }
+}
+
+@media (max-width: 768px) {
+    .smb-header p {
+        display: none;
+    }
+
+}
+
+@media (min-width: 1920px) {
+    .skills-main-box {
+        width: 1200px;
+        height: 600px;
+    }
+}
