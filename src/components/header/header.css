@@ -57,3 +57,14 @@
     color: var(--Primary-100, #DC143C);
     font-weight: bold;
 }
+
+@media (max-width: 767px) and (orientation: portrait) {
+    .nav-list ul {
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .nav-list li {
+        font-family: 'Montserrat';
+    }
+}
