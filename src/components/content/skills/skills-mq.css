@@ -76,7 +76,7 @@
 
 @media (max-width: 767px) and (orientation: portrait) {
     .skills-main-box {
-        width: 90%;
+        width: 80%;
         height: auto !important;
         padding: calc(1.5vw + 1.5vh);
     }
