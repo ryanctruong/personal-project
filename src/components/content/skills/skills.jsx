@@ -90,8 +90,8 @@ const Skills = ({ selectedTab }) => {
                         ))}
                     </div>
                 </div>
-                {/* <div className='smb-details-box pyramid'> */}
-                <div className='smb-details-box'>
+                <div className='smb-details-box pyramid'>
+                {/* <div className='smb-details-box'> */}
                     <div className='smb-details-title'>
                         <h4>Frameworks</h4>
                     </div>
