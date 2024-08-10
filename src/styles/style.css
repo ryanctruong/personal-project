@@ -28,6 +28,18 @@ body {
     overflow: hidden;
 }
 
+@media (max-width: 900px) {
+
+    html,
+    body,
+    .parent-container,
+    .content {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+}
+
 .content-wrapper {
     display: flex;
     transition: transform 0.5s ease-in-out;
