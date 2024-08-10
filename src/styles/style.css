@@ -20,6 +20,13 @@ body {
     width: 100vw;
     overflow-x: hidden !important;
     overflow-y: auto !important;
+    opacity: 0;
+    transition: opacity 1s ease;
+    position: relative;
+}
+
+.parent-container.reveal {
+    opacity: 1;
 }
 
 .content {
