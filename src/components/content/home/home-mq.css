@@ -3,7 +3,7 @@
         width: 62.5vw;
         height: 62.5vh;
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
-        border-radius: 10px;
+        grid-template-columns: auto auto;
     }
 
     .profile-card {
@@ -44,6 +44,7 @@
 
     .pb-full-desc {
         margin-bottom: calc(1vw + 1vh);
+        overflow-y: auto;
     }
 
     .pb-full-desc p {
