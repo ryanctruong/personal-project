@@ -78,6 +78,7 @@
     .skills-main-box {
         width: 90%;
         height: auto !important;
+        padding: calc(1.5vw + 1.5vh);
     }
 
     .pyramid .smb-details-cards .sl-box:first-child {
