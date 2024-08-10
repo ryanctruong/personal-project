@@ -95,7 +95,7 @@ const Skills = ({ selectedTab }) => {
                         <h4>Frameworks</h4>
                     </div>
                     <div className='smb-details-cards'>
-                        {shuffledFrameworks.slice(0, 5).map((framework, index) => (
+                        {shuffledFrameworks.map((framework, index) => (
                             <div className='sl-box' key={index}>
                                 <div className='sl-icon'>
                                     <img src={framework.imgSrc} alt={framework.name} />
