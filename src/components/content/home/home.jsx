@@ -139,7 +139,6 @@ const Home = () => {
                             <div className='weather-info'>
                                 <p>{location}</p>
                                 <p>{currentTime}</p>
-                                <p>{condition}</p>
                             </div>
                         </div>
                     </div>

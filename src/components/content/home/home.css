@@ -12,7 +12,7 @@
     position: relative;
     transition: grid-template-columns 0.3s ease;
     transition: width 0.5s ease, height 0.5s ease;
-    gap: 40px;
+    gap: 20px;
 }
 
 /* FIRST DIV IN PC */
@@ -109,8 +109,6 @@
     font-weight: 700;
     text-decoration: underline;
 }
-
-/* LAST SUB-DIV */
 
 /* SECOND DIV IN PC */
 .profile-detail {
