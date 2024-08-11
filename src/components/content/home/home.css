@@ -7,26 +7,25 @@
 /* PARENT CONTAINER */
 .home-main-box {
     font-family: 'Montserrat';
-    background-color: white;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
     display: grid;
     grid-template-columns: 3fr 7fr;
     position: relative;
-    overflow: hidden;
-    border-radius: 10px;
     transition: grid-template-columns 0.3s ease;
     transition: width 0.5s ease, height 0.5s ease;
+    gap: 40px;
 }
 
 /* FIRST DIV IN PC */
 .profile-card {
     padding: 20px;
-    border-right: 2px lightgray solid;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 20px;
     overflow: hidden;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
 }
 
 .picture,
@@ -115,10 +114,9 @@
 
 /* SECOND DIV IN PC */
 .profile-detail {
-    padding: 20px;
-    overflow: hidden;
     display: grid;
     grid-template-rows: auto 1fr;
+    gap: 20px;
 }
 
 .pb-header {
@@ -127,7 +125,7 @@
     margin-bottom: 19.2px;
 }
 
-.pb-header p {
+.pb-header h4 {
     margin: 0;
     font-size: 23px;
     font-weight: 550;
@@ -137,7 +135,9 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    margin-bottom: 19px;
+    border-radius: 50px;
+    padding: 30px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
 }
 
 .pb-full-desc p {
@@ -148,8 +148,93 @@
 }
 
 .pb-lists {
-    overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.box1,
+.box2 {
+    border-radius: 50px;
+    padding: 30px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
+}
+
+.current-weather {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.weather-title h4 {
+    margin: 0;
+    text-align: center;
+}
+
+.weather-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.weather-info p,
+.weather-icon p,
+.leetcode-stats p {
+    margin: 5px;
+    font-weight: 500;
+}
+
+.weather-icon img {
+    width: 128px;
+    height: 128px;
+}
+
+.weather-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box2 {
+    display: grid;
+    grid-template-columns: auto 1fr;
     gap: 10px;
+}
+
+.leetcode-stats {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.leetcode-circle {
+    width: 100%;
+    height: 100%;
+}
+
+.leetcode-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.leetcode-title p {
+    margin: 5px;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px black solid;
+}
+
+.easy {
+    color: green;
+}
+
+.medium {
+    color: #FFAA33;
+}
+
+.hard {
+    color: red;
 }
