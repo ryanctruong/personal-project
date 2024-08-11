@@ -21,7 +21,6 @@
         gap: calc(1vw + 1vh);
         border-radius: calc(1.5vw + 1.5vh);
         padding: calc(0.7vw + 0.7vh);
-        ;
     }
 
     .smb-details-cards {
@@ -71,39 +70,39 @@
 
 @media (max-width: 767px) and (orientation: portrait) {
     .skills-main-box {
-        width: 95%;
+        width: 90%;
         height: auto !important;
         padding: calc(1.5vw + 1.5vh);
     }
 
     .smb-details {
-        display: grid;
         grid-template-columns: 1fr;
-        justify-items: center;
+        grid-template-rows: 1fr;
+        gap: calc(3vw + 3vh);
     }
 
-
     .smb-details-box {
-        width: 50vw;
+        padding: calc(1vw + 1vh);
+    }
+
+    .smb-details-cards {
+        display: flex;
+        justify-content: space-between;
     }
 
     .smb-details-cards>.sl-box:last-child {
-        flex-basis: 75%;
+        flex-basis: auto;
     }
 
     .sl-box {
-        height: calc(4.75vw + 4.75vh);
-        width: calc(4.75vw + 4.75vh);
+        height: calc(4vw + 4vh);
+        width: calc(4vw + 4vh);
         gap: calc(0.5vw + 0.5vh);
     }
 
     .sl-icon img {
         height: calc(2vw + 2vh);
         width: calc(2vw + 2vh);
-    }
-
-    .sl-title {
-        font-size: calc(0.65vw + 0.65vh);
     }
 }
 
