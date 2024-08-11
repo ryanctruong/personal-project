@@ -7,12 +7,8 @@
         overflow-y: auto;
     }
 
-    .smb-header h3 {
-        font-size: calc(0.9vw + 0.9vh);
-    }
-
-    .smb-header p {
-        font-size: calc(0.65vw + 0.65vh);
+    .smb-details {
+        gap: calc(1vw + 1vh);
     }
 
     .smb-details h4 {
@@ -23,21 +19,19 @@
         display: grid;
         grid-template-rows: auto 1fr;
         gap: calc(1vw + 1vh);
+        border-radius: calc(1.5vw + 1.5vh);
+        padding: calc(0.7vw + 0.7vh);
     }
 
     .smb-details-cards {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: calc(1.5vw + 1.5vh);
+        gap: calc(0.5vw + 0.5vh);
     }
 
     .smb-details-cards>.sl-box:last-child {
-        flex-basis: 75%;
-    }
-
-    .pyramid .smb-details-cards {
-        gap: calc(1.5vw + 1.5vh);
+        flex-basis: 80%;
     }
 
     .sl-title {
@@ -76,28 +70,19 @@
 
 @media (max-width: 767px) and (orientation: portrait) {
     .skills-main-box {
-        width: 80%;
+        width: 90%;
         height: auto !important;
         padding: calc(1.5vw + 1.5vh);
     }
 
-    .pyramid .smb-details-cards .sl-box:first-child {
-        display: flex;
-        height: calc(4vw + 4vh);
-        width: calc(4vw + 4vh);
-    }
-
-    .pyramid .smb-details-cards {
-        display: flex;
-        justify-content: space-between
-    }
-
     .smb-details {
-        height: 100%;
-        display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        gap: 10px;
+        grid-template-rows: 1fr;
+        gap: calc(3vw + 3vh);
+    }
+
+    .smb-details-box {
+        padding: calc(1vw + 1vh);
     }
 
     .smb-details-cards {
@@ -106,7 +91,7 @@
     }
 
     .smb-details-cards>.sl-box:last-child {
-        flex-basis: 100%;
+        flex-basis: auto;
     }
 
     .sl-box {
@@ -119,22 +104,11 @@
         height: calc(2vw + 2vh);
         width: calc(2vw + 2vh);
     }
-
-    .pyramid .smb-details-cards .sl-box:first-child {
-        display: flex;
-        height: calc(4vw + 4vh);
-        width: calc(4vw + 4vh);
-    }
-
-    .sl-title {
-        font-weight: 600;
-    }
-    
 }
 
 @media (min-width: 1920px) {
     .skills-main-box {
-        width: 1200px;
+        width: 1400px;
         height: 600px;
     }
 }
