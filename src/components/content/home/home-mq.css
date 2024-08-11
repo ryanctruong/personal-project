@@ -58,7 +58,7 @@
 @media (max-width: 767px) and (orientation: portrait) {
     .home-main-box {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: 4fr 6fr;
         justify-content: center;
         align-content: center;
     }
