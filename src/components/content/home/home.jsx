@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { fetchData } from '../../../util/apiUtils';
 import './home.css'
 import './home-mq.css'
 import ProfilePic from '/beanhead.svg'
@@ -13,86 +14,79 @@ const Home = () => {
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
     const [condition, setCondition] = useState('');
-    const [showWeather, setShowWeather] = useState(true);
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [easyP, setEasyP] = useState(0);
     const [medP, setMedP] = useState(0);
     const [hardP, setHardP] = useState(0);
     const [setUp, setSetUp] = useState('');
     const [punchline, setPunchline] = useState('');
-
+    const [pokeName, setPokeName] = useState('');
+    const [pokeIMG, setPokeIMG] = useState('');
 
     useEffect(() => {
-        const fetchJoke = async () => {
-            try {
-                const response = await fetch(`https://official-joke-api.appspot.com/random_joke`, {
-                    method: 'GET'
-                });
+        const fetchPokemon = () => {
+            const number = Math.floor(Math.random() * 1025) + 1;
+            const url = `https://pokeapi.co/api/v2/pokemon/${number}`;
 
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(data);
-                    setSetUp(data.setup);
-                    setPunchline(data.punchline);
-                }
-            } catch (error) {
-                console.log('Error during API call:', error);
-            }
-        }
+            fetchData(url, (data) => {
+                setPokeName(data.name);
+                setPokeIMG(data.sprites.other['official-artwork'].front_default);
+            });
+        };
+        fetchPokemon();
+    }, []);
+
+    useEffect(() => {
+        const fetchJoke = () => {
+            const url = `https://official-joke-api.appspot.com/random_joke`;
+
+            fetchData(url, (data) => {
+                setSetUp(data.setup);
+                setPunchline(data.punchline);
+            });
+        };
 
         const interval = setInterval(() => {
             fetchJoke();
-            setShowWeather(prevShowWeather => !prevShowWeather);
-        }, 10000);
+            setCurrentSlide(prevSlide => (prevSlide + 1) % 3);
+        }, 5000);
 
         return () => clearInterval(interval);
     }, []);
 
+    const currentSlideClass = (slideIndex) => {
+        if (slideIndex === currentSlide) return 'enter';
+        if (slideIndex === (currentSlide === 0 ? 2 : currentSlide - 1)) return 'exit';
+        return 'hidden';
+    };
 
     useEffect(() => {
-        const fetchWeatherData = async () => {
-            try {
-                const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${weatherAPIKey}&q=Nashville&aqi=no`, {
-                    method: 'GET',
-                });
+        const fetchWeatherData = () => {
+            const url = `https://api.weatherapi.com/v1/current.json?key=${weatherAPIKey}&q=Nashville&aqi=no`;
 
-                if (response.ok) {
-                    const data = await response.json();
-                    const location = `${data.location.region}`;
-                    const temp = data.current.temp_f;
-                    const condition = data.current.condition.text;
+            fetchData(url, (data) => {
+                const location = `${data.location.region}`;
+                const temp = data.current.temp_f;
+                const condition = data.current.condition.text;
 
-                    setLocation(location);
-                    setTemp(temp);
-                    setCondition(condition);
-                } else {
-                    console.log('API call failed with status:', response.status);
-                }
-            } catch (error) {
-                console.log('Error during API call:', error);
-            }
+                setLocation(location);
+                setTemp(temp);
+                setCondition(condition);
+            });
         };
 
-        const fetchLeetCodeData = async () => {
-            try {
-                const response = await fetch(`https://leetcode-api-faisalshohag.vercel.app/ryantruong21`, {
-                    method: 'GET',
-                });
+        const fetchLeetCodeData = () => {
+            const url = `https://leetcode-api-faisalshohag.vercel.app/ryantruong21`;
 
-                if (response.ok) {
-                    const data = await response.json();
-                    const easyP = data.easySolved;
-                    const medP = data.totalSubmissions[2].count;
-                    const hardP = data.totalSubmissions[3].count;
+            fetchData(url, (data) => {
+                const easyP = data.easySolved;
+                const medP = data.totalSubmissions[2].count;
+                const hardP = data.totalSubmissions[3].count;
 
-                    setEasyP(easyP);
-                    setMedP(medP);
-                    setHardP(hardP);
-                } else {
-                    console.log('API call failed with status:', response.status);
-                }
-            } catch (error) {
-                console.log('Error during API call:', error);
-            }
+                setEasyP(easyP);
+                setMedP(medP);
+                setHardP(hardP);
+            });
         };
 
         const updateTime = () => {
@@ -161,14 +155,14 @@ const Home = () => {
                 <div className="pb-lists">
                     <div className='box1'>
                         <div className='slide-container'>
-                            <div className={`slide-content weather-content ${showWeather ? 'enter' : 'exit'}`}>
+                            <div className={`slide-content weather-content ${currentSlideClass(0)}`}>
                                 <div className='card'>
                                     <div className='card-icon'>
-                                        <img src={dog}></img>
+                                        <img src={dog} alt="Dog" />
                                     </div>
                                     <div className='card-info'>
                                         <div className='card-title'>
-                                            <p>Current Weather</p>
+                                            <p>My Current Weather</p>
                                         </div>
                                         <p>{currentTime}</p>
                                         <p>{location}</p>
@@ -176,14 +170,25 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={`slide-content hello-content ${showWeather ? 'exit' : 'enter'}`}>
+                            <div className={`slide-content hello-content ${currentSlideClass(1)}`}>
                                 <div className='card'>
                                     <div className='card-info'>
                                         <p className='card-title-setup'>{setUp}</p>
                                         <p className='card-subtitle'>{punchline}</p>
                                     </div>
                                     <div className='card-icon'>
-                                        <img src={bear}></img>
+                                        <img src={bear} alt="Bear" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={`slide-content third-content ${currentSlideClass(2)}`}>
+                                <div className='card'>
+                                    <div className='card-icon'>
+                                        <img src={pokeIMG}></img>
+                                    </div>
+                                    <div className='card-info'>
+                                        <p className='card-title'>Whoa! This Pokémon looks just like you!</p>
+                                        <p className='card-subtitle pokemon'>{pokeName}</p>
                                     </div>
                                 </div>
                             </div>
