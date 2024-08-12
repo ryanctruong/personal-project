@@ -3,6 +3,8 @@ import './home.css'
 import './home-mq.css'
 import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
+import dog from '/images/dog-profile-pic.png'
+import bear from '/images/brown-bear.jpg'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -11,10 +13,39 @@ const Home = () => {
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
     const [condition, setCondition] = useState('');
-    const [conditionIcon, setConditionIcon] = useState('');
+    const [showWeather, setShowWeather] = useState(true);
     const [easyP, setEasyP] = useState(0);
     const [medP, setMedP] = useState(0);
     const [hardP, setHardP] = useState(0);
+    const [setUp, setSetUp] = useState('');
+    const [punchline, setPunchline] = useState('');
+
+
+    useEffect(() => {
+        const fetchJoke = async () => {
+            try {
+                const response = await fetch(`https://official-joke-api.appspot.com/random_joke`, {
+                    method: 'GET'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    setSetUp(data.setup);
+                    setPunchline(data.punchline);
+                }
+            } catch (error) {
+                console.log('Error during API call:', error);
+            }
+        }
+
+        const interval = setInterval(() => {
+            fetchJoke();
+            setShowWeather(prevShowWeather => !prevShowWeather);
+        }, 10000);
+
+        return () => clearInterval(interval);
+    }, []);
 
 
     useEffect(() => {
@@ -26,15 +57,13 @@ const Home = () => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    const location = `${data.location.name}, ${data.location.region}`;
+                    const location = `${data.location.region}`;
                     const temp = data.current.temp_f;
                     const condition = data.current.condition.text;
-                    const conditionIcon = `https:${data.current.condition.icon}`;
 
                     setLocation(location);
                     setTemp(temp);
                     setCondition(condition);
-                    setConditionIcon(conditionIcon);
                 } else {
                     console.log('API call failed with status:', response.status);
                 }
@@ -131,14 +160,32 @@ const Home = () => {
                 </div>
                 <div className="pb-lists">
                     <div className='box1'>
-                        <div className='current-weather'>
-                            <div className='weather-icon'>
-                                <img src={conditionIcon}></img>
-                                <p>{temp}&deg;F</p>
+                        <div className='slide-container'>
+                            <div className={`slide-content weather-content ${showWeather ? 'enter' : 'exit'}`}>
+                                <div className='card'>
+                                    <div className='card-icon'>
+                                        <img src={dog}></img>
+                                    </div>
+                                    <div className='card-info'>
+                                        <div className='card-title'>
+                                            <p>Current Weather</p>
+                                        </div>
+                                        <p>{currentTime}</p>
+                                        <p>{location}</p>
+                                        <p>{temp}&deg;F, {condition}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className='weather-info'>
-                                <p>{location}</p>
-                                <p>{currentTime}</p>
+                            <div className={`slide-content hello-content ${showWeather ? 'exit' : 'enter'}`}>
+                                <div className='card'>
+                                    <div className='card-info'>
+                                        <p className='card-title-setup'>{setUp}</p>
+                                        <p className='card-subtitle'>{punchline}</p>
+                                    </div>
+                                    <div className='card-icon'>
+                                        <img src={bear}></img>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
