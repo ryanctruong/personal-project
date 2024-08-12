@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData } from '../../../util/apiUtils';
+
 import './home.css'
 import './home-mq.css'
+
 import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
 import dog from '/images/dog-profile-pic.png'
@@ -18,8 +20,8 @@ const Home = () => {
     const [easyP, setEasyP] = useState(0);
     const [medP, setMedP] = useState(0);
     const [hardP, setHardP] = useState(0);
-    const [setUp, setSetUp] = useState('');
-    const [punchline, setPunchline] = useState('');
+    const [setUp, setSetUp] = useState('How much money does a skunk have?');
+    const [punchline, setPunchline] = useState('Just one scent');
     const [pokeName, setPokeName] = useState('');
     const [pokeIMG, setPokeIMG] = useState('');
 
@@ -46,10 +48,11 @@ const Home = () => {
             });
         };
 
+        fetchJoke();
+
         const interval = setInterval(() => {
-            fetchJoke();
             setCurrentSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 5000);
+        }, 10000);
 
         return () => clearInterval(interval);
     }, []);
