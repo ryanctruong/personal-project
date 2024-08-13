@@ -52,7 +52,7 @@ const Home = () => {
 
         const interval = setInterval(() => {
             setCurrentSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 10000);
+        }, 7000);
 
         return () => clearInterval(interval);
     }, []);
