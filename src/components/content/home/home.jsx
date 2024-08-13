@@ -8,7 +8,7 @@ import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
 import dog from '/images/dog-profile-pic.png'
 import bear from '/images/brown-bear.jpg'
-import minion from '/images/minion.jpg'
+import coder from '/images/coder.jpg'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -27,7 +27,6 @@ const Home = () => {
     const [pokeName, setPokeName] = useState('');
     const [pokeIMG, setPokeIMG] = useState('');
     const [repos, setRepos] = useState([]);
-
 
     useEffect(() => {
         const fetchPokemon = () => {
@@ -256,6 +255,7 @@ const Home = () => {
                                         <div className='card-title'>
                                             <p>Github Repos</p>
                                         </div>
+                                        {/* api will not return 0, delayed api fetch */}
                                         {repos.length > 0 && repos[0] && (
                                             <p><a href={repos[0].html_url} target='__blank'>{repos[0].name}</a></p>
                                         )}
@@ -267,7 +267,7 @@ const Home = () => {
                                         )}
                                     </div>
                                     <div className='card-icon cat'>
-                                        <img src={minion} alt="Icon" />
+                                        <img src={coder} alt="Icon" />
 
                                     </div>
                                 </div>
