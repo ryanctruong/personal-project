@@ -1,0 +1,83 @@
+/* FIRST DIV IN PC */
+.profile-card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
+}
+
+.picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.picture-container {
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 15px hsl(0deg 0% 0% / 0.38);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid black;
+}
+
+#profile-pic {
+    width: 120%;
+    height: 120%;
+}
+
+.basic-desc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: center;
+    padding: 2px;
+}
+
+.basic-desc ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.basic-desc li {
+    padding: 10px;
+    font-size: 19px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#full-name {
+    font-weight: 700;
+}
+
+#job-title {
+    font-weight: 300;
+}
+
+.basic-desc a {
+    color: red;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.basic-desc a:hover {
+    font-weight: 700;
+    text-decoration: underline;
+}

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+/* PARENT CONTAINER */
+.home-main-box {
+    font-family: 'Montserrat';
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    position: relative;
+    transition: grid-template-columns 0.3s ease;
+    transition: width 0.5s ease, height 0.5s ease;
+    gap: 20px;
+}
+
