@@ -8,7 +8,8 @@ import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
 import dog from '/images/dog-profile-pic.png'
 import bear from '/images/brown-bear.jpg'
-import coder from '/images/coder.jpg'
+import coder from '/images/coder.png'
+import weather from '/images/weather-man.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -58,6 +59,7 @@ const Home = () => {
                 const selectedRepos = uniqueIndices.map(index => ({
                     name: data[index].name,
                     html_url: data[index].html_url,
+                    owner: data[index].owner.html_url
                 }));
                 setRepos(selectedRepos);
             })
@@ -80,11 +82,11 @@ const Home = () => {
 
         const leftInterval = setInterval(() => {
             setLeftSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 4000);
+        }, 4500);
 
         const rightInterval = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 5500);
+        }, 7000);
 
         return () => {
             clearInterval(leftInterval);
@@ -152,7 +154,7 @@ const Home = () => {
         fetchLeetCodeData();
         updateTime();
 
-        const intervalId = setInterval(updateTime, 60000);
+        const intervalId = setInterval(updateTime, 30000);
 
         return () => clearInterval(intervalId);
     }, []);
@@ -194,9 +196,9 @@ const Home = () => {
                     <div className='box1'>
                         <div className='slide-container'>
                             <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
-                                <div className='card'>
+                                <div className='card weather'>
                                     <div className='card-icon'>
-                                        <img src={dog} alt="Dog" />
+                                        <img src={weather} alt="Dog" />
                                     </div>
                                     <div className='card-info'>
                                         <div className='card-title'>
@@ -209,7 +211,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
-                                <div className='card'>
+                                <div className='card joke'>
                                     <div className='card-info'>
                                         <p className='card-title-setup'>{setUp}</p>
                                         <p className='card-subtitle'>{punchline}</p>
@@ -220,13 +222,13 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
-                                <div className='card'>
+                                <div className='card pokemon'>
                                     <div className='card-icon'>
                                         <img src={pokeIMG}></img>
                                     </div>
                                     <div className='card-info'>
                                         <p className='card-title'>Whoa! This Pokémon looks just like you!</p>
-                                        <p className='card-subtitle pokemon'>{pokeName}</p>
+                                        <p className='card-subtitle pokemon-name'>{pokeName}</p>
                                     </div>
                                 </div>
                             </div>
@@ -235,6 +237,34 @@ const Home = () => {
                     <div className='box2'>
                         <div className='slide-container'>
                             <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
+                                <div className='card gh'>
+                                    <div className='card-info'>
+                                        <div className='card-title'>
+                                            <p>Github Repos</p>
+                                        </div>
+                                        {/* api will not return 0, delayed api fetch */}
+                                        {repos.length > 0 && repos[0] && (
+                                            <p><a href={repos[0].html_url} target='__blank'>1. {repos[0].name}</a></p>
+                                        )}
+                                        {repos.length > 1 && repos[1] && (
+                                            <p><a href={repos[1].html_url} target='__blank'>2. {repos[1].name}</a></p>
+                                        )}
+                                        {repos.length > 2 && repos[2] && (
+                                            <p><a href={repos[2].html_url} target='__blank'>3. {repos[2].name}</a></p>
+                                        )}
+                                    </div>
+                                    <div className='card-icon cat' onClick={() => window.open(repos.length > 0 ? repos[0].owner : '#', '__blank')} >
+                                        <div className='img-container'>
+                                            <img src={coder} alt="Icon" />
+                                            {repos.length > 0 && repos[0] && (
+                                                <p><a href={repos[0].owner} target='__blank'>ryanctruong</a></p>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
                                 <div className='card lc'>
                                     <div className='card-info'>
                                         <div className='card-title'>
@@ -249,26 +279,10 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
-                                <div className='card gh'>
-                                    <div className='card-info'>
-                                        <div className='card-title'>
-                                            <p>Github Repos</p>
-                                        </div>
-                                        {/* api will not return 0, delayed api fetch */}
-                                        {repos.length > 0 && repos[0] && (
-                                            <p><a href={repos[0].html_url} target='__blank'>{repos[0].name}</a></p>
-                                        )}
-                                        {repos.length > 1 && repos[1] && (
-                                            <p><a href={repos[1].html_url} target='__blank'>{repos[1].name}</a></p>
-                                        )}
-                                        {repos.length > 2 && repos[2] && (
-                                            <p><a href={repos[2].html_url} target='__blank'>{repos[2].name}</a></p>
-                                        )}
-                                    </div>
-                                    <div className='card-icon cat'>
-                                        <img src={coder} alt="Icon" />
-
+                            <div className={`slide-content ${currentSlideClass(2, rightSlide)}`}>
+                                <div className='fill-card'>
+                                    <div className='card-icon fill-img'>
+                                        <img src={dog} />
                                     </div>
                                 </div>
                             </div>
