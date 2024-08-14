@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData } from '../../../util/apiUtils';
+import { SimpleDesc } from './textConstraints';
 
 import './styles/home.css'
 import './styles/profile-card.css'
@@ -92,7 +93,7 @@ const Home = () => {
 
         const rightInterval = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 2000);
+        }, 7000);
 
         return () => {
             clearInterval(leftInterval);
@@ -191,7 +192,7 @@ const Home = () => {
                     <div className="pb-header">
                         <h4>About Me</h4>
                         <div className='expand-container'>
-                            <img src={''} onClick={togglePopup}></img>
+                            <img src={expand} onClick={togglePopup}></img>
                         </div>
                         {showPopup && (
                             <div className="overlay">
@@ -205,15 +206,7 @@ const Home = () => {
                             </div>
                         )}
                     </div>
-                    <p>
-                        I am Ryan Truong, a Software Engineer at <a href={''} id='text-link'>HCA Healthcare</a>, currently contributing to the HR Transformation and Analytics team, with a particular focus on Advanced Analytics and Innovative Projects.
-                    </p>
-                    <p>
-                        I completed my Bachelor's degree at <a href={''} id='text-link'>Belmont University</a>, earning dual degrees in Computer Science and Economics. During my time there, I developed a strong foundation in both technical and analytical skills, which have been instrumental in my professional career. My academic journey included various projects and internships that provided hands-on experience and deepened my understanding of the practical applications of these fields.
-                    </p>
-                    <p>
-                        Some of my hobbies include participating in various sports, exploring and trying amazing food, and stepping out of my comfort zone to embrace new challenges and experiences.
-                    </p>
+                    <SimpleDesc />
                 </div>
                 <div className="pb-lists">
                     <div className='box1'>
