@@ -8,6 +8,8 @@ import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
 import dog from '/images/dog-profile-pic.png'
 import bear from '/images/brown-bear.jpg'
+import coder from '/images/coder.png'
+import weather from '/images/weather-man.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -16,7 +18,8 @@ const Home = () => {
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
     const [condition, setCondition] = useState('');
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [leftSlide, setLeftSlide] = useState(0);
+    const [rightSlide, setRightSlide] = useState(0);
     const [easyP, setEasyP] = useState(0);
     const [medP, setMedP] = useState(0);
     const [hardP, setHardP] = useState(0);
@@ -24,6 +27,7 @@ const Home = () => {
     const [punchline, setPunchline] = useState('Just one scent');
     const [pokeName, setPokeName] = useState('');
     const [pokeIMG, setPokeIMG] = useState('');
+    const [repos, setRepos] = useState([]);
 
     useEffect(() => {
         const fetchPokemon = () => {
@@ -38,6 +42,32 @@ const Home = () => {
         fetchPokemon();
     }, []);
 
+    function randomIndex(length, count) {
+        const indices = new Set();
+        while (indices.size < count) {
+            indices.add(Math.floor(Math.random() * length));
+        }
+        return Array.from(indices);
+    }
+
+    useEffect(() => {
+        const fetchGitHubStats = () => {
+            const url = `https://api.github.com/users/ryanctruong/repos`;
+
+            fetchData(url, (data) => {
+                const uniqueIndices = randomIndex(data.length, 3);
+                const selectedRepos = uniqueIndices.map(index => ({
+                    name: data[index].name,
+                    html_url: data[index].html_url,
+                    owner: data[index].owner.html_url
+                }));
+                setRepos(selectedRepos);
+            })
+        }
+
+        fetchGitHubStats();
+    }, []);
+
     useEffect(() => {
         const fetchJoke = () => {
             const url = `https://official-joke-api.appspot.com/random_joke`;
@@ -50,14 +80,21 @@ const Home = () => {
 
         fetchJoke();
 
-        const interval = setInterval(() => {
-            setCurrentSlide(prevSlide => (prevSlide + 1) % 3);
+        const leftInterval = setInterval(() => {
+            setLeftSlide(prevSlide => (prevSlide + 1) % 3);
+        }, 4500);
+
+        const rightInterval = setInterval(() => {
+            setRightSlide(prevSlide => (prevSlide + 1) % 3);
         }, 7000);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(leftInterval);
+            clearInterval(rightInterval);
+        };
     }, []);
 
-    const currentSlideClass = (slideIndex) => {
+    const currentSlideClass = (slideIndex, currentSlide) => {
         if (slideIndex === currentSlide) return 'enter';
         if (slideIndex === (currentSlide === 0 ? 2 : currentSlide - 1)) return 'exit';
         return 'hidden';
@@ -117,7 +154,7 @@ const Home = () => {
         fetchLeetCodeData();
         updateTime();
 
-        const intervalId = setInterval(updateTime, 60000);
+        const intervalId = setInterval(updateTime, 30000);
 
         return () => clearInterval(intervalId);
     }, []);
@@ -158,10 +195,10 @@ const Home = () => {
                 <div className="pb-lists">
                     <div className='box1'>
                         <div className='slide-container'>
-                            <div className={`slide-content weather-content ${currentSlideClass(0)}`}>
-                                <div className='card'>
+                            <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
+                                <div className='card weather'>
                                     <div className='card-icon'>
-                                        <img src={dog} alt="Dog" />
+                                        <img src={weather} alt="Dog" />
                                     </div>
                                     <div className='card-info'>
                                         <div className='card-title'>
@@ -173,8 +210,8 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={`slide-content hello-content ${currentSlideClass(1)}`}>
-                                <div className='card'>
+                            <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
+                                <div className='card joke'>
                                     <div className='card-info'>
                                         <p className='card-title-setup'>{setUp}</p>
                                         <p className='card-subtitle'>{punchline}</p>
@@ -184,31 +221,70 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={`slide-content third-content ${currentSlideClass(2)}`}>
-                                <div className='card'>
+                            <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
+                                <div className='card pokemon'>
                                     <div className='card-icon'>
                                         <img src={pokeIMG}></img>
                                     </div>
                                     <div className='card-info'>
                                         <p className='card-title'>Whoa! This Pokémon looks just like you!</p>
-                                        <p className='card-subtitle pokemon'>{pokeName}</p>
+                                        <p className='card-subtitle pokemon-name'>{pokeName}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className='box2'>
-                        <div className='leetcode-stats'>
-                            <div className='leetcode-title'>
-                                <p>LC Problems Solved</p>
+                        <div className='slide-container'>
+                            <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
+                                <div className='card gh'>
+                                    <div className='card-info'>
+                                        <div className='card-title'>
+                                            <p>Github Repos</p>
+                                        </div>
+                                        {/* api will not return 0, delayed api fetch */}
+                                        {repos.length > 0 && repos[0] && (
+                                            <p><a href={repos[0].html_url} target='__blank'>1. {repos[0].name}</a></p>
+                                        )}
+                                        {repos.length > 1 && repos[1] && (
+                                            <p><a href={repos[1].html_url} target='__blank'>2. {repos[1].name}</a></p>
+                                        )}
+                                        {repos.length > 2 && repos[2] && (
+                                            <p><a href={repos[2].html_url} target='__blank'>3. {repos[2].name}</a></p>
+                                        )}
+                                    </div>
+                                    <div className='card-icon cat' onClick={() => window.open(repos.length > 0 ? repos[0].owner : '#', '__blank')} >
+                                        <div className='img-container'>
+                                            <img src={coder} alt="Icon" />
+                                            {repos.length > 0 && repos[0] && (
+                                                <p><a href={repos[0].owner} target='__blank'>ryanctruong</a></p>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <p>Easy Solved: <span className='easy'>{easyP}</span></p>
-                            <p>Medium Solved: <span className='medium'>{medP}</span></p>
-                            <p>Hard Solved: <span className='hard'>{hardP}</span></p>
-                        </div>
-                        <div className='leetcode-img'>
-                            <div className='leetcode-circle'>
-                                <img src={meme}></img>
+                            <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
+                                <div className='card lc'>
+                                    <div className='card-info'>
+                                        <div className='card-title'>
+                                            <p>LC Problems Solved</p>
+                                        </div>
+                                        <p>Easy Solved: <span className='easy'>{easyP}</span></p>
+                                        <p>Medium Solved: <span className='medium'>{medP}</span></p>
+                                        <p>Hard Solved: <span className='hard'>{hardP}</span></p>
+                                    </div>
+                                    <div className='card-icon cat'>
+                                        <img src={meme}></img>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={`slide-content ${currentSlideClass(2, rightSlide)}`}>
+                                <div className='fill-card'>
+                                    <div className='card-icon fill-img'>
+                                        <img src={dog} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
