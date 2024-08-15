@@ -89,11 +89,17 @@
     }
 
     .picture-container {
-        width: 10rem;
-        height: 10rem;
+        width: 9rem;
+        height: 9rem;
     }
 
     .basic-desc li {
         float: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .basic-desc li {
+        font-size: 0.75rem;
     }
 }

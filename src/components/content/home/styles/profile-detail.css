@@ -52,3 +52,43 @@
     font-weight: 700;
     text-decoration: underline;
 }
+
+@media (max-width: 1098px) {
+    .profile-detail {
+        grid-template-rows: 0.8fr 1fr;
+    }
+
+    .weather, .lc, .gh, .joke, .pokemon, .fill-card {
+        padding: 0 1.875rem !important;
+    }
+
+    .profile-detail p {
+        font-size: 0.75rem;
+    }
+
+}
+
+
+@media (max-width: 960px) {
+    .profile-detail {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .weather, .lc, .gh, .joke, .pokemon, .fill-card {
+        padding: 1.875rem !important;
+    }
+}
+
+@media (max-width: 960px) {
+    .pb-full-desc p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-detail {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr 1fr !important;
+    }
+}

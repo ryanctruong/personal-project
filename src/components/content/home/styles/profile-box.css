@@ -206,3 +206,11 @@
     color: red;
     font-weight: 600;
 }
+
+@media (max-width: 1098px) {
+    .pb-lists {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+}

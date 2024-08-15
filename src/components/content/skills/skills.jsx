@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import './skills.css'
 import './skills-mq.css'
@@ -25,12 +25,29 @@ const Skills = ({ selectedTab }) => {
     const [shuffledTools, setShuffledTools] = useState([]);
 
     const shuffleArray = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
         }
-        return array;
-    }
+        return shuffledArray;
+    };
+
+    const shuffleAndSet = useCallback(() => {
+        setShuffledLanguages(shuffleArray(categories.languages));
+        setShuffledFrameworks(shuffleArray(categories.frameworks));
+        setShuffledTools(shuffleArray(categories.tools));
+    }, []);
+
+    useEffect(() => {
+        shuffleAndSet();
+    }, [shuffleAndSet]);
+
+    useEffect(() => {
+        if (selectedTab === 1) {
+            shuffleAndSet();
+        }
+    }, [selectedTab, shuffleAndSet]);
 
     const categories = {
         languages: [
@@ -56,18 +73,6 @@ const Skills = ({ selectedTab }) => {
         ]
     };
 
-    const shuffleAndSet = (category, setter) => {
-        if (selectedTab === 1) {
-            setter(shuffleArray([...categories[category]]));
-        }
-    };
-
-    useEffect(() => {
-        shuffleAndSet('languages', setShuffledLanguages);
-        shuffleAndSet('frameworks', setShuffledFrameworks);
-        shuffleAndSet('tools', setShuffledTools);
-    }, [selectedTab]);
-
     return (
         <div className='skills-main-box'>
             <div className='smb-details'>
@@ -87,7 +92,6 @@ const Skills = ({ selectedTab }) => {
                     </div>
                 </div>
                 <div className='smb-details-box'>
-                {/* <div className='smb-details-box'> */}
                     <div className='smb-details-title'>
                         <h4>Frameworks</h4>
                     </div>

@@ -4,10 +4,8 @@ import { SimpleDesc } from './textConstraints';
 
 import './styles/home.css'
 import './styles/profile-card.css'
-import './styles/media-queries/profileCardMQ.css'
 import './styles/profile-detail.css'
 import './styles/profile-box.css'
-import './styles/media-queries/home-mq.css'
 import './styles/popup.css'
 
 import ProfilePic from '/beanhead.svg'
