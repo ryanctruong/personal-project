@@ -1,14 +1,14 @@
 /* FIRST DIV IN PC */
 .profile-card {
-    padding: 20px;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    gap: 1.25rem;
     overflow: hidden;
-    border-radius: 50px;
+    border-radius: 3.125rem;
     background-color: white;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
 }
 
 .picture {
@@ -16,20 +16,20 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding: 2px;
+    width: 100%;
 }
 
 .picture-container {
-    width: 200px;
-    height: 200px;
+    width: 12.5rem;
+    height: 12.5rem;
     background-color: white;
     border-radius: 50%;
-    box-shadow: 0 0 15px hsl(0deg 0% 0% / 0.38);
+    box-shadow: 0 0 0.938em hsl(0deg 0% 0% / 0.38);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    border: 2px solid black;
+    border: 0.125em solid black;
 }
 
 #profile-pic {
@@ -44,7 +44,6 @@
     flex-direction: column;
     overflow: hidden;
     text-align: center;
-    padding: 2px;
 }
 
 .basic-desc ul {
@@ -55,8 +54,8 @@
 }
 
 .basic-desc li {
-    padding: 10px;
-    font-size: 19px;
+    padding: 0.625rem;
+    font-size: 1.125rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
