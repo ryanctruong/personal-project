@@ -70,10 +70,6 @@ const Skills = ({ selectedTab }) => {
 
     return (
         <div className='skills-main-box'>
-            <div className='smb-header'>
-                <h3>Skills</h3>
-                <p>These are some of my favorite technologies I've worked with</p>
-            </div>
             <div className='smb-details'>
                 <div className='smb-details-box'>
                     <div className='smb-details-title'>
@@ -90,7 +86,8 @@ const Skills = ({ selectedTab }) => {
                         ))}
                     </div>
                 </div>
-                <div className='smb-details-box pyramid'>
+                <div className='smb-details-box'>
+                {/* <div className='smb-details-box'> */}
                     <div className='smb-details-title'>
                         <h4>Frameworks</h4>
                     </div>

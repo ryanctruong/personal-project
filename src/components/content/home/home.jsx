@@ -22,8 +22,6 @@ const Home = () => {
                         <li id='university'><a href="https://www.belmont.edu/" target='__blank'>Belmont University</a></li>
                     </ul>
                 </div>
-                <div className='social-media'>
-                </div>
             </div>
             <div className='profile-detail'>
                 <div className="pb-header">
