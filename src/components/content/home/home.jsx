@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData } from '../../../util/apiUtils';
+import { SimpleDesc } from './textConstraints';
 
-import './home.css'
-import './home-mq.css'
+import './styles/home.css'
+import './styles/profile-card.css'
+import './styles/profile-detail.css'
+import './styles/profile-box.css'
+import './styles/media-queries/home-mq.css'
+import './styles/popup.css'
 
 import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
@@ -10,6 +15,7 @@ import dog from '/images/dog-profile-pic.png'
 import bear from '/images/brown-bear.jpg'
 import coder from '/images/coder.png'
 import weather from '/images/weather-man.png'
+import expand from '/images/expand-arrows.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -28,6 +34,7 @@ const Home = () => {
     const [pokeName, setPokeName] = useState('');
     const [pokeIMG, setPokeIMG] = useState('');
     const [repos, setRepos] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         const fetchPokemon = () => {
@@ -159,6 +166,10 @@ const Home = () => {
         return () => clearInterval(intervalId);
     }, []);
 
+    const togglePopup = () => {
+        setShowPopup(!showPopup);
+    };
+
     return (
         <div className='home-main-box'>
             <div className='profile-card'>
@@ -177,20 +188,25 @@ const Home = () => {
                 </div>
             </div>
             <div className='profile-detail'>
-
                 <div className="pb-full-desc">
                     <div className="pb-header">
                         <h4>About Me</h4>
+                        <div className='expand-container'>
+                            <img src={expand} onClick={togglePopup}></img>
+                        </div>
+                        {showPopup && (
+                            <div className="overlay">
+                                <div className="popup">
+                                    <div className="popup-inner">
+                                        <h4>Popup Title</h4>
+                                        <p>This is a popup message.</p>
+                                        <button onClick={togglePopup}>Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                    <p>
-                        I am Ryan Truong, a Software Engineer at <a href={''} id='text-link'>HCA Healthcare</a>, currently contributing to the HR Transformation and Analytics team, with a particular focus on Advanced Analytics and Innovative Projects.
-                    </p>
-                    <p>
-                        I completed my Bachelor's degree at <a href={''} id='text-link'>Belmont University</a>, earning dual degrees in Computer Science and Economics. During my time there, I developed a strong foundation in both technical and analytical skills, which have been instrumental in my professional career. My academic journey included various projects and internships that provided hands-on experience and deepened my understanding of the practical applications of these fields.
-                    </p>
-                    <p>
-                        Some of my hobbies include participating in various sports, exploring and trying amazing food, and stepping out of my comfort zone to embrace new challenges and experiences.
-                    </p>
+                    <SimpleDesc />
                 </div>
                 <div className="pb-lists">
                     <div className='box1'>

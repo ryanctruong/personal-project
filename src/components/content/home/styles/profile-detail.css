@@ -1,0 +1,54 @@
+.profile-detail {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+}
+
+.pb-full-desc {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 50px;
+    padding: 30px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
+    position: relative;
+    z-index: 1;
+}
+
+.pb-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 19.2px;
+}
+
+.pb-header h4 {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 550;
+}
+
+.pb-header img {
+    height: 100%;
+    width: 100%;
+}
+
+.pb-full-desc p {
+    font-size: 15.5px;
+    font-weight: 450;
+    line-height: 1.5;
+    margin-top: 0;
+}
+
+.pb-full-desc a {
+    color: red;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pb-full-desc a:hover {
+    font-weight: 700;
+    text-decoration: underline;
+}
