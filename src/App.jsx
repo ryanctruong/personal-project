@@ -41,10 +41,10 @@ function App() {
               <Home />
             </div>
             <div className="content-item">
-              <Skills selectedTab={selectedTab} />
+              {/* <Skills selectedTab={selectedTab} /> */}
             </div>
             <div className="content-item">
-              <Projects />
+              {/* <Projects /> */}
             </div>
           </div>
         </div>
