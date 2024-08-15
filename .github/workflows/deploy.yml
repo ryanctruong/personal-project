@@ -13,6 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    environment: github-pages 
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -26,6 +28,8 @@ jobs:
         run: npm install
 
       - name: Debug Environment Variables
+        env:
+          VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
         run: echo "VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }}"
 
       - name: Build project
