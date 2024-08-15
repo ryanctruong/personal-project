@@ -9,9 +9,9 @@
     font-family: 'Montserrat';
     display: grid;
     grid-template-columns: 3fr 7fr;
-    position: relative;
+    /* position: relative;
     transition: grid-template-columns 0.3s ease;
-    transition: width 0.5s ease, height 0.5s ease;
+    transition: width 0.5s ease, height 0.5s ease; */
     gap: 1.25rem;
     width: 75rem;
     height: 37.5rem;
