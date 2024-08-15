@@ -62,20 +62,20 @@ body {
     box-sizing: border-box;
 }
 
-@media (max-width: 1536px) {
+@media (max-width: 1280px) {
     html {
-        font-size: 14px;
+        font-size: 12px;
     }
 }
 
-@media (max-width: 1098px) {
+@media (max-width: 960px) {
     html {
-        font-size: 10px;
+        font-size: 8px;
     }
 }
 
 @media (max-width: 768px) {
-    html {
-        font-size: 6px;
+    .content {
+        overflow-y: scroll !important;
     }
 }

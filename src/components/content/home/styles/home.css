@@ -12,7 +12,40 @@
     position: relative;
     transition: grid-template-columns 0.3s ease;
     transition: width 0.5s ease, height 0.5s ease;
-    gap: 20px;
+    gap: 1.25rem;
     width: 75rem;
     height: 37.5rem;
+}
+
+@media (max-width: 960px) {
+    .home-main-box {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto);
+        height: 40rem;
+    }
+
+    .profile-detail {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .pb-lists{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-main-box {
+
+    }
+
+    .profile-detail {
+
+    }
+
+    .pb-lists{
+
+    }
 }
