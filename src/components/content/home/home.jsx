@@ -17,8 +17,6 @@ import weather from '/images/weather-man.png'
 import expand from '/images/expand-arrows.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
-console.log('Weather API Key:', import.meta.env.VITE_WEATHER_API_KEY);
-
 
 const Home = () => {
     const [location, setLocation] = useState('');
