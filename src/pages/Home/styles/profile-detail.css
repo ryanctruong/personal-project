@@ -58,7 +58,12 @@
         grid-template-rows: 0.8fr 1fr;
     }
 
-    .weather, .lc, .gh, .joke, .pokemon, .fill-card {
+    .weather,
+    .lc,
+    .gh,
+    .joke,
+    .pokemon,
+    .fill-card {
         padding: 0 1.875rem !important;
     }
 
@@ -68,14 +73,18 @@
 
 }
 
-
 @media (max-width: 960px) {
     .profile-detail {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
     }
 
-    .weather, .lc, .gh, .joke, .pokemon, .fill-card {
+    .weather,
+    .lc,
+    .gh,
+    .joke,
+    .pokemon,
+    .fill-card {
         padding: 1.875rem !important;
     }
 }

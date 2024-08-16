@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './layouts/Header/Header';
 import Home from './pages/Home/Home';
 import Skills from './pages/Skills/Skills';
@@ -38,7 +38,9 @@ function App() {
         <div className="content">
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
-              <Home />
+              {revealContainer && ( /* could potentially allow us to add animations */
+                <Home />
+              )}
             </div>
             <div className="content-item">
               {/* <Skills selectedTab={selectedTab} /> */}
