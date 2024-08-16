@@ -1,5 +1,5 @@
 import React from 'react';
-import './welcomePage.css';
+import './WelcomePage.css';
 
 const WelcomePage = ({ onDownButtonClick, transitionClass }) => {
     return (

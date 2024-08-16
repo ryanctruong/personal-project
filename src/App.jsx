@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Header from './layouts/Header/Header';
-import Home from './components/content/home/home';
-import Skills from './components/content/skills/skills';
-import Projects from './components/content/projects/projects';
+import Home from './pages/Home/Home';
+import Skills from './pages/Skills/Skills';
+import Projects from './pages/Projects/Projects';
 import Footer from './layouts/Footer/Footer';
-import WelcomePage from './components/content/welcome/welcomePage';
+import WelcomePage from './pages/Welcome/WelcomePage';
 import './styles/style.css';
 
 function App() {

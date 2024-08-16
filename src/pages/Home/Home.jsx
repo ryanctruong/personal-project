@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData } from '../../../util/apiUtils';
-import { SimpleDesc } from './textConstraints';
+import { SimpleDesc } from './Descriptions';
 
 import './styles/home.css'
 import './styles/profile-card.css'
