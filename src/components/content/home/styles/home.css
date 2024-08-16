@@ -30,11 +30,3 @@
         grid-template-rows: 1fr;
     }
 }
-
-/* @media (max-width: 768px) {
-    .home-main-box {
-        height: 100%;
-        grid-template-rows: auto 1fr;
-    }
-} */
-
