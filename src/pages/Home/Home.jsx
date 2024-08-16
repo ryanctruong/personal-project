@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchData } from '../../../util/apiUtils';
+import fetchData from '../../util/apiUtils';
 import { SimpleDesc } from './Descriptions';
 
 import './styles/home.css'
