@@ -103,4 +103,8 @@
     .basic-desc li {
         font-size: 0.75rem;
     }
+
+    .card{
+        height: auto !important;
+    }
 }

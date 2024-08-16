@@ -223,7 +223,6 @@
 }
 
 @media (max-width: 767px) and (orientation: portrait) {
-
     .box1,
     .box2 {
         height: 60%;
