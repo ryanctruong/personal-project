@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import './skills.css'
-import './skills-mq.css'
+import './styles/skills.css'
+import './styles/skills-mq.css'
 
 import Python from '/images/skills-icons/python.png'
 import Java from '/images/skills-icons/java.png'

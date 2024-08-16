@@ -1,4 +1,4 @@
-export const fetchData = async (url, onSuccess, onError) => {
+const fetchData = async (url, onSuccess, onError) => {
     try {
         const response = await fetch(url, {
             method: 'GET'
@@ -16,3 +16,5 @@ export const fetchData = async (url, onSuccess, onError) => {
         if (onError) onError(error);
     }
 };
+
+export default fetchData;
