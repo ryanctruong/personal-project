@@ -193,7 +193,7 @@ const Home = () => {
                         <div className='expand-container'>
                             <img src={expand} onClick={togglePopup}></img>
                         </div>
-                        {showPopup && (
+                        {/* {showPopup && (
                             <div className="overlay">
                                 <div className="popup">
                                     <div className="popup-inner">
@@ -203,7 +203,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        )} */}
                     </div>
                     <SimpleDesc />
                 </div>
