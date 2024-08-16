@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import NavBar from './components/header/header';
+import Header from './layouts/Header/Header';
 import Home from './components/content/home/home';
 import Skills from './components/content/skills/skills';
 import Projects from './components/content/projects/projects';
-import Footer from './components/footer/footer';
+import Footer from './layouts/Footer/Footer';
 import WelcomePage from './components/content/welcome/welcomePage';
 import './styles/style.css';
 
@@ -34,7 +34,7 @@ function App() {
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''}`}>
-        <NavBar onTabSelect={(index) => setSelectedTab(index)} />
+        <Header onTabSelect={(index) => setSelectedTab(index)} />
         <div className="content">
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
