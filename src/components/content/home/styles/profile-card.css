@@ -1,0 +1,110 @@
+/* FIRST DIV IN PC */
+.profile-card {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+    overflow: hidden;
+    border-radius: 3.125rem;
+    background-color: white;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
+}
+
+.picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.picture-container {
+    width: 12.5rem;
+    height: 12.5rem;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 0.938em hsl(0deg 0% 0% / 0.38);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 0.125em solid black;
+}
+
+#profile-pic {
+    width: 120%;
+    height: 120%;
+}
+
+.basic-desc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: center;
+}
+
+.basic-desc ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.basic-desc li {
+    padding: 0.625rem;
+    font-size: 1.125rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#full-name {
+    font-weight: 700;
+}
+
+#job-title {
+    font-weight: 300;
+}
+
+.basic-desc a {
+    color: red;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.basic-desc a:hover {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+@media (max-width: 960px) {
+    .profile-card {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 1fr;
+    }
+
+    .picture-container {
+        width: 9rem;
+        height: 9rem;
+    }
+
+    .basic-desc li {
+        float: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .basic-desc li {
+        font-size: 0.75rem;
+    }
+
+    .card{
+        height: auto !important;
+    }
+}

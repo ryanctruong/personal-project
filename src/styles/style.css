@@ -16,13 +16,13 @@ body {
 .parent-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     width: 100vw;
     overflow-x: hidden !important;
     overflow-y: auto !important;
     opacity: 0;
     transition: opacity 1s ease;
     position: relative;
+    min-height: 100vh;
 }
 
 .parent-container.reveal {
@@ -34,23 +34,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 3rem 0;
     overflow: hidden;
+    width: 100%;
+    padding: 0.188rem;
 }
 
 .content-wrapper {
     display: flex;
     transition: transform 0.5s ease-in-out;
     width: 100%;
-    height: 100%;
-    align-items: center;
 }
 
 .content-item {
     flex: 0 0 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 50vh;
+    box-sizing: border-box;
 }
 
 .footer {
@@ -60,4 +62,28 @@ body {
     text-align: center;
     padding: 1em;
     box-sizing: border-box;
+}
+
+
+@media (max-width: 1537px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1098px) {
+    html {
+        font-size: 14px;
+    }
+
+    .content {
+        margin: 1rem 0;
+    }
+}
+
+
+@media (max-width: 767px) and (orientation: portrait) {
+    .content{
+        height: 50%;
+    }
 }
