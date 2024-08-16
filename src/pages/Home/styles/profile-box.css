@@ -220,6 +220,10 @@
         align-items: center;
         justify-content: center;
     }
+
+    .card p {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 767px) and (orientation: portrait) {
@@ -231,6 +235,9 @@
     .pb-lists {
         display: flex;
         flex-direction: column;
-        height: 75%;
+    }
+
+    .content {
+        margin: auto;
     }
 }
