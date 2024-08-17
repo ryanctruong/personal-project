@@ -45,7 +45,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
                         </IconContext.Provider>
                     </div>
                     <div className={`moon-icon ${!displayType ? 'darkmode' : ''}`}>
-                        <IconContext.Provider value={{ color: "#36454F", className: "contactIcon moon" }}
+                        <IconContext.Provider value={{ color: "#4F6D7A", className: "contactIcon moon" }}
                         >
                             <FaRegMoon size={25} onClick={handleDisplaySelect} />
                         </IconContext.Provider>
