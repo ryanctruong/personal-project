@@ -1,16 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .white-bar {
-    height: 1.875rem    ;
+    height: 1.875rem;
     background-color: white;
     width: 100%;
     box-shadow: 0.4vh -0.8vh 0.8vh hsl(0deg 0% 0% / 0.38);
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.5s linear;
 }
 
 .white-bar p {
     font-family: 'Montserrat';
     font-size: 0.75rem;
+}
+
+.white-bar.dark {
+    background-color: #313338;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.white-bar.dark p {
+    color: white;
 }

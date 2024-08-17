@@ -39,13 +39,13 @@ function App() {
           transitionClass={transitionClass}
         />
       ) : null}
-      <div className={`parent-container ${revealContainer ? 'reveal' : ''}`}>
+      <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
         <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} />
-        <div className="content">
+        <div className={`content ${displayType ? 'light' : 'dark'}`}>
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
               {revealContainer && ( /* could potentially allow us to add animations */
-                <Home />
+                <Home displayType={displayType} />
               )}
             </div>
             <div className="content-item">
@@ -56,7 +56,7 @@ function App() {
             </div>
           </div>
         </div>
-        <Footer className="footer" />
+        <Footer className="footer" displayType={displayType} />
       </div>
     </>
   );

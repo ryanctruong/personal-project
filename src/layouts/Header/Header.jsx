@@ -22,11 +22,11 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
         <div className='nav-header'>
             <div className='red-bar'>
                 <h4>Ryan Truong</h4>
-                <button className='menu-toggle' onClick={toggleMenu}>
+                <button className={`menu-toggle`} onClick={toggleMenu}>
                     &#9776;
                 </button>
             </div>
-            <div className={`nav-list ${menuOpen ? 'open' : ''}`}>
+            <div className={`nav-list ${menuOpen ? 'open' : ''} ${displayType ? 'light' : 'dark'}`}>
                 <ul>
                     {['Home', 'Skills', 'Projects', 'CV'].map((item, index) => (
                         <li

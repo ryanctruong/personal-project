@@ -171,7 +171,7 @@ const Home = ({ displayType }) => {
 
     return (
         <div className='home-main-box'>
-            <div className='profile-card'>
+            <div className={`profile-card ${displayType ? 'light' : 'dark'}`}>
                 <div className='picture'>
                     <div className='picture-container'>
                         <img src={ProfilePic} id='profile-pic'></img>
@@ -187,7 +187,7 @@ const Home = ({ displayType }) => {
                 </div>
             </div>
             <div className='profile-detail'>
-                <div className="pb-full-desc">
+                <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`}>
                     <div className="pb-header">
                         <h4>About Me</h4>
                         <div className='expand-container'>
@@ -208,7 +208,7 @@ const Home = ({ displayType }) => {
                     <SimpleDesc />
                 </div>
                 <div className="pb-lists">
-                    <div className='box1'>
+                    <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
                         <div className='slide-container'>
                             <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
                                 <div className='card weather'>
@@ -216,7 +216,7 @@ const Home = ({ displayType }) => {
                                         <img src={weather} alt="Dog" />
                                     </div>
                                     <div className='card-info'>
-                                        <div className='card-title'>
+                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                             <p>My Current Weather</p>
                                         </div>
                                         <p>{currentTime}</p>
@@ -249,12 +249,12 @@ const Home = ({ displayType }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='box2'>
+                    <div className={`box2 ${displayType ? 'light' : 'dark'}`}>
                         <div className='slide-container'>
                             <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
                                 <div className='card gh'>
                                     <div className='card-info'>
-                                        <div className='card-title'>
+                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                             <p>Github Repos</p>
                                         </div>
                                         {/* api will not return 0, delayed api fetch */}

@@ -14,6 +14,7 @@
     border-radius: 3.125rem;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
     display: grid;
+    transition: background-color 0.5s linear;
 }
 
 .slide-container {
@@ -74,13 +75,17 @@
     border-bottom: 1px black solid;
 }
 
+.card-title.dark p {
+    border-bottom: 2px white solid;
+}
+
 .card-title-setup {
     font-size: 0.875rem;
     color: #808080;
 }
 
 .card-subtitle {
-    color: red;
+    color: red !important;
     font-weight: 600;
 }
 
@@ -136,7 +141,7 @@
     background-image: linear-gradient(to right,
             red,
             red 50%,
-            #000 50%);
+            white 50%);
     background-size: 200% 100%;
     background-position: -100%;
     display: inline-block;
@@ -144,7 +149,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease-in-out;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .gh a {
@@ -228,6 +233,7 @@
 }
 
 @media (max-width: 767px) and (orientation: portrait) {
+
     .box1,
     .box2 {
         height: 60%;
@@ -241,4 +247,15 @@
     .content {
         margin: auto;
     }
+}
+
+.box1.dark,
+.box2.dark {
+    background-color: #313338;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.box1.dark p,
+.box2.dark p {
+    color: white;
 }
