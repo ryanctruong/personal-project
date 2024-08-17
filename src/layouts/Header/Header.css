@@ -49,9 +49,9 @@
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
-/* .nav-list.dark li {
-    color: #8C8C8C;
-} */
+.nav-list.dark li {
+    color: #F9F6EE;
+}
 
 .nav-list ul {
     display: flex;
@@ -91,7 +91,7 @@
 
 .nav-list .selected {
     border-bottom: 0.104vw solid var(--Primary-100, #DC143C);
-    color: var(--Primary-100, #DC143C);
+    color: var(--Primary-100, #DC143C) !important;
     font-weight: bold;
 }
 
@@ -188,5 +188,5 @@
 }
 
 .contactIcon.moon:hover {
-    fill: black;
+    fill: #E2DFD2;
 }
