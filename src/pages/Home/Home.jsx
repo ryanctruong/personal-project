@@ -16,7 +16,6 @@ import dog from '/images/dog-profile-pic.png'
 import bear from '/images/brown-bear.png'
 import coder from '/images/coder.png'
 import weather from '/images/weather-man.png'
-import expand from '/images/expand-arrows.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
