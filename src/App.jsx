@@ -8,11 +8,12 @@ import WelcomePage from './pages/Welcome/WelcomePage';
 import './styles/style.css';
 
 function App() {
+  const checkIsDarkSchemePreferred = () => window?.matchMedia?.('(prefers-color-scheme:light)')?.matches ?? false;
   const [selectedTab, setSelectedTab] = useState(0);
   const [showWelcomePage, setShowWelcomePage] = useState(true);
   const [transitionClass, setTransitionClass] = useState('');
   const [revealContainer, setRevealContainer] = useState(false);
-  const [displayType, setDisplay] = useState(true);
+  const [displayType, setDisplay] = useState(checkIsDarkSchemePreferred());
 
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
@@ -25,7 +26,6 @@ function App() {
       setShowWelcomePage(false);
     }, 1000);
   };
-
 
   const handleDisplaySelect = () => {
     setDisplay(!displayType);
