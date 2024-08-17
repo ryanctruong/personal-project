@@ -7,6 +7,11 @@
     justify-content: space-between;
     height: 3rem;
     padding: 0.625rem;
+    transition: background-color 0.5s linear;
+}
+
+.red-bar.dark{
+    background-color: var(--Primary-100, #570515);
 }
 
 .red-bar h4 {

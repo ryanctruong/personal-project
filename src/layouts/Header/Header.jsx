@@ -20,7 +20,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
 
     return (
         <div className='nav-header'>
-            <div className='red-bar'>
+            <div className={`red-bar ${displayType ? 'light' : 'dark'}`}>
                 <h4>Ryan Truong</h4>
                 <button className={`menu-toggle`} onClick={toggleMenu}>
                     &#9776;
