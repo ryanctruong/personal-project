@@ -11,7 +11,7 @@ import './styles/popup.css'
 import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
 import dog from '/images/dog-profile-pic.png'
-import bear from '/images/brown-bear.jpg'
+import bear from '/images/brown-bear.png'
 import coder from '/images/coder.png'
 import weather from '/images/weather-man.png'
 import expand from '/images/expand-arrows.png'
@@ -252,7 +252,7 @@ const Home = ({ displayType }) => {
                     <div className={`box2 ${displayType ? 'light' : 'dark'}`}>
                         <div className='slide-container'>
                             <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
-                                <div className='card gh'>
+                                <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
                                     <div className='card-info'>
                                         <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                             <p>Github Repos</p>
@@ -282,7 +282,7 @@ const Home = ({ displayType }) => {
                             <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
                                 <div className='card lc'>
                                     <div className='card-info'>
-                                        <div className='card-title'>
+                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                             <p>LC Problems Solved</p>
                                         </div>
                                         <p>Easy Solved: <span className='easy'>{easyP}</span></p>

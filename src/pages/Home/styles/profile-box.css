@@ -76,7 +76,7 @@
 }
 
 .card-title.dark p {
-    border-bottom: 2px white solid;
+    border-bottom: 1px white solid;
 }
 
 .card-title-setup {
@@ -141,7 +141,7 @@
     background-image: linear-gradient(to right,
             red,
             red 50%,
-            white 50%);
+            black 50%);
     background-size: 200% 100%;
     background-position: -100%;
     display: inline-block;
@@ -149,11 +149,15 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease-in-out;
-    font-weight: 600;
+    font-weight: 500;
 }
 
-.gh a {
-    color: green;
+.gh.dark a {
+    background-image: linear-gradient(to right,
+            red,
+            red 50%,
+            white 50%);
+    font-weight: 600;
 }
 
 .gh a:before {
