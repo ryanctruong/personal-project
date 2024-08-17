@@ -10,7 +10,7 @@
     transition: background-color 0.5s linear;
 }
 
-.red-bar.dark{
+.red-bar.dark {
     background-color: var(--Primary-100, #570515);
 }
 
@@ -37,7 +37,7 @@
     grid-template-columns: 1fr 0.05fr;
     align-items: center;
     background-color: white;
-    box-shadow: 0 4px 8px hsl(0deg 0% 0% / 0.25);
+    box-shadow: 0.4vh 0.8vh 0.8vh hsl(0deg 0% 0% / 0.38);
     height: 4.25rem;
     padding: 0.625rem;
     position: relative;
@@ -46,7 +46,7 @@
 
 .nav-list.dark {
     background-color: #313338;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0.4vh 0.8vh 0.8vh hsl(0deg 0% 0% / 0.38);
 }
 
 .nav-list.dark li {
