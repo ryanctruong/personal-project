@@ -18,7 +18,7 @@ import expand from '/images/expand-arrows.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = () => {
+const Home = ({ displayType }) => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);

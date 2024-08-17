@@ -12,6 +12,7 @@ function App() {
   const [showWelcomePage, setShowWelcomePage] = useState(true);
   const [transitionClass, setTransitionClass] = useState('');
   const [revealContainer, setRevealContainer] = useState(false);
+  const [displayType, setDisplay] = useState(true);
 
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
@@ -25,6 +26,11 @@ function App() {
     }, 1000);
   };
 
+
+  const handleDisplaySelect = () => {
+    setDisplay(!displayType);
+  }
+
   return (
     <>
       {showWelcomePage ? (
@@ -34,7 +40,7 @@ function App() {
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''}`}>
-        <Header onTabSelect={(index) => setSelectedTab(index)} />
+        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} />
         <div className="content">
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
