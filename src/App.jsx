@@ -8,10 +8,12 @@ import WelcomePage from './pages/Welcome/WelcomePage';
 import './styles/style.css';
 
 function App() {
+  const checkIsDarkSchemePreferred = () => window?.matchMedia?.('(prefers-color-scheme:light)')?.matches ?? false;
   const [selectedTab, setSelectedTab] = useState(0);
   const [showWelcomePage, setShowWelcomePage] = useState(true);
   const [transitionClass, setTransitionClass] = useState('');
   const [revealContainer, setRevealContainer] = useState(false);
+  const [displayType, setDisplay] = useState(checkIsDarkSchemePreferred());
 
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
@@ -25,6 +27,10 @@ function App() {
     }, 1000);
   };
 
+  const handleDisplaySelect = () => {
+    setDisplay(!displayType);
+  }
+
   return (
     <>
       {showWelcomePage ? (
@@ -33,13 +39,13 @@ function App() {
           transitionClass={transitionClass}
         />
       ) : null}
-      <div className={`parent-container ${revealContainer ? 'reveal' : ''}`}>
-        <Header onTabSelect={(index) => setSelectedTab(index)} />
-        <div className="content">
+      <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
+        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} />
+        <div className={`content ${displayType ? 'light' : 'dark'}`}>
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
               {revealContainer && ( /* could potentially allow us to add animations */
-                <Home />
+                <Home displayType={displayType} />
               )}
             </div>
             <div className="content-item">
@@ -50,7 +56,7 @@ function App() {
             </div>
           </div>
         </div>
-        <Footer className="footer" />
+        <Footer className="footer" displayType={displayType} />
       </div>
     </>
   );

@@ -23,10 +23,12 @@ body {
     transition: opacity 1s ease;
     position: relative;
     min-height: 100vh;
+    transition: background-color 0.4s linear;
 }
 
 .parent-container.reveal {
     opacity: 1;
+    transition: background-color 0.4s linear;
 }
 
 .content {
@@ -38,6 +40,7 @@ body {
     overflow: hidden;
     width: 100%;
     padding: 0.188rem;
+    transition: background-color 0.5s linear;
 }
 
 .content-wrapper {
@@ -64,7 +67,6 @@ body {
     box-sizing: border-box;
 }
 
-
 @media (max-width: 1537px) {
     html {
         font-size: 15px;
@@ -81,9 +83,16 @@ body {
     }
 }
 
-
 @media (max-width: 767px) and (orientation: portrait) {
-    .content{
+    .content {
         height: 50%;
     }
+}
+
+.content.dark {
+    background-color: #313338;
+}
+
+.parent-container.dark {
+    background-color: #313338;
 }
