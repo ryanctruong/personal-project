@@ -37,6 +37,7 @@ function App() {
         <WelcomePage
           onDownButtonClick={handleDownButtonClick}
           transitionClass={transitionClass}
+          displayType={displayType}
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>

@@ -24,7 +24,6 @@
     margin-bottom: 1rem;
 }
 
-
 .down-button {
     background-color: transparent;
     border: none;
@@ -50,4 +49,14 @@
     60% {
         transform: translateY(-5px);
     }
+}
+
+
+.welcome-page.dark {
+    background-color: #313338;
+}
+
+.welcome-page.dark h1,
+.welcome-page.dark button {
+    color: white;
 }
