@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import fetchData from '../../utils/apiUtils';
 import { SimpleDesc } from './Descriptions';
+import { FaExpand } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 import './styles/home.css'
 import './styles/profile-card.css'
@@ -191,7 +193,9 @@ const Home = ({ displayType }) => {
                     <div className="pb-header">
                         <h4>About Me</h4>
                         <div className='expand-container'>
-                            <img src={expand} onClick={togglePopup}></img>
+                            <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
+                                <FaExpand size={25} />
+                            </IconContext.Provider>
                         </div>
                         {/* {showPopup && (
                             <div className="overlay">
