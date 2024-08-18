@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { AiOutlineSun } from "react-icons/ai";
+import { FaRegMoon } from "react-icons/fa";
+import { IconContext } from "react-icons";
 import './Header.css';
 
-const Header = ({ onTabSelect }) => {
+const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
     const [selected, setSelected] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -17,13 +20,13 @@ const Header = ({ onTabSelect }) => {
 
     return (
         <div className='nav-header'>
-            <div className='red-bar'>
+            <div className={`red-bar ${displayType ? 'light' : 'dark'}`}>
                 <h4>Ryan Truong</h4>
-                <button className='menu-toggle' onClick={toggleMenu}>
+                <button className={`menu-toggle`} onClick={toggleMenu}>
                     &#9776;
                 </button>
             </div>
-            <div className={`nav-list ${menuOpen ? 'open' : ''}`}>
+            <div className={`nav-list ${menuOpen ? 'open' : ''} ${displayType ? 'light' : 'dark'}`}>
                 <ul>
                     {['Home', 'Skills', 'Projects', 'CV'].map((item, index) => (
                         <li
@@ -35,6 +38,19 @@ const Header = ({ onTabSelect }) => {
                         </li>
                     ))}
                 </ul>
+                <div className='react-icons'>
+                    <div className={`sun-icon ${displayType ? 'lightmode' : ''}`}>
+                        <IconContext.Provider value={{ color: "#E1C16E", className: "contactIcon sun" }}>
+                            <AiOutlineSun size={35} onClick={handleDisplaySelect} />
+                        </IconContext.Provider>
+                    </div>
+                    <div className={`moon-icon ${!displayType ? 'darkmode' : ''}`}>
+                        <IconContext.Provider value={{ color: "#4F6D7A", className: "contactIcon moon" }}
+                        >
+                            <FaRegMoon size={25} onClick={handleDisplaySelect} />
+                        </IconContext.Provider>
+                    </div>
+                </div>
             </div>
         </div>
     )

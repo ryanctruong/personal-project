@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import fetchData from '../../utils/apiUtils';
 import { SimpleDesc } from './Descriptions';
+import { FaExpand } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 import './styles/home.css'
 import './styles/profile-card.css'
@@ -11,14 +13,13 @@ import './styles/popup.css'
 import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
 import dog from '/images/dog-profile-pic.png'
-import bear from '/images/brown-bear.jpg'
+import bear from '/images/brown-bear.png'
 import coder from '/images/coder.png'
 import weather from '/images/weather-man.png'
-import expand from '/images/expand-arrows.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = () => {
+const Home = ({ displayType }) => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
@@ -171,7 +172,7 @@ const Home = () => {
 
     return (
         <div className='home-main-box'>
-            <div className='profile-card'>
+            <div className={`profile-card ${displayType ? 'light' : 'dark'}`}>
                 <div className='picture'>
                     <div className='picture-container'>
                         <img src={ProfilePic} id='profile-pic'></img>
@@ -187,28 +188,19 @@ const Home = () => {
                 </div>
             </div>
             <div className='profile-detail'>
-                <div className="pb-full-desc">
+                <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`}>
                     <div className="pb-header">
                         <h4>About Me</h4>
                         <div className='expand-container'>
-                            <img src={expand} onClick={togglePopup}></img>
+                            <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
+                                <FaExpand size={25} onClick={togglePopup} />
+                            </IconContext.Provider>
                         </div>
-                        {/* {showPopup && (
-                            <div className="overlay">
-                                <div className="popup">
-                                    <div className="popup-inner">
-                                        <h4>Popup Title</h4>
-                                        <p>This is a popup message.</p>
-                                        <button onClick={togglePopup}>Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        )} */}
                     </div>
                     <SimpleDesc />
                 </div>
                 <div className="pb-lists">
-                    <div className='box1'>
+                    <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
                         <div className='slide-container'>
                             <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
                                 <div className='card weather'>
@@ -216,7 +208,7 @@ const Home = () => {
                                         <img src={weather} alt="Dog" />
                                     </div>
                                     <div className='card-info'>
-                                        <div className='card-title'>
+                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                             <p>My Current Weather</p>
                                         </div>
                                         <p>{currentTime}</p>
@@ -249,12 +241,12 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='box2'>
+                    <div className={`box2 ${displayType ? 'light' : 'dark'}`}>
                         <div className='slide-container'>
                             <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
-                                <div className='card gh'>
+                                <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
                                     <div className='card-info'>
-                                        <div className='card-title'>
+                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                             <p>Github Repos</p>
                                         </div>
                                         {/* api will not return 0, delayed api fetch */}
@@ -282,7 +274,7 @@ const Home = () => {
                             <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
                                 <div className='card lc'>
                                     <div className='card-info'>
-                                        <div className='card-title'>
+                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                             <p>LC Problems Solved</p>
                                         </div>
                                         <p>Easy Solved: <span className='easy'>{easyP}</span></p>
@@ -310,3 +302,15 @@ const Home = () => {
 }
 
 export default Home;
+
+// {showPopup && (
+//     <div className="overlay">
+//         <div className="popup">
+//             <div className="popup-inner">
+//                 <h4>Popup Title</h4>
+//                 <p>This is a popup message.</p>
+//                 <button onClick={togglePopup}>Close</button>
+//             </div>
+//         </div>
+//     </div>
+// )}
