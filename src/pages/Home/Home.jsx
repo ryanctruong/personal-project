@@ -67,33 +67,33 @@ const Home = ({ displayType }) => {
             let page = 1;
             let totalCommits = 0;
             let hasMoreCommits = true;
-    
+
             const lastWeekDate = new Date();
             lastWeekDate.setDate(lastWeekDate.getDate() - 7);
             const since = lastWeekDate.toISOString();
-    
+
             while (hasMoreCommits) {
                 const commitsUrl = `https://api.github.com/repos/ryanctruong/personal-project/commits?page=${page}&per_page=100&since=${since}`;
-    
-                try {
-                    const commitsData = await fetchData(commitsUrl);
+
+                await fetchData(commitsUrl, (commitsData) => {
                     totalCommits += commitsData.length;
                     if (commitsData.length < 100) {
                         hasMoreCommits = false;
                     }
-                } catch (error) {
-                    hasMoreCommits = false;
-                }
-    
+                },
+                    (error) => {
+                        hasMoreCommits = false;
+                    }
+                );
+
                 page++;
             }
-    
+
             setTotalCommits(totalCommits);
         };
-    
+
         fetchCommitsLastWeek();
     }, []);
-    
 
     useEffect(() => {
         const fetchJoke = () => {
