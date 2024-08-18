@@ -192,11 +192,11 @@ const Home = ({ displayType }) => {
 
     const style = {
         repos: {
-            color: displayType ? "#89CFF0" : "#89CFF0",
+            color: displayType ? "#6FB3D1" : "#89CFF0",
             fontStyle: "italic",
         },
         commits: {
-            color: displayType ? "#FFB6C1" : "#FFB6C1",
+            color: displayType ? "#E598A6" : "#FFB6C1",
             fontStyle: "italic",
         }
     };
