@@ -33,8 +33,9 @@ const Home = ({ displayType }) => {
     const [punchline, setPunchline] = useState('Just one scent');
     const [pokeName, setPokeName] = useState('');
     const [pokeIMG, setPokeIMG] = useState('');
-    const [repos, setRepos] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
+    const [totalCommits, setTotalCommits] = useState(0);
+    const [totalRepos, setTotalRepos] = useState(0);
 
     useEffect(() => {
         const fetchPokemon = () => {
@@ -49,30 +50,47 @@ const Home = ({ displayType }) => {
         fetchPokemon();
     }, []);
 
-    function randomIndex(length, count) {
-        const indices = new Set();
-        while (indices.size < count) {
-            indices.add(Math.floor(Math.random() * length));
-        }
-        return Array.from(indices);
-    }
-
     useEffect(() => {
         const fetchGitHubStats = () => {
             const url = `https://api.github.com/users/ryanctruong/repos`;
 
             fetchData(url, (data) => {
-                const uniqueIndices = randomIndex(data.length, 3);
-                const selectedRepos = uniqueIndices.map(index => ({
-                    name: data[index].name,
-                    html_url: data[index].html_url,
-                    owner: data[index].owner.html_url
-                }));
-                setRepos(selectedRepos);
+                setTotalRepos(data.length);
             })
         }
 
         fetchGitHubStats();
+    }, []);
+
+    useEffect(() => {
+        const fetchCommitsLastYear = async () => {
+            let page = 1;
+            let totalCommits = 0;
+            let hasMoreCommits = true;
+
+            const lastYearDate = new Date();
+            lastYearDate.setFullYear(lastYearDate.getFullYear() - 1);
+            const since = lastYearDate.toISOString();
+
+            while (hasMoreCommits) {
+                const commitsUrl = `https://api.github.com/repos/ryanctruong/personal-project/commits?page=${page}&per_page=100&since=${since}`;
+
+                await fetchData(commitsUrl, (commitsData) => {
+                    totalCommits += commitsData.length;
+                    if (commitsData.length < 100) {
+                        hasMoreCommits = false;
+                    }
+                }, (error) => {
+                    hasMoreCommits = false;
+                });
+
+                page++;
+            }
+
+            setTotalCommits(totalCommits);
+        };
+
+        fetchCommitsLastYear();
     }, []);
 
     useEffect(() => {
@@ -93,7 +111,7 @@ const Home = ({ displayType }) => {
 
         const rightInterval = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 7000);
+        }, 7000000);
 
         return () => {
             clearInterval(leftInterval);
@@ -168,6 +186,17 @@ const Home = ({ displayType }) => {
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
+    };
+
+    const style = {
+        repos: {
+            color: displayType ? "#1F51FF" : "#89CFF0",
+            fontStyle: "italic",
+        },
+        commits: {
+            color: displayType ? "#DA70D6" : "#FFB6C1",
+            fontStyle: "italic",
+        }
     };
 
     return (
@@ -247,25 +276,15 @@ const Home = ({ displayType }) => {
                                 <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
                                     <div className='card-info'>
                                         <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
-                                            <p>Github Repos</p>
+                                            <p>Github Stats</p>
                                         </div>
-                                        {/* api will not return 0, delayed api fetch */}
-                                        {repos.length > 0 && repos[0] && (
-                                            <p><a href={repos[0].html_url} target='__blank'>1. {repos[0].name}</a></p>
-                                        )}
-                                        {repos.length > 1 && repos[1] && (
-                                            <p><a href={repos[1].html_url} target='__blank'>2. {repos[1].name}</a></p>
-                                        )}
-                                        {repos.length > 2 && repos[2] && (
-                                            <p><a href={repos[2].html_url} target='__blank'>3. {repos[2].name}</a></p>
-                                        )}
+                                        <p># of Repos: <span style={style.repos}>{totalRepos ? totalRepos : "too many"}</span></p>
+                                        <p>YTD Commits: <span style={style.commits}>{totalCommits ? totalCommits : "a lot"}</span></p>
                                     </div>
-                                    <div className='card-icon cat' onClick={() => window.open(repos.length > 0 ? repos[0].owner : '#', '__blank')} >
+                                    <div className='card-icon cat' onClick={() => window.open('https://www.github.com/ryanctruong', '__blank')} >
                                         <div className='img-container'>
                                             <img src={coder} alt="Icon" />
-                                            {repos.length > 0 && repos[0] && (
-                                                <p><a href={repos[0].owner} target='__blank'>ryanctruong</a></p>
-                                            )}
+                                            <p><a href={'https://www.github.com/ryanctruong'} target='__blank'>ryanctruong</a></p>
                                         </div>
                                     </div>
 
