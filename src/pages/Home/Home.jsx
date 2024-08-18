@@ -193,20 +193,9 @@ const Home = ({ displayType }) => {
                         <h4>About Me</h4>
                         <div className='expand-container'>
                             <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
-                                <FaExpand size={25} />
+                                <FaExpand size={25} onClick={togglePopup} />
                             </IconContext.Provider>
                         </div>
-                        {/* {showPopup && (
-                            <div className="overlay">
-                                <div className="popup">
-                                    <div className="popup-inner">
-                                        <h4>Popup Title</h4>
-                                        <p>This is a popup message.</p>
-                                        <button onClick={togglePopup}>Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        )} */}
                     </div>
                     <SimpleDesc />
                 </div>
@@ -313,3 +302,15 @@ const Home = ({ displayType }) => {
 }
 
 export default Home;
+
+// {showPopup && (
+//     <div className="overlay">
+//         <div className="popup">
+//             <div className="popup-inner">
+//                 <h4>Popup Title</h4>
+//                 <p>This is a popup message.</p>
+//                 <button onClick={togglePopup}>Close</button>
+//             </div>
+//         </div>
+//     </div>
+// )}
