@@ -113,7 +113,7 @@ const Home = ({ displayType }) => {
 
         const rightInterval = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 7000000);
+        }, 7000);
 
         return () => {
             clearInterval(leftInterval);
@@ -194,10 +194,26 @@ const Home = ({ displayType }) => {
         repos: {
             color: displayType ? "#6FB3D1" : "#89CFF0",
             fontStyle: "italic",
+            fontWeight: "600"
         },
         commits: {
             color: displayType ? "#E598A6" : "#FFB6C1",
             fontStyle: "italic",
+            fontWeight: "600"
+        }
+    };
+
+    const getColor = (temperature) => {
+        if (temperature <= 32) {
+            return '#0000FF';
+        } else if (temperature <= 50) {
+            return '#00BFFF';
+        } else if (temperature <= 70) {
+            return '#FFD700';
+        } else if (temperature <= 90) {
+            return '#FFA500';
+        } else {
+            return '#FF4500';
         }
     };
 
@@ -244,7 +260,7 @@ const Home = ({ displayType }) => {
                                         </div>
                                         <p>{currentTime}</p>
                                         <p>{location}</p>
-                                        <p>{temp}&deg;F, {condition}</p>
+                                        <p><span style={{ color: getColor(temp), fontWeight: "600" }}>{temp}&deg;F</span>, <span style={{ fontStyle: "italic" }}>{condition}</span></p>
                                     </div>
                                 </div>
                             </div>
