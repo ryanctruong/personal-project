@@ -63,35 +63,37 @@ const Home = ({ displayType }) => {
     }, []);
 
     useEffect(() => {
-        const fetchCommitsLastYear = async () => {
+        const fetchCommitsLastWeek = async () => {
             let page = 1;
             let totalCommits = 0;
             let hasMoreCommits = true;
-
-            const lastYearDate = new Date();
-            lastYearDate.setFullYear(lastYearDate.getFullYear() - 1);
-            const since = lastYearDate.toISOString();
-
+    
+            const lastWeekDate = new Date();
+            lastWeekDate.setDate(lastWeekDate.getDate() - 7);
+            const since = lastWeekDate.toISOString();
+    
             while (hasMoreCommits) {
                 const commitsUrl = `https://api.github.com/repos/ryanctruong/personal-project/commits?page=${page}&per_page=100&since=${since}`;
-
-                await fetchData(commitsUrl, (commitsData) => {
+    
+                try {
+                    const commitsData = await fetchData(commitsUrl);
                     totalCommits += commitsData.length;
                     if (commitsData.length < 100) {
                         hasMoreCommits = false;
                     }
-                }, (error) => {
+                } catch (error) {
                     hasMoreCommits = false;
-                });
-
+                }
+    
                 page++;
             }
-
+    
             setTotalCommits(totalCommits);
         };
-
-        fetchCommitsLastYear();
+    
+        fetchCommitsLastWeek();
     }, []);
+    
 
     useEffect(() => {
         const fetchJoke = () => {
@@ -279,7 +281,7 @@ const Home = ({ displayType }) => {
                                             <p>Github Stats</p>
                                         </div>
                                         <p># of Repos: <span style={style.repos}>{totalRepos ? totalRepos : "too many"}</span></p>
-                                        <p>YTD Commits: <span style={style.commits}>{totalCommits ? totalCommits : "a lot"}</span></p>
+                                        <p>WTD Commits: <span style={style.commits}>{totalCommits ? totalCommits : "a lot"}</span></p>
                                     </div>
                                     <div className='card-icon cat' onClick={() => window.open('https://www.github.com/ryanctruong', '__blank')} >
                                         <div className='img-container'>
