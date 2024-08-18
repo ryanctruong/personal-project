@@ -260,7 +260,7 @@ const Home = ({ displayType }) => {
                                         </div>
                                         <p>{currentTime}</p>
                                         <p>{location}</p>
-                                        <p><span style={{ color: getColor(temp), fontWeight: "600" }}>{temp}&deg;F</span>, <span style={{ fontStyle: "italic" }}>{condition}</span></p>
+                                        <p><span style={{ color: getColor(temp), fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
                                     </div>
                                 </div>
                             </div>
