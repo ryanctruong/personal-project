@@ -33,8 +33,9 @@ const Home = ({ displayType }) => {
     const [punchline, setPunchline] = useState('Just one scent');
     const [pokeName, setPokeName] = useState('');
     const [pokeIMG, setPokeIMG] = useState('');
-    const [repos, setRepos] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
+    const [totalCommits, setTotalCommits] = useState(0);
+    const [totalRepos, setTotalRepos] = useState(0);
 
     useEffect(() => {
         const fetchPokemon = () => {
@@ -49,30 +50,49 @@ const Home = ({ displayType }) => {
         fetchPokemon();
     }, []);
 
-    function randomIndex(length, count) {
-        const indices = new Set();
-        while (indices.size < count) {
-            indices.add(Math.floor(Math.random() * length));
-        }
-        return Array.from(indices);
-    }
-
     useEffect(() => {
         const fetchGitHubStats = () => {
             const url = `https://api.github.com/users/ryanctruong/repos`;
 
             fetchData(url, (data) => {
-                const uniqueIndices = randomIndex(data.length, 3);
-                const selectedRepos = uniqueIndices.map(index => ({
-                    name: data[index].name,
-                    html_url: data[index].html_url,
-                    owner: data[index].owner.html_url
-                }));
-                setRepos(selectedRepos);
+                setTotalRepos(data.length);
             })
         }
 
         fetchGitHubStats();
+    }, []);
+
+    useEffect(() => {
+        const fetchCommitsLastWeek = async () => {
+            let page = 1;
+            let totalCommits = 0;
+            let hasMoreCommits = true;
+
+            const lastWeekDate = new Date();
+            lastWeekDate.setDate(lastWeekDate.getDate() - 7);
+            const since = lastWeekDate.toISOString();
+
+            while (hasMoreCommits) {
+                const commitsUrl = `https://api.github.com/repos/ryanctruong/personal-project/commits?page=${page}&per_page=100&since=${since}`;
+
+                await fetchData(commitsUrl, (commitsData) => {
+                    totalCommits += commitsData.length;
+                    if (commitsData.length < 100) {
+                        hasMoreCommits = false;
+                    }
+                },
+                    (error) => {
+                        hasMoreCommits = false;
+                    }
+                );
+
+                page++;
+            }
+
+            setTotalCommits(totalCommits);
+        };
+
+        fetchCommitsLastWeek();
     }, []);
 
     useEffect(() => {
@@ -170,6 +190,33 @@ const Home = ({ displayType }) => {
         setShowPopup(!showPopup);
     };
 
+    const style = {
+        repos: {
+            color: displayType ? "#6FB3D1" : "#89CFF0",
+            fontStyle: "italic",
+            fontWeight: "600"
+        },
+        commits: {
+            color: displayType ? "#E598A6" : "#FFB6C1",
+            fontStyle: "italic",
+            fontWeight: "600"
+        }
+    };
+
+    const getColor = (temperature) => {
+        if (temperature <= 32) {
+            return '#0000FF';
+        } else if (temperature <= 50) {
+            return '#00BFFF';
+        } else if (temperature <= 70) {
+            return '#FFD700';
+        } else if (temperature <= 90) {
+            return '#FFA500';
+        } else {
+            return '#FF4500';
+        }
+    };
+
     return (
         <div className='home-main-box'>
             <div className={`profile-card ${displayType ? 'light' : 'dark'}`}>
@@ -213,7 +260,7 @@ const Home = ({ displayType }) => {
                                         </div>
                                         <p>{currentTime}</p>
                                         <p>{location}</p>
-                                        <p>{temp}&deg;F, {condition}</p>
+                                        <p><span style={{ color: getColor(temp), fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -247,25 +294,15 @@ const Home = ({ displayType }) => {
                                 <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
                                     <div className='card-info'>
                                         <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
-                                            <p>Github Repos</p>
+                                            <p>Github Stats</p>
                                         </div>
-                                        {/* api will not return 0, delayed api fetch */}
-                                        {repos.length > 0 && repos[0] && (
-                                            <p><a href={repos[0].html_url} target='__blank'>1. {repos[0].name}</a></p>
-                                        )}
-                                        {repos.length > 1 && repos[1] && (
-                                            <p><a href={repos[1].html_url} target='__blank'>2. {repos[1].name}</a></p>
-                                        )}
-                                        {repos.length > 2 && repos[2] && (
-                                            <p><a href={repos[2].html_url} target='__blank'>3. {repos[2].name}</a></p>
-                                        )}
+                                        <p># of Repos: <span style={style.repos}>{totalRepos ? totalRepos : "too many"}</span></p>
+                                        <p>WTD Commits: <span style={style.commits}>{totalCommits ? totalCommits : "a lot"}</span></p>
                                     </div>
-                                    <div className='card-icon cat' onClick={() => window.open(repos.length > 0 ? repos[0].owner : '#', '__blank')} >
+                                    <div className='card-icon cat' onClick={() => window.open('https://www.github.com/ryanctruong', '__blank')} >
                                         <div className='img-container'>
                                             <img src={coder} alt="Icon" />
-                                            {repos.length > 0 && repos[0] && (
-                                                <p><a href={repos[0].owner} target='__blank'>ryanctruong</a></p>
-                                            )}
+                                            <p><a href={'https://www.github.com/ryanctruong'} target='__blank'>ryanctruong</a></p>
                                         </div>
                                     </div>
 
