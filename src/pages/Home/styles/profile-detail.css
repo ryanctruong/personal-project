@@ -53,6 +53,11 @@
     text-overflow: ellipsis;
 }
 
+.pb-full-desc.dark a,
+.detailed-desc.dark a {
+    color: #d26666;
+}
+
 .pb-full-desc a:hover,
 .dd-desc-text a:hover {
     font-weight: 700;

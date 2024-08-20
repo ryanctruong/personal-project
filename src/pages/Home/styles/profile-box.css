@@ -263,3 +263,7 @@
 .box2.dark p {
     color: white;
 }
+
+.card-subtitle.dark {
+    color: #d26666 !important;
+}
