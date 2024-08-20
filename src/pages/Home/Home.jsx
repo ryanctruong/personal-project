@@ -226,7 +226,7 @@ const Home = ({ displayType }) => {
                         <img src={ProfilePic} id='profile-pic'></img>
                     </div>
                 </div>
-                <div className='basic-desc'>
+                <div className={`basic-desc ${displayType ? 'light' : 'dark'}`}>
                     <ul>
                         <li id='full-name'>Ryan Truong</li>
                         <li id='job-title'>Software Engineer</li>
@@ -272,7 +272,7 @@ const Home = ({ displayType }) => {
                                             <div className='card joke'>
                                                 <div className='card-info'>
                                                     <p className='card-title-setup'>{setUp}</p>
-                                                    <p className='card-subtitle'>{punchline}</p>
+                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`}>{punchline}</p>
                                                 </div>
                                                 <div className='card-icon'>
                                                     <img src={bear} alt="Bear" />
@@ -286,7 +286,7 @@ const Home = ({ displayType }) => {
                                                 </div>
                                                 <div className='card-info'>
                                                     <p className='card-title'>Whoa! This Pokémon looks just like you!</p>
-                                                    <p className='card-subtitle pokemon-name'>{pokeName}</p>
+                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`}>{pokeName}</p>
                                                 </div>
                                             </div>
                                         </div>

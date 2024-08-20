@@ -80,6 +80,10 @@
     white-space: nowrap;
 }
 
+.basic-desc.dark a {
+    color: #d26666;
+}
+
 .basic-desc a:hover {
     font-weight: 700;
     text-decoration: underline;
