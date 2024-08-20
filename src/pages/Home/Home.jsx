@@ -350,9 +350,9 @@ const Home = ({ displayType }) => {
                             <div className={`detailed-desc ${displayType ? 'light' : 'dark'}`}>
                                 <div className='dd-header'>
                                     <h4>About Me</h4>
-                                    <div class="close-container" onClick={togglePopup}>
-                                        <div class="leftright"></div>
-                                        <div class="rightleft"></div>
+                                    <div className="close-container" onClick={togglePopup}>
+                                        <div className="leftright"></div>
+                                        <div className="rightleft"></div>
                                     </div>
                                 </div>
                                 <div className='dd-desc-text'>
