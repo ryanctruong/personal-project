@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import fetchData from '../../utils/apiUtils';
-import { SimpleDesc } from './Descriptions';
+import { SIMPLE_DESC, DETAIL_DESC } from './Descriptions';
 import { FaExpand } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
@@ -234,120 +235,136 @@ const Home = ({ displayType }) => {
                     </ul>
                 </div>
             </div>
-            <div className='profile-detail'>
-                <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`}>
-                    <div className="pb-header">
-                        <h4>About Me</h4>
-                        <div className='expand-container'>
-                            <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
-                                <FaExpand size={25} onClick={togglePopup} />
-                            </IconContext.Provider>
-                        </div>
-                    </div>
-                    <SimpleDesc />
-                </div>
-                <div className="pb-lists">
-                    <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
-                        <div className='slide-container'>
-                            <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
-                                <div className='card weather'>
-                                    <div className='card-icon'>
-                                        <img src={weather} alt="Dog" />
-                                    </div>
-                                    <div className='card-info'>
-                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
-                                            <p>My Current Weather</p>
-                                        </div>
-                                        <p>{currentTime}</p>
-                                        <p>{location}</p>
-                                        <p><span style={{ color: getColor(temp), fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
+            <AnimatePresence>
+                {!showPopup ? (
+                    <>
+                        <div className='profile-detail'>
+                            <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`}>
+                                <div className="pb-header">
+                                    <h4>About Me</h4>
+                                    <div className='expand-container'>
+                                        <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
+                                            <FaExpand size={25} onClick={togglePopup} />
+                                        </IconContext.Provider>
                                     </div>
                                 </div>
+                                <SIMPLE_DESC />
                             </div>
-                            <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
-                                <div className='card joke'>
-                                    <div className='card-info'>
-                                        <p className='card-title-setup'>{setUp}</p>
-                                        <p className='card-subtitle'>{punchline}</p>
-                                    </div>
-                                    <div className='card-icon'>
-                                        <img src={bear} alt="Bear" />
+                            <div className="pb-lists">
+                                <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
+                                    <div className='slide-container'>
+                                        <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
+                                            <div className='card weather'>
+                                                <div className='card-icon'>
+                                                    <img src={weather} alt="Dog" />
+                                                </div>
+                                                <div className='card-info'>
+                                                    <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
+                                                        <p>My Current Weather</p>
+                                                    </div>
+                                                    <p>{currentTime}</p>
+                                                    <p>{location}</p>
+                                                    <p><span style={{ color: getColor(temp), fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
+                                            <div className='card joke'>
+                                                <div className='card-info'>
+                                                    <p className='card-title-setup'>{setUp}</p>
+                                                    <p className='card-subtitle'>{punchline}</p>
+                                                </div>
+                                                <div className='card-icon'>
+                                                    <img src={bear} alt="Bear" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
+                                            <div className='card pokemon'>
+                                                <div className='card-icon'>
+                                                    <img src={pokeIMG}></img>
+                                                </div>
+                                                <div className='card-info'>
+                                                    <p className='card-title'>Whoa! This Pokémon looks just like you!</p>
+                                                    <p className='card-subtitle pokemon-name'>{pokeName}</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
-                                <div className='card pokemon'>
-                                    <div className='card-icon'>
-                                        <img src={pokeIMG}></img>
-                                    </div>
-                                    <div className='card-info'>
-                                        <p className='card-title'>Whoa! This Pokémon looks just like you!</p>
-                                        <p className='card-subtitle pokemon-name'>{pokeName}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`box2 ${displayType ? 'light' : 'dark'}`}>
-                        <div className='slide-container'>
-                            <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
-                                <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
-                                    <div className='card-info'>
-                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
-                                            <p>Github Stats</p>
-                                        </div>
-                                        <p># of Repos: <span style={style.repos}>{totalRepos ? totalRepos : "too many"}</span></p>
-                                        <p>WTD Commits: <span style={style.commits}>{totalCommits ? totalCommits : "a lot"}</span></p>
-                                    </div>
-                                    <div className='card-icon cat' onClick={() => window.open('https://www.github.com/ryanctruong', '__blank')} >
-                                        <div className='img-container'>
-                                            <img src={coder} alt="Icon" />
-                                            <p><a href={'https://www.github.com/ryanctruong'} target='__blank'>ryanctruong</a></p>
-                                        </div>
-                                    </div>
+                                <div className={`box2 ${displayType ? 'light' : 'dark'}`}>
+                                    <div className='slide-container'>
+                                        <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
+                                            <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
+                                                <div className='card-info'>
+                                                    <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
+                                                        <p>Github Stats</p>
+                                                    </div>
+                                                    <p># of Repos: <span style={style.repos}>{totalRepos ? totalRepos : "too many"}</span></p>
+                                                    <p>WTD Commits: <span style={style.commits}>{totalCommits ? totalCommits : "a lot"}</span></p>
+                                                </div>
+                                                <div className='card-icon cat' onClick={() => window.open('https://www.github.com/ryanctruong', '__blank')} >
+                                                    <div className='img-container'>
+                                                        <img src={coder} alt="Icon" />
+                                                        <p><a href={'https://www.github.com/ryanctruong'} target='__blank'>ryanctruong</a></p>
+                                                    </div>
+                                                </div>
 
-                                </div>
-                            </div>
-                            <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
-                                <div className='card lc'>
-                                    <div className='card-info'>
-                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
-                                            <p>LC Problems Solved</p>
+                                            </div>
                                         </div>
-                                        <p>Easy Solved: <span className='easy'>{easyP}</span></p>
-                                        <p>Medium Solved: <span className='medium'>{medP}</span></p>
-                                        <p>Hard Solved: <span className='hard'>{hardP}</span></p>
-                                    </div>
-                                    <div className='card-icon cat'>
-                                        <img src={meme}></img>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={`slide-content ${currentSlideClass(2, rightSlide)}`}>
-                                <div className='fill-card'>
-                                    <div className='card-icon fill-img'>
-                                        <img src={dog} />
+                                        <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
+                                            <div className='card lc'>
+                                                <div className='card-info'>
+                                                    <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
+                                                        <p>LC Problems Solved</p>
+                                                    </div>
+                                                    <p>Easy Solved: <span className='easy'>{easyP}</span></p>
+                                                    <p>Medium Solved: <span className='medium'>{medP}</span></p>
+                                                    <p>Hard Solved: <span className='hard'>{hardP}</span></p>
+                                                </div>
+                                                <div className='card-icon cat'>
+                                                    <img src={meme}></img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={`slide-content ${currentSlideClass(2, rightSlide)}`}>
+                                            <div className='fill-card'>
+                                                <div className='card-icon fill-img'>
+                                                    <img src={dog} />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </>
+                ) : (
+                    <>
+                        <motion.div
+                            key="modal"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.5 }}
+                            transition={{ duration: 0.5 }} >
+                            <div className={`detailed-desc ${displayType ? 'light' : 'dark'}`}>
+                                <div className='dd-header'>
+                                    <h4>About Me</h4>
+                                    <div className="close-container" onClick={togglePopup}>
+                                        <div className="leftright"></div>
+                                        <div className="rightleft"></div>
+                                    </div>
+                                </div>
+                                <div className='dd-desc-text'>
+                                    <DETAIL_DESC />
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </div >
     );
 }
 
 export default Home;
-
-// {showPopup && (
-//     <div className="overlay">
-//         <div className="popup">
-//             <div className="popup-inner">
-//                 <h4>Popup Title</h4>
-//                 <p>This is a popup message.</p>
-//                 <button onClick={togglePopup}>Close</button>
-//             </div>
-//         </div>
-//     </div>
-// )}
