@@ -270,7 +270,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                                     <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
                                                 </div>
                                                 <div className='card-info'>
-                                                    <p className='card-title-setup'>Whoa! This Pokémon looks just like you!</p>
+                                                    <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
                                                     <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_ONE }}>{pokeName}</p>
                                                 </div>
                                             </div>
