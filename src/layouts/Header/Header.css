@@ -34,7 +34,7 @@
 
 .nav-list {
     display: grid;
-    grid-template-columns: 1fr 0.07fr;
+    grid-template-columns: 1fr 0.08fr;
     align-items: center;
     background-color: white;
     box-shadow: 0.4vh 0.8vh 0.8vh hsl(0deg 0% 0% / 0.38);
@@ -153,6 +153,7 @@
     height: 100%;
     width: 100%;
     margin: 0 1%;
+    padding: 0 0.625rem;
 }
 
 .sun-icon,
