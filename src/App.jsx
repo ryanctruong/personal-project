@@ -64,8 +64,19 @@ function App() {
     const url = `https://pokeapi.co/api/v2/pokemon/${number}`;
 
     fetchData(url, (data) => {
-      setPokeName(data.name);
-      setPokeIMG(data.sprites.other['official-artwork'].front_default);
+      const frontDefault = data.sprites.other['official-artwork'].front_default;
+      const frontShiny = data.sprites.other['official-artwork'].front_shiny;
+
+      const availableImages = [];
+
+      if (frontDefault) availableImages.push({ url: frontDefault, type: 'default' });
+      if (frontShiny) availableImages.push({ url: frontShiny, type: 'shiny' });
+
+      const randomChoice = availableImages[Math.floor(Math.random() * availableImages.length)];
+      setPokeIMG(randomChoice.url);
+
+      const pokemonName = randomChoice.type === 'shiny' ? `Shiny ${data.name}` : data.name;
+      setPokeName(pokemonName);
 
       if (data.types) {
         const types = data.types.map(typeInfo => typeInfo.type.name);
