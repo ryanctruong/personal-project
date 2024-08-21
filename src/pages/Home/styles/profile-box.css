@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
     height: 100%;
+    transition: color 0.5s ease-in-out;
 }
 
 .box1,
@@ -85,8 +86,8 @@
 }
 
 .card-subtitle {
-    color: red !important;
-    font-weight: 600;
+    /* color: red !important; */
+    font-weight: 700;
 }
 
 .card-info p {
@@ -262,8 +263,4 @@
 .box1.dark p,
 .box2.dark p {
     color: white;
-}
-
-.card-subtitle.dark {
-    color: #d26666 !important;
 }

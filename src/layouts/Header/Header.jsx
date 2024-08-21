@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { AiOutlineSun } from "react-icons/ai";
 import { FaRegMoon } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { POKE_COLORS } from "../../utils/PokeColors";
 import './Header.css';
 
-const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
+const Header = ({ onTabSelect, handleDisplaySelect, displayType, pokeTheme }) => {
     const [selected, setSelected] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -18,9 +19,30 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
         setMenuOpen(!menuOpen);
     };
 
+    let pokeTheme_ONE = '';
+    let pokeTheme_TWO = '';
+
+    if (pokeTheme[0] && POKE_COLORS[pokeTheme[0]]) {
+        pokeTheme_ONE = POKE_COLORS[pokeTheme[0]].base;
+    }
+
+    if (pokeTheme[1] && POKE_COLORS[pokeTheme[1]]) {
+        pokeTheme_TWO = (POKE_COLORS[pokeTheme[1]].base === POKE_COLORS[pokeTheme[0]].base) ? POKE_COLORS[pokeTheme[0]].complementary : POKE_COLORS[pokeTheme[1]].base;
+    }
+
+    const selectedStyle = {
+        borderBottom: `0.104vw solid ${pokeTheme_TWO}`,
+        color: `${pokeTheme_TWO}`,
+        fontWeight: 'bold',
+    };
+
+    const baseStyle = {
+        cursor: 'pointer', // Add base style if needed
+    };
+
     return (
         <div className='nav-header'>
-            <div className={`red-bar ${displayType ? 'light' : 'dark'}`}>
+            <div className={`red-bar ${displayType ? 'light' : 'dark'}`} style={{ backgroundColor: pokeTheme_ONE }}>
                 <h4>Ryan Truong</h4>
                 <button className={`menu-toggle`} onClick={toggleMenu}>
                     &#9776;
@@ -32,6 +54,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
                         <li
                             key={index}
                             className={selected === index ? 'selected' : ''}
+                            style={selected === index ? selectedStyle : baseStyle}
                             onClick={() => handleSelect(index)}
                         >
                             {item}
