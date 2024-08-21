@@ -19,9 +19,20 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, pokeTheme }) =>
         setMenuOpen(!menuOpen);
     };
 
+    let pokeTheme_ONE = '';
+    let pokeTheme_TWO = '';
+
+    if (pokeTheme[0] && POKE_COLORS[pokeTheme[0]]) {
+        pokeTheme_ONE = POKE_COLORS[pokeTheme[0]].base;
+    }
+
+    if (pokeTheme[1] && POKE_COLORS[pokeTheme[1]]) {
+        pokeTheme_TWO = (POKE_COLORS[pokeTheme[1]].base === POKE_COLORS[pokeTheme[0]].base) ? POKE_COLORS[pokeTheme[0]].complementary : POKE_COLORS[pokeTheme[1]].base;
+    }
+
     const selectedStyle = {
-        borderBottom: `0.104vw solid ${POKE_COLORS[pokeTheme[1]]}`,
-        color: `${POKE_COLORS[pokeTheme[1]]}`,
+        borderBottom: `0.104vw solid ${pokeTheme_TWO}`,
+        color: `${pokeTheme_TWO}`,
         fontWeight: 'bold',
     };
 
@@ -31,7 +42,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, pokeTheme }) =>
 
     return (
         <div className='nav-header'>
-            <div className={`red-bar ${displayType ? 'light' : 'dark'}`} style={{ backgroundColor: POKE_COLORS[pokeTheme[0]] }}>
+            <div className={`red-bar ${displayType ? 'light' : 'dark'}`} style={{ backgroundColor: pokeTheme_ONE }}>
                 <h4>Ryan Truong</h4>
                 <button className={`menu-toggle`} onClick={toggleMenu}>
                     &#9776;

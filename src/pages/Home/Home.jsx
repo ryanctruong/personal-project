@@ -61,7 +61,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
             const since = lastWeekDate.toISOString();
 
             while (hasMoreCommits) {
-                // const commitsUrl = `https://api.github.com/repos/ryanctruong/personal-project/commits?page=${page}&per_page=100&since=${since}`;
+                const commitsUrl = `https://api.github.com/repos/ryanctruong/personal-project/commits?page=${page}&per_page=100&since=${since}`;
 
                 await fetchData(commitsUrl, (commitsData) => {
                     totalCommits += commitsData.length;
@@ -97,7 +97,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
 
         const leftInterval = setInterval(() => {
             setLeftSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 4500);
+        }, 6200);
 
         const rightInterval = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
@@ -178,14 +178,25 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
         setShowPopup(!showPopup);
     };
 
+    let pokeTheme_ONE = '';
+    let pokeTheme_TWO = '';
+
+    if (pokeTheme[0] && POKE_COLORS[pokeTheme[0]]) {
+        pokeTheme_ONE = POKE_COLORS[pokeTheme[0]].base;
+    }
+
+    if (pokeTheme[1] && POKE_COLORS[pokeTheme[1]]) {
+        pokeTheme_TWO = (POKE_COLORS[pokeTheme[1]].base === POKE_COLORS[pokeTheme[0]].base) ? POKE_COLORS[pokeTheme[0]].complementary : POKE_COLORS[pokeTheme[1]].base;
+    }
+
     const style = {
         repos: {
-            color: displayType ? POKE_COLORS[pokeTheme[0]] : POKE_COLORS[pokeTheme[0]],
+            color: displayType ? pokeTheme_ONE : pokeTheme_ONE,
             fontStyle: "italic",
             fontWeight: "600"
         },
         commits: {
-            color: displayType ? POKE_COLORS[pokeTheme[1]] : POKE_COLORS[pokeTheme[1]],
+            color: displayType ? pokeTheme_TWO : pokeTheme_TWO,
             fontStyle: "italic",
             fontWeight: "600"
         }
@@ -215,8 +226,8 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                     <ul>
                         <li id='full-name'>Ryan Truong</li>
                         <li id='job-title'>Software Engineer</li>
-                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank' style={{ color: POKE_COLORS[pokeTheme[0]] }}>HCA Healthcare</a></li>
-                        <li id='university'><a href="https://www.belmont.edu/" target='__blank' style={{ color: POKE_COLORS[pokeTheme[0]] }}>Belmont University</a></li>
+                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank' style={{ color: pokeTheme_ONE }}>HCA Healthcare</a></li>
+                        <li id='university'><a href="https://www.belmont.edu/" target='__blank' style={{ color: pokeTheme_ONE }}>Belmont University</a></li>
                     </ul>
                 </div>
             </div>
@@ -233,7 +244,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                         </IconContext.Provider>
                                     </div>
                                 </div>
-                                <SIMPLE_DESC pokeTheme={pokeTheme[1]} />
+                                <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
                             </div>
                             <div className="pb-lists">
                                 <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
@@ -257,7 +268,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                             <div className='card joke'>
                                                 <div className='card-info'>
                                                     <p className='card-title-setup'>{setUp}</p>
-                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: POKE_COLORS[pokeTheme[0]] }}>{punchline}</p>
+                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_ONE }}>{punchline}</p>
                                                 </div>
                                                 <div className='card-icon'>
                                                     <img src={bear} alt="Bear" />
@@ -271,7 +282,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                                 </div>
                                                 <div className='card-info'>
                                                     <p className='card-title-setup'>Hit the image and watch the theme switch it up! 🎭🔄</p>
-                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: POKE_COLORS[pokeTheme[0]] }}>{pokeName}</p>
+                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_ONE }}>{pokeName}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -341,7 +352,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                     </div>
                                 </div>
                                 <div className='dd-desc-text'>
-                                    <DETAIL_DESC pokeTheme={pokeTheme[1]} />
+                                    <DETAIL_DESC pokeTheme={pokeTheme_TWO} />
                                 </div>
                             </div>
                         </motion.div>
