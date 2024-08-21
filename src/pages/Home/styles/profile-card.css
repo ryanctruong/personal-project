@@ -74,15 +74,15 @@
 }
 
 .basic-desc a {
-    color: red;
+    /* color: red; */
     text-overflow: ellipsis;
     text-decoration: none;
     white-space: nowrap;
 }
 
-.basic-desc.dark a {
+/* .basic-desc.dark a {
     color: #d26666;
-}
+} */
 
 .basic-desc a:hover {
     font-weight: 700;

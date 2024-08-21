@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { AiOutlineSun } from "react-icons/ai";
 import { FaRegMoon } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { POKE_COLORS } from "../../utils/PokeColors";
 import './Header.css';
 
-const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
+const Header = ({ onTabSelect, handleDisplaySelect, displayType, pokeTheme }) => {
     const [selected, setSelected] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -18,9 +19,19 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
         setMenuOpen(!menuOpen);
     };
 
+    const selectedStyle = {
+        borderBottom: `0.104vw solid ${POKE_COLORS[pokeTheme[1]]}`,
+        color: `${POKE_COLORS[pokeTheme[1]]}`,
+        fontWeight: 'bold',
+    };
+
+    const baseStyle = {
+        cursor: 'pointer', // Add base style if needed
+    };
+
     return (
         <div className='nav-header'>
-            <div className={`red-bar ${displayType ? 'light' : 'dark'}`}>
+            <div className={`red-bar ${displayType ? 'light' : 'dark'}`} style={{ backgroundColor: POKE_COLORS[pokeTheme[0]] }}>
                 <h4>Ryan Truong</h4>
                 <button className={`menu-toggle`} onClick={toggleMenu}>
                     &#9776;
@@ -32,6 +43,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
                         <li
                             key={index}
                             className={selected === index ? 'selected' : ''}
+                            style={selected === index ? selectedStyle : baseStyle}
                             onClick={() => handleSelect(index)}
                         >
                             {item}

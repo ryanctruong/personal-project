@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .red-bar {
-    background-color: var(--Primary-100, #DC143C);
+    /* background-color: var(--Primary-100, #DC143C); */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -11,7 +11,7 @@
 }
 
 .red-bar.dark {
-    background-color: var(--Primary-100, #570515);
+    /* background-color: var(--Primary-100, #570515); */
 }
 
 .red-bar h4 {
@@ -83,17 +83,13 @@
     margin: 0 1%;
 }
 
-.nav-list li:hover {
+/* .nav-list li:hover {
     border-bottom: 0.104vw solid var(--Primary-100, #DC143C);
     cursor: pointer;
     color: var(--Primary-100, #DC143C);
-}
+} */
 
-.nav-list .selected {
-    border-bottom: 0.104vw solid var(--Primary-100, #DC143C);
-    color: var(--Primary-100, #DC143C) !important;
-    font-weight: bold;
-}
+
 
 @media (max-width: 767px) {
     .nav-list ul {

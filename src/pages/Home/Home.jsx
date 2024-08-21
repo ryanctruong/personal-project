@@ -4,6 +4,7 @@ import fetchData from '../../utils/apiUtils';
 import { SIMPLE_DESC, DETAIL_DESC } from './Descriptions';
 import { FaExpand } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { POKE_COLORS } from '../../utils/PokeColors';
 
 import './styles/home.css'
 import './styles/profile-card.css'
@@ -20,7 +21,7 @@ import weather from '/images/weather-man.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = ({ displayType }) => {
+const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
@@ -32,24 +33,10 @@ const Home = ({ displayType }) => {
     const [hardP, setHardP] = useState(0);
     const [setUp, setSetUp] = useState('How much money does a skunk have?');
     const [punchline, setPunchline] = useState('Just one scent');
-    const [pokeName, setPokeName] = useState('');
-    const [pokeIMG, setPokeIMG] = useState('');
+
     const [showPopup, setShowPopup] = useState(false);
     const [totalCommits, setTotalCommits] = useState(0);
     const [totalRepos, setTotalRepos] = useState(0);
-
-    useEffect(() => {
-        const fetchPokemon = () => {
-            const number = Math.floor(Math.random() * 1025) + 1;
-            const url = `https://pokeapi.co/api/v2/pokemon/${number}`;
-
-            fetchData(url, (data) => {
-                setPokeName(data.name);
-                setPokeIMG(data.sprites.other['official-artwork'].front_default);
-            });
-        };
-        fetchPokemon();
-    }, []);
 
     useEffect(() => {
         const fetchGitHubStats = () => {
@@ -74,7 +61,7 @@ const Home = ({ displayType }) => {
             const since = lastWeekDate.toISOString();
 
             while (hasMoreCommits) {
-                const commitsUrl = `https://api.github.com/repos/ryanctruong/personal-project/commits?page=${page}&per_page=100&since=${since}`;
+                // const commitsUrl = `https://api.github.com/repos/ryanctruong/personal-project/commits?page=${page}&per_page=100&since=${since}`;
 
                 await fetchData(commitsUrl, (commitsData) => {
                     totalCommits += commitsData.length;
@@ -193,12 +180,12 @@ const Home = ({ displayType }) => {
 
     const style = {
         repos: {
-            color: displayType ? "#6FB3D1" : "#89CFF0",
+            color: displayType ? POKE_COLORS[pokeTheme[0]] : POKE_COLORS[pokeTheme[0]],
             fontStyle: "italic",
             fontWeight: "600"
         },
         commits: {
-            color: displayType ? "#E598A6" : "#FFB6C1",
+            color: displayType ? POKE_COLORS[pokeTheme[1]] : POKE_COLORS[pokeTheme[1]],
             fontStyle: "italic",
             fontWeight: "600"
         }
@@ -209,8 +196,6 @@ const Home = ({ displayType }) => {
             return '#0000FF';
         } else if (temperature <= 50) {
             return '#00BFFF';
-        } else if (temperature <= 70) {
-            return '#FFD700';
         } else if (temperature <= 90) {
             return '#FFA500';
         } else {
@@ -230,8 +215,8 @@ const Home = ({ displayType }) => {
                     <ul>
                         <li id='full-name'>Ryan Truong</li>
                         <li id='job-title'>Software Engineer</li>
-                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank'>HCA Healthcare</a></li>
-                        <li id='university'><a href="https://www.belmont.edu/" target='__blank'>Belmont University</a></li>
+                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank' style={{ color: POKE_COLORS[pokeTheme[0]] }}>HCA Healthcare</a></li>
+                        <li id='university'><a href="https://www.belmont.edu/" target='__blank' style={{ color: POKE_COLORS[pokeTheme[0]] }}>Belmont University</a></li>
                     </ul>
                 </div>
             </div>
@@ -248,7 +233,7 @@ const Home = ({ displayType }) => {
                                         </IconContext.Provider>
                                     </div>
                                 </div>
-                                <SIMPLE_DESC />
+                                <SIMPLE_DESC pokeTheme={pokeTheme[1]} />
                             </div>
                             <div className="pb-lists">
                                 <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
@@ -272,7 +257,7 @@ const Home = ({ displayType }) => {
                                             <div className='card joke'>
                                                 <div className='card-info'>
                                                     <p className='card-title-setup'>{setUp}</p>
-                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`}>{punchline}</p>
+                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: POKE_COLORS[pokeTheme[0]] }}>{punchline}</p>
                                                 </div>
                                                 <div className='card-icon'>
                                                     <img src={bear} alt="Bear" />
@@ -282,11 +267,11 @@ const Home = ({ displayType }) => {
                                         <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
                                             <div className='card pokemon'>
                                                 <div className='card-icon'>
-                                                    <img src={pokeIMG}></img>
+                                                    <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
                                                 </div>
                                                 <div className='card-info'>
-                                                    <p className='card-title'>Whoa! This Pokémon looks just like you!</p>
-                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`}>{pokeName}</p>
+                                                    <p className='card-title-setup'>Hit the image and watch the theme switch it up! 🎭🔄</p>
+                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: POKE_COLORS[pokeTheme[0]] }}>{pokeName}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -356,7 +341,7 @@ const Home = ({ displayType }) => {
                                     </div>
                                 </div>
                                 <div className='dd-desc-text'>
-                                    <DETAIL_DESC />
+                                    <DETAIL_DESC pokeTheme={pokeTheme[1]} />
                                 </div>
                             </div>
                         </motion.div>

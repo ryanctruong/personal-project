@@ -85,8 +85,8 @@
 }
 
 .card-subtitle {
-    color: red !important;
-    font-weight: 600;
+    /* color: red !important; */
+    font-weight: 700;
 }
 
 .card-info p {
@@ -262,8 +262,4 @@
 .box1.dark p,
 .box2.dark p {
     color: white;
-}
-
-.card-subtitle.dark {
-    color: #d26666 !important;
 }

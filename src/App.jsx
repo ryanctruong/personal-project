@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import fetchData from './utils/apiUtils';
 import Header from './layouts/Header/Header';
 import Home from './pages/Home/Home';
 import Skills from './pages/Skills/Skills';
@@ -14,6 +15,9 @@ function App() {
   const [transitionClass, setTransitionClass] = useState('');
   const [revealContainer, setRevealContainer] = useState(false);
   const [displayType, setDisplay] = useState(checkIsDarkSchemePreferred());
+  const [pokeName, setPokeName] = useState('');
+  const [pokeIMG, setPokeIMG] = useState('');
+  const [pokeTheme, setPokeTheme] = useState(['', '']);
 
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
@@ -31,6 +35,29 @@ function App() {
     setDisplay(!displayType);
   }
 
+  const fetchPokemon = () => {
+    const number = Math.floor(Math.random() * 1025) + 1;
+    const url = `https://pokeapi.co/api/v2/pokemon/${number}`;
+
+    fetchData(url, (data) => {
+      setPokeName(data.name);
+      setPokeIMG(data.sprites.other['official-artwork'].front_default);
+
+      if (data.types) {
+        const types = data.types.map(typeInfo => typeInfo.type.name);
+        const updatedTypes = [
+          types[0],
+          types[1] || types[0] || ''
+        ];
+        setPokeTheme(updatedTypes);
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchPokemon();
+  }, []);
+
   return (
     <>
       {showWelcomePage ? (
@@ -41,12 +68,12 @@ function App() {
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
-        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} />
+        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} pokeTheme={pokeTheme} />
         <div className={`content ${displayType ? 'light' : 'dark'}`}>
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
-              {revealContainer && ( /* could potentially allow us to add animations */
-                <Home displayType={displayType} />
+              {revealContainer && (
+                <Home displayType={displayType} pokeName={pokeName} pokeIMG={pokeIMG} pokeTheme={pokeTheme} fetchPokemon={fetchPokemon} />
               )}
             </div>
             <div className="content-item">
