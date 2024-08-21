@@ -62,6 +62,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 450;
 }
 
 #full-name {
@@ -69,7 +70,7 @@
 }
 
 #job-title {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .basic-desc a {
@@ -77,6 +78,10 @@
     text-overflow: ellipsis;
     text-decoration: none;
     white-space: nowrap;
+}
+
+.basic-desc.dark a {
+    color: #d26666;
 }
 
 .basic-desc a:hover {

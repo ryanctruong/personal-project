@@ -2,6 +2,8 @@
     display: grid;
     grid-template-rows: auto 1fr;
     gap: 1.25rem;
+    height: 100%;
+    width: 100%;
 }
 
 .pb-full-desc {
@@ -34,14 +36,16 @@
     width: 100%;
 }
 
-.pb-full-desc p {
+.pb-full-desc p,
+.dd-desc-text p {
     font-size: 0.969em;
     font-weight: 450;
     line-height: 1.5;
     margin-top: 0;
 }
 
-.pb-full-desc a {
+.pb-full-desc a,
+.dd-desc-text a {
     color: red;
     text-decoration: none;
     white-space: nowrap;
@@ -49,9 +53,38 @@
     text-overflow: ellipsis;
 }
 
-.pb-full-desc a:hover {
+.pb-full-desc.dark a,
+.detailed-desc.dark a {
+    color: #d26666;
+}
+
+.pb-full-desc a:hover,
+.dd-desc-text a:hover {
     font-weight: 700;
     text-decoration: underline;
+}
+
+.detailed-desc {
+    height: 100%;
+    width: 100%;
+    border-radius: 3.125rem;
+    padding: 1.875rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.dd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.dd-header h4 {
+    margin: 0;
+    font-size: 1.438rem;
+    font-weight: 550;
 }
 
 @media (max-width: 1098px) {
@@ -103,17 +136,57 @@
     }
 }
 
-
 .pb-full-desc.dark {
     background-color: #313338;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
 .pb-full-desc.dark p,
-.pb-full-desc.dark h4 {
+.pb-full-desc.dark h4,
+.detailed-desc.dark p,
+.detailed-desc.dark h4 {
     color: white;
 }
 
-/* .pb-full-desc.dark a {
-    color: #880808;
-} */
+.close-container {
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leftright {
+    height: 4px;
+    width: 20px;
+    position: absolute;
+    background-color: #696969;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    transition: all .3s ease-in;
+}
+
+.rightleft {
+    height: 4px;
+    width: 20px;
+    position: absolute;
+    background-color: #696969;
+    border-radius: 2px;
+    transform: rotate(-45deg);
+    transition: all .3s ease-in;
+}
+
+.close-container:hover .leftright {
+    transform: rotate(-45deg);
+    background-color: red;
+}
+
+.close-container:hover .rightleft {
+    transform: rotate(45deg);
+    background-color: red;
+}
+
+.close-container:hover label {
+    opacity: 1;
+}
