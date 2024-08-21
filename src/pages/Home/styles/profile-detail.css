@@ -13,7 +13,7 @@
     overflow: hidden;
     border-radius: 3.125rem;
     padding: 1.875rem;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
+    /* box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38); */
     position: relative;
     z-index: 1;
     transition: background-color 0.5s linear;

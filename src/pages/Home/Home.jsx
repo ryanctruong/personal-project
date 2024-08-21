@@ -195,7 +195,8 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
 
     return (
         <div className='home-main-box'>
-            <div className={`profile-card ${displayType ? 'light' : 'dark'}`}>
+            <div className={`profile-card ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+
                 <div className='picture'>
                     <div className='picture-container'>
                         <img src={ProfilePic} id='profile-pic'></img>
@@ -205,8 +206,8 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                     <ul>
                         <li id='full-name'>Ryan Truong</li>
                         <li id='job-title'>Software Engineer</li>
-                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank' style={{ color: pokeTheme_ONE }}>HCA Healthcare</a></li>
-                        <li id='university'><a href="https://www.belmont.edu/" target='__blank' style={{ color: pokeTheme_ONE }}>Belmont University</a></li>
+                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank' style={{ color: pokeTheme_TWO }}>HCA Healthcare</a></li>
+                        <li id='university'><a href="https://www.belmont.edu/" target='__blank' style={{ color: pokeTheme_TWO }}>Belmont University</a></li>
                     </ul>
                 </div>
             </div>
@@ -214,7 +215,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                 {!showPopup ? (
                     <>
                         <div className='profile-detail'>
-                            <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`}>
+                            <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                 <div className="pb-header">
                                     <h4>About Me</h4>
                                     <div className='expand-container'>
@@ -226,7 +227,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                                 <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
                             </div>
                             <div className="pb-lists">
-                                <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
+                                <div className={`box1 ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                     <div className='slide-container'>
                                         <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
                                             <div className='card pokemon'>
@@ -268,7 +269,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={`box2 ${displayType ? 'light' : 'dark'}`}>
+                                <div className={`box2 ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                     <div className='slide-container'>
                                         <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
                                             <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
