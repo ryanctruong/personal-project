@@ -20,11 +20,10 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPo
     };
 
     const pokeTheme_ONE = colors.baseColor;
-    const pokeTheme_TWO = colors.complementaryColor;
 
     const selectedStyle = {
-        borderBottom: `0.104vw solid ${pokeTheme_TWO}`,
-        color: `${pokeTheme_TWO}`,
+        borderBottom: `0.104vw solid ${pokeTheme_ONE}`,
+        color: `${pokeTheme_ONE}`,
         fontWeight: 'bold',
     };
 
