@@ -4,7 +4,6 @@ import fetchData from '../../utils/apiUtils';
 import { SIMPLE_DESC, DETAIL_DESC } from './Descriptions';
 import { FaExpand } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { POKE_COLORS } from '../../utils/PokeColors';
 
 import './styles/home.css'
 import './styles/profile-card.css'
@@ -97,7 +96,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
 
         const leftInterval = setInterval(() => {
             setLeftSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 6200);
+        }, 7000000);
 
         const rightInterval = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
@@ -230,6 +229,17 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                                 <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
                                     <div className='slide-container'>
                                         <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
+                                            <div className='card pokemon'>
+                                                <div className='card-icon'>
+                                                    <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
+                                                </div>
+                                                <div className='card-info'>
+                                                    <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
+                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{pokeName}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
                                             <div className='card weather'>
                                                 <div className='card-icon'>
                                                     <img src={weather} alt="Dog" />
@@ -244,17 +254,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
-                                            <div className='card pokemon'>
-                                                <div className='card-icon'>
-                                                    <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
-                                                </div>
-                                                <div className='card-info'>
-                                                    <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
-                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{pokeName}</p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
                                             <div className='card joke'>
                                                 <div className='card-info'>

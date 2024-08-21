@@ -3,7 +3,6 @@ import { AiOutlineSun } from "react-icons/ai";
 import { FaExchangeAlt } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { POKE_COLORS } from "../../utils/PokeColors";
 import './Header.css';
 
 const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPokemon }) => {
@@ -30,7 +29,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPo
     };
 
     const baseStyle = {
-        cursor: 'pointer', // Add base style if needed
+        cursor: 'pointer',
     };
 
     return (

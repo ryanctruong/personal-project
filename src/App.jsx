@@ -24,14 +24,25 @@ function App() {
     complementaryColor: '',
   });
 
+  const getRandomColors = (colorArray) => {
+    const indices = new Set();
+
+    while (indices.size < 2) {
+      indices.add(Math.floor(Math.random() * colorArray.length));
+    }
+
+    const [index1, index2] = [...indices];
+    return [colorArray[index1], colorArray[index2]];
+  };
+
   const handleColors = (extractedColors) => {
-    const [base, complementary] = extractedColors;
+    const [base, complementary] = getRandomColors(extractedColors);
     setColors({
       baseColor: base,
       complementaryColor: complementary,
     });
-  }
-  
+  };
+
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
   };
