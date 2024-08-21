@@ -265,17 +265,6 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                             </div>
                                         </div>
                                         <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
-                                            <div className='card joke'>
-                                                <div className='card-info'>
-                                                    <p className='card-title-setup'>{setUp}</p>
-                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_ONE }}>{punchline}</p>
-                                                </div>
-                                                <div className='card-icon'>
-                                                    <img src={bear} alt="Bear" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
                                             <div className='card pokemon'>
                                                 <div className='card-icon'>
                                                     <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
@@ -283,6 +272,17 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                                 <div className='card-info'>
                                                     <p className='card-title-setup'>Hit the image and watch the theme switch it up! 🎭🔄</p>
                                                     <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_ONE }}>{pokeName}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
+                                            <div className='card joke'>
+                                                <div className='card-info'>
+                                                    <p className='card-title-setup'>{setUp}</p>
+                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_ONE }}>{punchline}</p>
+                                                </div>
+                                                <div className='card-icon'>
+                                                    <img src={bear} alt="Bear" />
                                                 </div>
                                             </div>
                                         </div>

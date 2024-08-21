@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
     height: 100%;
+    transition: color 0.5s ease-in-out;
 }
 
 .box1,

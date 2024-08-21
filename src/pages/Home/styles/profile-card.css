@@ -10,6 +10,7 @@
     background-color: white;
     box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
     transition: background-color 0.5s linear;
+    transition: color 0.5s ease-in-out;
 }
 
 .picture {
