@@ -83,11 +83,9 @@
     margin: 0 1%;
 }
 
-/* .nav-list li:hover {
-    border-bottom: 0.104vw solid var(--Primary-100, #DC143C);
-    cursor: pointer;
-    color: var(--Primary-100, #DC143C);
-} */
+.nav-list li:hover {
+    font-weight: 650;
+}
 
 @media (max-width: 767px) {
     .nav-list ul {
