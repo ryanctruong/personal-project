@@ -1,5 +1,4 @@
 import './styles/profile-detail.css'
-import { POKE_COLORS } from '../../utils/PokeColors';
 
 export const SIMPLE_DESC = ({ pokeTheme }) => {
     return (
