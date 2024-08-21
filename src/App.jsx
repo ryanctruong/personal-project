@@ -68,7 +68,7 @@ function App() {
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
-        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} pokeTheme={pokeTheme} />
+        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} pokeTheme={pokeTheme} fetchPokemon={fetchPokemon} />
         <div className={`content ${displayType ? 'light' : 'dark'}`}>
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
