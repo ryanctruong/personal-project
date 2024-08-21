@@ -96,7 +96,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
 
         const leftInterval = setInterval(() => {
             setLeftSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 7000000);
+        }, 6200);
 
         const rightInterval = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
