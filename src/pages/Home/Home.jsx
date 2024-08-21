@@ -4,7 +4,6 @@ import fetchData from '../../utils/apiUtils';
 import { SIMPLE_DESC, DETAIL_DESC } from './Descriptions';
 import { FaExpand } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { POKE_COLORS } from '../../utils/PokeColors';
 
 import './styles/home.css'
 import './styles/profile-card.css'
@@ -21,7 +20,7 @@ import weather from '/images/weather-man.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
+const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
@@ -178,16 +177,8 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
         setShowPopup(!showPopup);
     };
 
-    let pokeTheme_ONE = '';
-    let pokeTheme_TWO = '';
-
-    if (pokeTheme[0] && POKE_COLORS[pokeTheme[0]]) {
-        pokeTheme_ONE = POKE_COLORS[pokeTheme[0]].base;
-    }
-
-    if (pokeTheme[1] && POKE_COLORS[pokeTheme[1]]) {
-        pokeTheme_TWO = (POKE_COLORS[pokeTheme[1]].base === POKE_COLORS[pokeTheme[0]].base) ? POKE_COLORS[pokeTheme[0]].complementary : POKE_COLORS[pokeTheme[1]].base;
-    }
+    const pokeTheme_ONE = colors.baseColor;
+    const pokeTheme_TWO = colors.complementaryColor;
 
     const style = {
         repos: {
@@ -238,6 +229,17 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                 <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
                                     <div className='slide-container'>
                                         <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
+                                            <div className='card pokemon'>
+                                                <div className='card-icon'>
+                                                    <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
+                                                </div>
+                                                <div className='card-info'>
+                                                    <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
+                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{pokeName}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
                                             <div className='card weather'>
                                                 <div className='card-icon'>
                                                     <img src={weather} alt="Dog" />
@@ -252,17 +254,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
-                                            <div className='card pokemon'>
-                                                <div className='card-icon'>
-                                                    <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
-                                                </div>
-                                                <div className='card-info'>
-                                                    <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
-                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{pokeName}</p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
                                             <div className='card joke'>
                                                 <div className='card-info'>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ColorExtractor } from 'react-color-extractor'
 import fetchData from './utils/apiUtils';
 import Header from './layouts/Header/Header';
 import Home from './pages/Home/Home';
@@ -18,6 +19,29 @@ function App() {
   const [pokeName, setPokeName] = useState('');
   const [pokeIMG, setPokeIMG] = useState('');
   const [pokeTheme, setPokeTheme] = useState(['', '']);
+  const [colors, setColors] = useState({
+    baseColor: '',
+    complementaryColor: '',
+  });
+
+  const getRandomColors = (colorArray) => {
+    const indices = new Set();
+
+    while (indices.size < 2) {
+      indices.add(Math.floor(Math.random() * colorArray.length));
+    }
+
+    const [index1, index2] = [...indices];
+    return [colorArray[index1], colorArray[index2]];
+  };
+
+  const handleColors = (extractedColors) => {
+    const [base, complementary] = getRandomColors(extractedColors);
+    setColors({
+      baseColor: base,
+      complementaryColor: complementary,
+    });
+  };
 
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
@@ -40,8 +64,19 @@ function App() {
     const url = `https://pokeapi.co/api/v2/pokemon/${number}`;
 
     fetchData(url, (data) => {
-      setPokeName(data.name);
-      setPokeIMG(data.sprites.other['official-artwork'].front_default);
+      const frontDefault = data.sprites.other['official-artwork'].front_default;
+      const frontShiny = data.sprites.other['official-artwork'].front_shiny;
+
+      const availableImages = [];
+
+      if (frontDefault) availableImages.push({ url: frontDefault, type: 'default' });
+      if (frontShiny) availableImages.push({ url: frontShiny, type: 'shiny' });
+
+      const randomChoice = availableImages[Math.floor(Math.random() * availableImages.length)];
+      setPokeIMG(randomChoice.url);
+
+      const pokemonName = randomChoice.type === 'shiny' ? `Shiny ${data.name}` : data.name;
+      setPokeName(pokemonName);
 
       if (data.types) {
         const types = data.types.map(typeInfo => typeInfo.type.name);
@@ -58,6 +93,7 @@ function App() {
     fetchPokemon();
   }, []);
 
+
   return (
     <>
       {showWelcomePage ? (
@@ -68,12 +104,18 @@ function App() {
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
-        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} pokeTheme={pokeTheme} fetchPokemon={fetchPokemon} />
+        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} colors={colors} fetchPokemon={fetchPokemon} />
         <div className={`content ${displayType ? 'light' : 'dark'}`}>
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
               {revealContainer && (
-                <Home displayType={displayType} pokeName={pokeName} pokeIMG={pokeIMG} pokeTheme={pokeTheme} fetchPokemon={fetchPokemon} />
+                <>
+                  <ColorExtractor
+                    src={pokeIMG}
+                    getColors={handleColors}
+                  />
+                  <Home displayType={displayType} pokeName={pokeName} pokeIMG={pokeIMG} pokeTheme={pokeTheme} fetchPokemon={fetchPokemon} colors={colors} />
+                </>
               )}
             </div>
             <div className="content-item">
