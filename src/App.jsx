@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ColorExtractor } from 'react-color-extractor'
 import fetchData from './utils/apiUtils';
 import Header from './layouts/Header/Header';
 import Home from './pages/Home/Home';
@@ -18,7 +19,19 @@ function App() {
   const [pokeName, setPokeName] = useState('');
   const [pokeIMG, setPokeIMG] = useState('');
   const [pokeTheme, setPokeTheme] = useState(['', '']);
+  const [colors, setColors] = useState({
+    baseColor: '',
+    complementaryColor: '',
+  });
 
+  const handleColors = (extractedColors) => {
+    const [base, complementary] = extractedColors;
+    setColors({
+      baseColor: base,
+      complementaryColor: complementary,
+    });
+  }
+  
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
   };
@@ -58,6 +71,7 @@ function App() {
     fetchPokemon();
   }, []);
 
+
   return (
     <>
       {showWelcomePage ? (
@@ -68,12 +82,18 @@ function App() {
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
-        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} pokeTheme={pokeTheme} fetchPokemon={fetchPokemon} />
+        <Header onTabSelect={(index) => setSelectedTab(index)} handleDisplaySelect={handleDisplaySelect} displayType={displayType} colors={colors} fetchPokemon={fetchPokemon} />
         <div className={`content ${displayType ? 'light' : 'dark'}`}>
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item">
               {revealContainer && (
-                <Home displayType={displayType} pokeName={pokeName} pokeIMG={pokeIMG} pokeTheme={pokeTheme} fetchPokemon={fetchPokemon} />
+                <>
+                  <ColorExtractor
+                    src={pokeIMG}
+                    getColors={handleColors}
+                  />
+                  <Home displayType={displayType} pokeName={pokeName} pokeIMG={pokeIMG} pokeTheme={pokeTheme} fetchPokemon={fetchPokemon} colors={colors} />
+                </>
               )}
             </div>
             <div className="content-item">

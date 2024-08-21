@@ -21,7 +21,7 @@ import weather from '/images/weather-man.png'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
+const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
@@ -178,16 +178,8 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
         setShowPopup(!showPopup);
     };
 
-    let pokeTheme_ONE = '';
-    let pokeTheme_TWO = '';
-
-    if (pokeTheme[0] && POKE_COLORS[pokeTheme[0]]) {
-        pokeTheme_ONE = POKE_COLORS[pokeTheme[0]].base;
-    }
-
-    if (pokeTheme[1] && POKE_COLORS[pokeTheme[1]]) {
-        pokeTheme_TWO = (POKE_COLORS[pokeTheme[1]].base === POKE_COLORS[pokeTheme[0]].base) ? POKE_COLORS[pokeTheme[0]].complementary : POKE_COLORS[pokeTheme[1]].base;
-    }
+    const pokeTheme_ONE = colors.baseColor;
+    const pokeTheme_TWO = colors.complementaryColor;
 
     const style = {
         repos: {

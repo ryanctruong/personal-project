@@ -6,7 +6,7 @@ import { IconContext } from "react-icons";
 import { POKE_COLORS } from "../../utils/PokeColors";
 import './Header.css';
 
-const Header = ({ onTabSelect, handleDisplaySelect, displayType, pokeTheme, fetchPokemon }) => {
+const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPokemon }) => {
     const [selected, setSelected] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -20,16 +20,8 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, pokeTheme, fetc
         setMenuOpen(!menuOpen);
     };
 
-    let pokeTheme_ONE = '';
-    let pokeTheme_TWO = '';
-
-    if (pokeTheme[0] && POKE_COLORS[pokeTheme[0]]) {
-        pokeTheme_ONE = POKE_COLORS[pokeTheme[0]].base;
-    }
-
-    if (pokeTheme[1] && POKE_COLORS[pokeTheme[1]]) {
-        pokeTheme_TWO = (POKE_COLORS[pokeTheme[1]].base === POKE_COLORS[pokeTheme[0]].base) ? POKE_COLORS[pokeTheme[0]].complementary : POKE_COLORS[pokeTheme[1]].base;
-    }
+    const pokeTheme_ONE = colors.baseColor;
+    const pokeTheme_TWO = colors.complementaryColor;
 
     const selectedStyle = {
         borderBottom: `0.104vw solid ${pokeTheme_TWO}`,
