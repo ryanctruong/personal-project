@@ -202,18 +202,6 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
         }
     };
 
-    const getColor = (temperature) => {
-        if (temperature <= 32) {
-            return '#0000FF';
-        } else if (temperature <= 50) {
-            return '#00BFFF';
-        } else if (temperature <= 90) {
-            return '#FFA500';
-        } else {
-            return '#FF4500';
-        }
-    };
-
     return (
         <div className='home-main-box'>
             <div className={`profile-card ${displayType ? 'light' : 'dark'}`}>
@@ -260,7 +248,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                                     </div>
                                                     <p>{currentTime}</p>
                                                     <p>{location}</p>
-                                                    <p><span style={{ color: getColor(temp), fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
+                                                    <p><span style={{ color: pokeTheme_TWO, fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -271,7 +259,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                                 </div>
                                                 <div className='card-info'>
                                                     <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
-                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_ONE }}>{pokeName}</p>
+                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{pokeName}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -279,7 +267,7 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                             <div className='card joke'>
                                                 <div className='card-info'>
                                                     <p className='card-title-setup'>{setUp}</p>
-                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_ONE }}>{punchline}</p>
+                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{punchline}</p>
                                                 </div>
                                                 <div className='card-icon'>
                                                     <img src={bear} alt="Bear" />
@@ -314,9 +302,9 @@ const Home = ({ displayType, pokeName, pokeIMG, pokeTheme, fetchPokemon }) => {
                                                     <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                                         <p>LC Problems Solved</p>
                                                     </div>
-                                                    <p>Easy Solved: <span className='easy'>{easyP}</span></p>
-                                                    <p>Medium Solved: <span className='medium'>{medP}</span></p>
-                                                    <p>Hard Solved: <span className='hard'>{hardP}</span></p>
+                                                    <p>Easy Solved: <span className='easy' style={{ color: pokeTheme_TWO }}>{easyP}</span></p>
+                                                    <p>Medium Solved: <span className='medium' style={{ color: pokeTheme_ONE }}>{medP}</span></p>
+                                                    <p>Hard Solved: <span className='hard' style={{ color: pokeTheme_TWO }}>{hardP}</span></p>
                                                 </div>
                                                 <div className='card-icon cat'>
                                                     <img src={meme}></img>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineSun } from "react-icons/ai";
-import { MdOutlineChangeCircle } from "react-icons/md";
+import { FaExchangeAlt } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { POKE_COLORS } from "../../utils/PokeColors";
@@ -76,7 +76,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, pokeTheme, fetc
                     </div>
                     <div className={`wand-icon`}>
                         <IconContext.Provider value={{ color: "#696969", className: "contactIcon wand" }}>
-                            <MdOutlineChangeCircle size={35} onClick={fetchPokemon} />
+                            <FaExchangeAlt  size={25} onClick={fetchPokemon} />
                         </IconContext.Provider>
                     </div>
                 </div>

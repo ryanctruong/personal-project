@@ -140,8 +140,8 @@
 
 .gh a {
     background-image: linear-gradient(to right,
-            red,
-            red 50%,
+            black,
+            black 50%,
             black 50%);
     background-size: 200% 100%;
     background-position: -100%;
@@ -155,15 +155,15 @@
 
 .gh.dark a {
     background-image: linear-gradient(to right,
-            red,
-            red 50%,
+            black,
+            black 50%,
             white 50%);
     font-weight: 600;
 }
 
 .gh a:before {
     content: '';
-    background: red;
+    background: black;
     display: block;
     position: absolute;
     bottom: -3px;
@@ -204,18 +204,9 @@
     text-align: center;
 }
 
-.easy {
-    color: green;
-    font-weight: 600;
-}
-
-.medium {
-    color: #FFAA33;
-    font-weight: 600;
-}
-
+.easy,
+.medium,
 .hard {
-    color: red;
     font-weight: 600;
 }
 
