@@ -74,7 +74,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
             </div>
 
             <div className='skill-detail'>
-                <div className='text-detail' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                <div className={`text-detail ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                     <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
                         <h4>Usage</h4>
                     </div>
@@ -82,7 +82,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                         {selectedSkill ? <p>{selectedSkill.name}</p> : <p>Select a skill to see details</p>}
                     </div>
                 </div>
-                <div className='code-detail' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                <div className={`code-detail ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                     <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
                         <h4>Example Usage</h4>
                     </div>

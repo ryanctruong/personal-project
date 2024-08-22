@@ -24,6 +24,12 @@
     box-shadow: 0 0 1rem black !important;
 }
 
+.pb-full-desc.dark:hover,
+.detailed-desc.dark:hover {
+    box-shadow: 0 0 0.5rem white !important;
+}
+
+
 .pb-header {
     display: flex;
     align-items: center;

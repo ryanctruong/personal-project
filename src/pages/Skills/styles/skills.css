@@ -30,6 +30,12 @@
     box-shadow: 0 0 1rem black !important;
 }
 
+.text-detail.dark:hover,
+.code-detail.dark:hover {
+    /* .skill-list:hover { */
+    box-shadow: 0 0 0.5rem white !important;
+}
+
 .skill-detail {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -102,7 +108,6 @@
     cursor: pointer;
     box-shadow: 0 0 0.5rem white !important;
 }
-
 
 .usage-example.dark,
 .code-example.dark {

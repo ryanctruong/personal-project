@@ -17,6 +17,10 @@
     box-shadow: 0 0 1rem black !important;
 }
 
+.profile-card.dark:hover{
+    box-shadow: 0 0 0.5rem white !important;
+}
+
 .picture {
     display: flex;
     justify-content: center;
