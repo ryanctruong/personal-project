@@ -19,6 +19,12 @@ import GCP from '/images/skills-icons/google-cloud.png'
 import PowerBI from '/images/skills-icons/power-bi.svg'
 
 const Skills = ({ selectedTab, displayType, colors }) => {
+    const [skillsChunk1, setSkillsChunk1] = useState([]);
+    const [skillsChunk2, setSkillsChunk2] = useState([]);
+    const [selectedSkill, setSelectedSkill] = useState(null);
+    const pokeTheme_ONE = colors.baseColor;
+    const pokeTheme_TWO = colors.complementaryColor;
+
     const categories = {
         languages: [
             { name: 'Python', imgSrc: Python },
@@ -66,11 +72,6 @@ const Skills = ({ selectedTab, displayType, colors }) => {
         return [firstChunk, secondChunk];
     }
 
-    const pokeTheme_ONE = colors.baseColor;
-    const pokeTheme_TWO = colors.complementaryColor;
-    const [skillsChunk1, setSkillsChunk1] = useState([]);
-    const [skillsChunk2, setSkillsChunk2] = useState([]);
-
     useEffect(() => {
         if (selectedTab === 1) {
             const randomizedSkills = getRandomizedSkills(categories);
@@ -80,7 +81,6 @@ const Skills = ({ selectedTab, displayType, colors }) => {
         }
     }, [selectedTab]);
 
-    const [selectedSkill, setSelectedSkill] = useState(null);
 
     const handleSkillClick = (skill) => {
         setSelectedSkill(skill);
