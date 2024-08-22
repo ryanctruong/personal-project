@@ -13,6 +13,10 @@
     transition: color 0.5s ease-in-out;
 }
 
+.profile-card:hover {
+    box-shadow: 0 0 1rem black !important;
+}
+
 .picture {
     display: flex;
     justify-content: center;

@@ -255,3 +255,8 @@
 .box2.dark p {
     color: white;
 }
+
+.box1:hover,
+.box2:hover {
+    box-shadow: 0 0 1rem black !important;
+}
