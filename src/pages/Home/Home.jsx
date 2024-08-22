@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import fetchData from '../../utils/apiUtils';
 import { SIMPLE_DESC, DETAIL_DESC } from './Descriptions';
@@ -13,10 +13,10 @@ import './styles/popup.css'
 
 import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
-import dog from '/images/dog-profile-pic.png'
 import bear from '/images/brown-bear.png'
 import coder from '/images/coder.png'
 import weather from '/images/weather-man.png'
+import seal from '/images/sappy-seals.gif'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -93,18 +93,38 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
         };
 
         fetchJoke();
+    }, []);
 
-        const leftInterval = setInterval(() => {
+    const leftIntervalRef = useRef(null);
+    const rightIntervalRef = useRef(null);
+
+    const startLeftInterval = () => {
+        leftIntervalRef.current = setInterval(() => {
             setLeftSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 6200);
+        }, 4500);
+    };
 
-        const rightInterval = setInterval(() => {
+    const startRightInterval = () => {
+        rightIntervalRef.current = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 7000);
+        }, 5200);
+    };
+
+    const stopLeftInterval = () => {
+        clearInterval(leftIntervalRef.current);
+    };
+
+    const stopRightInterval = () => {
+        clearInterval(rightIntervalRef.current);
+    };
+
+    useEffect(() => {
+        startLeftInterval();
+        startRightInterval();
 
         return () => {
-            clearInterval(leftInterval);
-            clearInterval(rightInterval);
+            stopLeftInterval();
+            stopRightInterval();
         };
     }, []);
 
@@ -227,7 +247,12 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                                 <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
                             </div>
                             <div className="pb-lists">
-                                <div className={`box1 ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                                <div
+                                    className={`box1 ${displayType ? 'light' : 'dark'}`}
+                                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+                                    onMouseEnter={stopLeftInterval}
+                                    onMouseLeave={startLeftInterval}
+                                >
                                     <div className='slide-container'>
                                         <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
                                             <div className='card pokemon'>
@@ -269,7 +294,12 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={`box2 ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                                <div
+                                    className={`box2 ${displayType ? 'light' : 'dark'}`}
+                                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+                                    onMouseEnter={stopRightInterval}
+                                    onMouseLeave={startRightInterval}
+                                >
                                     <div className='slide-container'>
                                         <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
                                             <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
@@ -307,7 +337,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                                         <div className={`slide-content ${currentSlideClass(2, rightSlide)}`}>
                                             <div className='fill-card'>
                                                 <div className='card-icon fill-img'>
-                                                    <img src={dog} />
+                                                    <img src={seal} />
                                                 </div>
                                             </div>
                                         </div>

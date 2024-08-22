@@ -19,6 +19,11 @@
     transition: background-color 0.5s linear;
 }
 
+.pb-full-desc:hover,
+.detailed-desc:hover {
+    box-shadow: 0 0 1rem black !important;
+}
+
 .pb-header {
     display: flex;
     align-items: center;
