@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
 import './styles/skills.css'
-import './styles/skills-mq.css'
 
 import Python from '/images/skills-icons/python.png'
 import Java from '/images/skills-icons/java.png'
@@ -19,36 +18,7 @@ import Postman from '/images/skills-icons/postman-icon.svg'
 import GCP from '/images/skills-icons/google-cloud.png'
 import PowerBI from '/images/skills-icons/power-bi.svg'
 
-const Skills = ({ selectedTab }) => {
-    const [shuffledLanguages, setShuffledLanguages] = useState([]);
-    const [shuffledFrameworks, setShuffledFrameworks] = useState([]);
-    const [shuffledTools, setShuffledTools] = useState([]);
-
-    const shuffleArray = (array) => {
-        const shuffledArray = [...array];
-        for (let i = shuffledArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-        }
-        return shuffledArray;
-    };
-
-    const shuffleAndSet = useCallback(() => {
-        setShuffledLanguages(shuffleArray(categories.languages));
-        setShuffledFrameworks(shuffleArray(categories.frameworks));
-        setShuffledTools(shuffleArray(categories.tools));
-    }, []);
-
-    useEffect(() => {
-        shuffleAndSet();
-    }, [shuffleAndSet]);
-
-    useEffect(() => {
-        if (selectedTab === 1) {
-            shuffleAndSet();
-        }
-    }, [selectedTab, shuffleAndSet]);
-
+const Skills = ({ selectedTab, displayType, colors }) => {
     const categories = {
         languages: [
             { name: 'Python', imgSrc: Python },
@@ -73,53 +43,100 @@ const Skills = ({ selectedTab }) => {
         ]
     };
 
+    function getRandomizedSkills(categories) {
+        const allSkills = [
+            ...categories.languages,
+            ...categories.frameworks,
+            ...categories.tools
+        ];
+
+        for (let i = allSkills.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allSkills[i], allSkills[j]] = [allSkills[j], allSkills[i]];
+        }
+
+        return allSkills;
+    }
+
+    function splitArrayIntoTwoChunks(array) {
+        const half = Math.ceil(array.length / 2);
+        const firstChunk = array.slice(0, half);
+        const secondChunk = array.slice(half);
+
+        return [firstChunk, secondChunk];
+    }
+
+    const pokeTheme_ONE = colors.baseColor;
+    const pokeTheme_TWO = colors.complementaryColor;
+    const [skillsChunk1, setSkillsChunk1] = useState([]);
+    const [skillsChunk2, setSkillsChunk2] = useState([]);
+
+    useEffect(() => {
+        if (selectedTab === 1) {
+            const randomizedSkills = getRandomizedSkills(categories);
+            const [chunk1, chunk2] = splitArrayIntoTwoChunks(randomizedSkills);
+            setSkillsChunk1(chunk1);
+            setSkillsChunk2(chunk2);
+        }
+    }, [selectedTab]);
+
+
     return (
         <div className='skills-main-box'>
-            <div className='smb-details'>
-                <div className='smb-details-box'>
-                    <div className='smb-details-title'>
-                        <h4>Programming</h4>
-                    </div>
-                    <div className='smb-details-cards'>
-                        {shuffledLanguages.map((language, index) => (
-                            <div className='sl-box' key={index}>
-                                <div className='sl-icon'>
-                                    <img src={language.imgSrc} alt={language.name} />
-                                </div>
-                                <div className='sl-title'>{language.name}</div>
-                            </div>
-                        ))}
+            <div className='skill-list'
+                style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+            >
+                <div className={`skill-header ${displayType ? 'light' : 'dark'}`} >
+                    <h4>Current Tech Stack and Resources</h4>
+                </div>
+                <div className='skill-icons'>
+                    {skillsChunk1.map(skill => (
+                        <div key={skill.name} className={`skill-item ${displayType ? 'light' : 'dark'}`}>
+                            <img
+                                src={skill.imgSrc}
+                                alt={skill.name}
+                                title={skill.name}
+                                className="skill-icon"
+                            />
+                            <p className={`skill-name ${displayType ? 'light' : 'dark'}`}>{skill.name}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className='skill-detail'>
+                <div className='text-detail'
+                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+                >
+                    <div className={`skill-header ${displayType ? 'light' : 'dark'}`} >
+                        <h4>Usage</h4>
                     </div>
                 </div>
-                <div className='smb-details-box'>
-                    <div className='smb-details-title'>
-                        <h4>Frameworks</h4>
-                    </div>
-                    <div className='smb-details-cards'>
-                        {shuffledFrameworks.map((framework, index) => (
-                            <div className='sl-box' key={index}>
-                                <div className='sl-icon'>
-                                    <img src={framework.imgSrc} alt={framework.name} />
-                                </div>
-                                <div className='sl-title'>{framework.name}</div>
-                            </div>
-                        ))}
+                <div className='code-detail'
+                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+                >
+                    <div className={`skill-header ${displayType ? 'light' : 'dark'}`} >
+                        <h4>Example Usage</h4>
                     </div>
                 </div>
-                <div className='smb-details-box'>
-                    <div className='smb-details-title'>
-                        <h4>Tools</h4>
-                    </div>
-                    <div className='smb-details-cards'>
-                        {shuffledTools.map((tool, index) => (
-                            <div className='sl-box' key={index}>
-                                <div className='sl-icon'>
-                                    <img src={tool.imgSrc} alt={tool.name} />
-                                </div>
-                                <div className='sl-title'>{tool.name}</div>
-                            </div>
-                        ))}
-                    </div>
+            </div>
+            <div className='skill-list'
+                style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+            >
+                <div className={`skill-header ${displayType ? 'light' : 'dark'}`} >
+                    <h4>Current Tech Stack and Resources</h4>
+                </div>
+                <div className='skill-icons'>
+                    {skillsChunk2.map(skill => (
+                        <div key={skill.name} className={`skill-item ${displayType ? 'light' : 'dark'}`}>
+                            <img
+                                src={skill.imgSrc}
+                                alt={skill.name}
+                                title={skill.name}
+                                className="skill-icon"
+                            />
+                            <p className={`skill-name ${displayType ? 'light' : 'dark'}`}>{skill.name}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
