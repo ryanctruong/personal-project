@@ -1,7 +1,10 @@
-name: Deploy to GitHub Pages
+name: Test and Deploy to GitHub Pages
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
@@ -37,12 +40,19 @@ jobs:
           VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Simulate or Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add dist --force
-          git commit -m "Deploy to GitHub Pages"
-          git push -f "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" `git subtree split --prefix dist main`:gh-pages
+          git commit -m "Test Deploy to GitHub Pages"
+          
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "Simulating deployment by pushing to test branch..."
+            git push -f "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" `git subtree split --prefix dist main`:test-pages
+          else
+            echo "Deploying to GitHub Pages..."
+            git push -f "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" `git subtree split --prefix dist main`:gh-pages
+          fi
