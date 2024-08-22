@@ -78,7 +78,7 @@
     margin-top: 8px;
 }
 
-.skill-name.dark{
+.skill-name.dark {
     color: white;
 }
 
@@ -101,4 +101,10 @@
 .skill-item.dark:hover {
     cursor: pointer;
     box-shadow: 0 0 1rem white !important;
+}
+
+
+.usage-example.dark,
+.code-example.dark {
+    color: white;
 }

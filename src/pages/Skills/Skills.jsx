@@ -80,18 +80,25 @@ const Skills = ({ selectedTab, displayType, colors }) => {
         }
     }, [selectedTab]);
 
+    const [selectedSkill, setSelectedSkill] = useState(null);
+
+    const handleSkillClick = (skill) => {
+        setSelectedSkill(skill);
+    };
 
     return (
         <div className='skills-main-box'>
-            <div className='skill-list'
-                style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
-            >
-                <div className={`skill-header ${displayType ? 'light' : 'dark'}`} >
+            <div className='skill-list' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
                     <h4>Current Tech Stack and Resources</h4>
                 </div>
                 <div className='skill-icons'>
                     {skillsChunk1.map(skill => (
-                        <div key={skill.name} className={`skill-item ${displayType ? 'light' : 'dark'}`}>
+                        <div
+                            key={skill.name}
+                            className={`skill-item ${displayType ? 'light' : 'dark'}`}
+                            onClick={() => handleSkillClick(skill)}
+                        >
                             <img
                                 src={skill.imgSrc}
                                 alt={skill.name}
@@ -103,31 +110,37 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                     ))}
                 </div>
             </div>
+
             <div className='skill-detail'>
-                <div className='text-detail'
-                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
-                >
-                    <div className={`skill-header ${displayType ? 'light' : 'dark'}`} >
+                <div className='text-detail' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                    <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
                         <h4>Usage</h4>
                     </div>
+                    <div className={`usage-example ${displayType ? 'light' : 'dark'}`}>
+                        {selectedSkill ? <p>{selectedSkill.name}</p> : <p>Select a skill to see details</p>}
+                    </div>
                 </div>
-                <div className='code-detail'
-                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
-                >
-                    <div className={`skill-header ${displayType ? 'light' : 'dark'}`} >
+                <div className='code-detail' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                    <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
                         <h4>Example Usage</h4>
+                    </div>
+                    <div className={`code-example ${displayType ? 'light' : 'dark'}`}>
+                        {selectedSkill ? <p>{selectedSkill.name}</p> : <p>Select a skill to see details</p>}
                     </div>
                 </div>
             </div>
-            <div className='skill-list'
-                style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
-            >
-                <div className={`skill-header ${displayType ? 'light' : 'dark'}`} >
+
+            <div className='skill-list' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
                     <h4>Current Tech Stack and Resources</h4>
                 </div>
                 <div className='skill-icons'>
                     {skillsChunk2.map(skill => (
-                        <div key={skill.name} className={`skill-item ${displayType ? 'light' : 'dark'}`}>
+                        <div
+                            key={skill.name}
+                            className={`skill-item ${displayType ? 'light' : 'dark'}`}
+                            onClick={() => handleSkillClick(skill)}
+                        >
                             <img
                                 src={skill.imgSrc}
                                 alt={skill.name}
@@ -141,6 +154,6 @@ const Skills = ({ selectedTab, displayType, colors }) => {
             </div>
         </div>
     );
-}
+};
 
 export default Skills;
