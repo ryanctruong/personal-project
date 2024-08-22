@@ -1,22 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { CURRENT_SKILLS } from '../../utils/CurrentSkills';
 
 import './styles/skills.css'
-
-import Python from '/images/skills-icons/python.png'
-import Java from '/images/skills-icons/java.png'
-import C from '/images/skills-icons/c-.png'
-import JavaScript from '/images/skills-icons/js.png'
-import SQL from '/images/skills-icons/sql.png'
-import ReactJS from '/images/skills-icons/react.png'
-import VueJS from '/images/skills-icons/vue-js.svg'
-import PostgreSQL from '/images/skills-icons/postgresql.png'
-import MongoDB from '/images/skills-icons/mongodb.png'
-import NodeJS from '/images/skills-icons/nodejs.png'
-import Kubernetes from '/images/skills-icons/kubernetes.png'
-import Docker from '/images/skills-icons/docker.png'
-import Postman from '/images/skills-icons/postman-icon.svg'
-import GCP from '/images/skills-icons/google-cloud.png'
-import PowerBI from '/images/skills-icons/power-bi.svg'
 
 const Skills = ({ selectedTab, displayType, colors }) => {
     const [skillsChunk1, setSkillsChunk1] = useState([]);
@@ -25,35 +10,11 @@ const Skills = ({ selectedTab, displayType, colors }) => {
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;
 
-    const categories = {
-        languages: [
-            { name: 'Python', imgSrc: Python },
-            { name: 'Java', imgSrc: Java },
-            { name: 'C/C++', imgSrc: C },
-            { name: 'JavaScript', imgSrc: JavaScript },
-            { name: 'SQL', imgSrc: SQL }
-        ],
-        frameworks: [
-            { name: 'ReactJS', imgSrc: ReactJS },
-            { name: 'VueJS', imgSrc: VueJS },
-            { name: 'PostgreSQL', imgSrc: PostgreSQL },
-            { name: 'MongoDB', imgSrc: MongoDB },
-            { name: 'NodeJS', imgSrc: NodeJS }
-        ],
-        tools: [
-            { name: 'Kubernetes', imgSrc: Kubernetes },
-            { name: 'Docker', imgSrc: Docker },
-            { name: 'Postman', imgSrc: Postman },
-            { name: 'GCP', imgSrc: GCP },
-            { name: 'PowerBI', imgSrc: PowerBI }
-        ]
-    };
-
-    function getRandomizedSkills(categories) {
+    function getRandomizedSkills(CURRENT_SKILLS) {
         const allSkills = [
-            ...categories.languages,
-            ...categories.frameworks,
-            ...categories.tools
+            ...CURRENT_SKILLS.languages,
+            ...CURRENT_SKILLS.frameworks,
+            ...CURRENT_SKILLS.tools
         ];
 
         for (let i = allSkills.length - 1; i > 0; i--) {
@@ -74,7 +35,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
 
     useEffect(() => {
         if (selectedTab === 1) {
-            const randomizedSkills = getRandomizedSkills(categories);
+            const randomizedSkills = getRandomizedSkills(CURRENT_SKILLS);
             const [chunk1, chunk2] = splitArrayIntoTwoChunks(randomizedSkills);
             setSkillsChunk1(chunk1);
             setSkillsChunk2(chunk2);
