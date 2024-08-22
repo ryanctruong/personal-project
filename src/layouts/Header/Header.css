@@ -10,10 +10,6 @@
     transition: background-color 0.5s linear;
 }
 
-.red-bar.dark {
-    /* background-color: var(--Primary-100, #570515); */
-}
-
 .red-bar h4 {
     margin: 0;
     color: white;
