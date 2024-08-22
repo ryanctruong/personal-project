@@ -34,7 +34,7 @@
 
 .nav-list {
     display: grid;
-    grid-template-columns: 1fr 0.08fr;
+    grid-template-columns: 1fr 0.1fr;
     align-items: center;
     background-color: white;
     box-shadow: 0.4vh 0.8vh 0.8vh hsl(0deg 0% 0% / 0.38);
@@ -134,10 +134,14 @@
         height: 1.25rem;
     }
 
-    .sun-icon svg,
-    .wand-icon svg {
+    .sun-icon svg {
         width: 1.875rem;
         height: 1.875rem;
+    }
+
+    .wand-icon svg {
+        width: 1.625rem;
+        height: 1.625rem;
     }
 
     .menu-toggle {
@@ -153,6 +157,7 @@
     height: 100%;
     width: 100%;
     margin: 0 1%;
+    gap: 0.313rem;
     padding: 0 0.625rem;
 }
 
@@ -180,7 +185,7 @@
 }
 
 .contactIcon.wand:hover {
-    fill: black;
+    fill: #3e3e3e;
 }
 
 .contactIcon.sun:hover {

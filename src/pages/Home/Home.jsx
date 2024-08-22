@@ -324,7 +324,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.5 }}
                             transition={{ duration: 0.5 }} >
-                            <div className={`detailed-desc ${displayType ? 'light' : 'dark'}`}>
+                            <div className={`detailed-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                 <div className='dd-header'>
                                     <h4>About Me</h4>
                                     <div className="close-container" onClick={togglePopup}>
