@@ -1,7 +1,10 @@
-name: Deploy to GitHub Pages
+name: Test and Deploy to GitHub Pages
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
@@ -37,7 +40,12 @@ jobs:
           VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Simulate Deployment (PRs only)
+        if: github.event_name == 'pull_request'
+        run: echo "Simulating deployment. Skipping actual deployment for PRs."
+
+      - name: Deploy to GitHub Pages (Main only)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
