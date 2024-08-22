@@ -95,12 +95,12 @@
 
 .skill-item:hover {
     cursor: pointer;
-    box-shadow: 0 0 1rem black !important;
+    box-shadow: 0 0 0.5rem black !important;
 }
 
 .skill-item.dark:hover {
     cursor: pointer;
-    box-shadow: 0 0 1rem white !important;
+    box-shadow: 0 0 0.5rem white !important;
 }
 
 

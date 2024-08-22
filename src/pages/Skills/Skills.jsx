@@ -58,6 +58,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                         <div
                             key={skill.name}
                             className={`skill-item ${displayType ? 'light' : 'dark'}`}
+                            style={{ boxShadow: selectedSkill?.name === skill.name ? `0 0 1rem ${pokeTheme_TWO}` : '' }}
                             onClick={() => handleSkillClick(skill)}
                         >
                             <img
@@ -100,6 +101,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                         <div
                             key={skill.name}
                             className={`skill-item ${displayType ? 'light' : 'dark'}`}
+                            style={{ boxShadow: selectedSkill?.name === skill.name ? `0 0 1rem ${pokeTheme_TWO}` : '' }}
                             onClick={() => handleSkillClick(skill)}
                         >
                             <img
