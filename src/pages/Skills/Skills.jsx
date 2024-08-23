@@ -92,9 +92,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                 </div>
             </div>
 
-            <div className={`no-select  ${selectedSkill ? 'hidden' : ''} ${displayType ? 'light' : 'dark'} `} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-
-            </div>
+            <div className={`no-select  ${selectedSkill ? 'hidden' : ''}`}></div>
 
             <div className='skill-list' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                 <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>

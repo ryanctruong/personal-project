@@ -4,17 +4,22 @@
 .skills-main-box {
     font-family: 'Montserrat';
     display: grid;
-    grid-template-columns: 0.75fr 1fr 0.75fr;
+    grid-template-columns: 0.75fr 0.25fr 0.75fr;
     position: relative;
     gap: 1.25rem;
-    width: 75rem;
+    width: 55rem;
     height: 37.5rem;
+    transition: width 0.5s ease, grid-template-columns 0.5s ease;
+}
+
+.skills-main-box.visible {
+    width: 75rem;
+    grid-template-columns: 0.75fr 1fr 0.75fr;
 }
 
 .text-detail,
 .code-detail,
-.skill-list,
-.no-select {
+.skill-list {
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -27,14 +32,12 @@
 }
 
 .text-detail:hover,
-.code-detail:hover,
-.no-select:hover {
+.code-detail:hover {
     box-shadow: 0 0 1rem black !important;
 }
 
 .text-detail.dark:hover,
-.code-detail.dark:hover,
-.no-select.dark:hover {
+.code-detail.dark:hover {
     box-shadow: 0 0 0.5rem white !important;
 }
 
