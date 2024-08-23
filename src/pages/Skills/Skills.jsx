@@ -48,16 +48,16 @@ const Skills = ({ selectedTab, displayType, colors }) => {
     };
 
     return (
-        <div className='skills-main-box'>
+        <div className={`skills-main-box ${selectedSkill ? 'visible' : ''}`}>
             <div className='skill-list' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                 <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
                     <h4>Current Tech Stack and Resources</h4>
                 </div>
-                <div className='skill-icons'>
+                <div className={`skill-icons`}>
                     {skillsChunk1.map(skill => (
                         <div
                             key={skill.name}
-                            className={`skill-item ${displayType ? 'light' : 'dark'}`}
+                            className={`skill-item ${displayType ? 'light' : 'dark'} `}
                             style={{ boxShadow: selectedSkill?.name === skill.name ? `0 0 1rem ${pokeTheme_TWO}` : '' }}
                             onClick={() => handleSkillClick(skill)}
                         >
@@ -73,7 +73,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                 </div>
             </div>
 
-            <div className='skill-detail'>
+            <div className={`skill-detail ${selectedSkill ? 'visible' : ''}`}>
                 <div className={`text-detail ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                     <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
                         <h4>Usage</h4>
@@ -90,6 +90,10 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                         {selectedSkill ? <p>{selectedSkill.name}</p> : <p>Select a skill to see details</p>}
                     </div>
                 </div>
+            </div>
+
+            <div className={`no-select  ${selectedSkill ? 'hidden' : ''} ${displayType ? 'light' : 'dark'} `} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+
             </div>
 
             <div className='skill-list' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>

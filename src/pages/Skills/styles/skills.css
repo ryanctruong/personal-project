@@ -13,7 +13,8 @@
 
 .text-detail,
 .code-detail,
-.skill-list {
+.skill-list,
+.no-select {
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -21,25 +22,38 @@
     border-radius: 3.125rem;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
     transition: background-color 0.5s linear;
+    transition: opacity 0.5s linear;
     padding: 1.875rem;
 }
 
 .text-detail:hover,
-.code-detail:hover {
-    /* .skill-list:hover { */
+.code-detail:hover,
+.no-select:hover {
     box-shadow: 0 0 1rem black !important;
 }
 
 .text-detail.dark:hover,
-.code-detail.dark:hover {
-    /* .skill-list:hover { */
+.code-detail.dark:hover,
+.no-select.dark:hover {
     box-shadow: 0 0 0.5rem white !important;
 }
 
 .skill-detail {
+    display: none;
+    gap: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.skill-detail.visible {
+    opacity: 1;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    gap: 1.25rem;
+}
+
+.no-select.hidden {
+    opacity: 0;
+    display: none;
 }
 
 .text-detail,
