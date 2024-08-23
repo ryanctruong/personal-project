@@ -32,10 +32,10 @@
 }
 
 .no-select {
-    align-content: center;
-    opacity: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .no-select p {
@@ -76,6 +76,16 @@
     grid-template-rows: auto 1fr;
 }
 
+.usage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.usage-header p {
+    font-weight: 500;
+}
+
 .skill-header h4 {
     margin: 0;
     font-size: 1rem;
@@ -112,7 +122,8 @@
     margin-top: 8px;
 }
 
-.skill-name.dark {
+.skill-name.dark,
+.no-select.dark p {
     color: white;
 }
 
@@ -140,4 +151,19 @@
 .usage-example.dark,
 .code-example.dark {
     color: white;
+}
+
+.usage-example {
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.usage-desc p {
+    margin: 0;
+    line-height: 1.8rem;
+    font-weight: 500;
+}
+
+.usage-desc {
+    text-align: center;
 }

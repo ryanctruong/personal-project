@@ -7,6 +7,8 @@ const Skills = ({ selectedTab, displayType, colors }) => {
     const [skillsChunk1, setSkillsChunk1] = useState([]);
     const [skillsChunk2, setSkillsChunk2] = useState([]);
     const [selectedSkill, setSelectedSkill] = useState(null);
+    const [showDesc, setShowDesc] = useState(false);
+
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;
 
@@ -47,6 +49,16 @@ const Skills = ({ selectedTab, displayType, colors }) => {
         setSelectedSkill(skill === selectedSkill ? null : skill);
     };
 
+    useEffect(() => {
+        const timer = selectedSkill ? setTimeout(() => setShowDesc(true), 500) : null;
+
+        return () => {
+            if (timer) clearTimeout(timer);
+            if (!selectedSkill) setShowDesc(false);
+        };
+    }, [selectedSkill]);
+
+
     return (
         <div className={`skills-main-box ${selectedSkill ? 'visible' : ''}`}>
             <div className='skill-list' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
@@ -76,10 +88,22 @@ const Skills = ({ selectedTab, displayType, colors }) => {
             <div className={`skill-detail ${selectedSkill ? 'visible' : ''}`}>
                 <div className={`text-detail ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                     <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
-                        <h4>About</h4>
+                        <h4>My Experience</h4>
                     </div>
                     <div className={`usage-example ${displayType ? 'light' : 'dark'}`}>
-                        {selectedSkill ? <p>{selectedSkill.name}</p> : <p>Select a skill to see details</p>}
+                        {selectedSkill && (
+                            <>
+                                <div className='usage-header'>
+                                    <p style={{ color: pokeTheme_TWO }}>{selectedSkill.name}</p>
+                                    <p style={{ color: pokeTheme_TWO }}>{selectedSkill.yoe}</p>
+                                </div>
+                                <div className='usage-desc'>
+                                    {showDesc && (
+                                        <p>{selectedSkill.desc}</p>
+                                    )}
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className={`code-detail ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
@@ -87,12 +111,16 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                         <h4>Example Usage</h4>
                     </div>
                     <div className={`code-example ${displayType ? 'light' : 'dark'}`}>
-                        {selectedSkill ? <p>{selectedSkill.name}</p> : <p>Select a skill to see details</p>}
+                        {selectedSkill && (
+                            <div className='usage-header'>
+                                <p>{selectedSkill.name}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
 
-            <div className={`no-select  ${selectedSkill ? 'hidden' : ''}`}>
+            <div className={`no-select  ${displayType ? 'light' : 'dark'} ${selectedSkill ? 'hidden' : ''}`}>
                 <p>Click</p>
                 <p>A</p>
                 <p>Skill</p>

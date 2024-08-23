@@ -16,24 +16,41 @@ import PowerBI from '/images/skills-icons/power-bi.svg'
 
 export const CURRENT_SKILLS = {
     languages: [
-        { name: 'Python', imgSrc: Python },
-        { name: 'Java', imgSrc: Java },
-        { name: 'C/C++', imgSrc: C },
-        { name: 'JavaScript', imgSrc: JavaScript },
-        { name: 'SQL', imgSrc: SQL }
+        {
+            name: `Python`, imgSrc: Python, yoe: `~3 years`,
+            desc: `I've extensively used Python in my professional work, especially for data analytics and backend processing. From developing AI projects to writing scripts that streamline processes, I’ve done it all.`
+        },
+        {
+            name: `Java`, imgSrc: Java, yoe: `~4 years`,
+            desc: `Java was the first programming language I learned, providing a solid foundation for my programming skills. It remains my language of choice, and I frequently use it for practicing algorithms and solving problems on LeetCode.`
+        },
+        {
+            name: `C/C++`, imgSrc: C, yoe: `~1 years`,
+            desc: `Though I do not have any professional experience, I am comfortable with C/C++. I’ve used it extensively in academic projects with systems programming, and I enjoy the challenges these languages offer.`
+        },
+        {
+            name: `JavaScript`, imgSrc: JavaScript, yoe: `~2 years`,
+            desc: `One of my favorite languages of all time. I appreciate how it can be used for everything from building websites to creating apps, making it incredibly versatile and useful. Lately, I’ve been using it primarily for web development.`
+        },
+        {
+            name: `SQL`, imgSrc: SQL, yoe: `~3 years`,
+            desc: `SQL is a language I have used extensively in every professional role, serving as the foundation for managing and maintaining data. I’ve worked for a SQL-focused company and earned the highest grade out of 70 in a dedicated SQL class.`
+        }
     ],
     frameworks: [
-        { name: 'ReactJS', imgSrc: ReactJS },
-        { name: 'VueJS', imgSrc: VueJS },
-        { name: 'PostgreSQL', imgSrc: PostgreSQL },
-        { name: 'MongoDB', imgSrc: MongoDB },
-        { name: 'NodeJS', imgSrc: NodeJS }
+        { name: `ReactJS`, imgSrc: ReactJS, yoe: `~1 year`, desc: `` },
+        { name: `VueJS`, imgSrc: VueJS, yoe: `~1 year`, desc: `` },
+        { name: `PostgreSQL`, imgSrc: PostgreSQL, yoe: `~1 year`, desc: `` },
+        { name: `MongoDB`, imgSrc: MongoDB, yoe: `~1 year`, desc: `` },
+        { name: `NodeJS`, imgSrc: NodeJS, yoe: `~1 year`, desc: `` }
     ],
     tools: [
-        { name: 'Kubernetes', imgSrc: Kubernetes },
-        { name: 'Docker', imgSrc: Docker },
-        { name: 'Postman', imgSrc: Postman },
-        { name: 'GCP', imgSrc: GCP },
-        { name: 'PowerBI', imgSrc: PowerBI }
+        { name: `Kubernetes`, imgSrc: Kubernetes, yoe: `~1 year`, desc: `` },
+        { name: `Docker`, imgSrc: Docker, yoe: `~1 year`, desc: `` },
+        { name: `Postman`, imgSrc: Postman, yoe: `~1 year`, desc: `` },
+        { name: `GCP`, imgSrc: GCP, yoe: `~1 year`, desc: `` },
+        { name: `PowerBI`, imgSrc: PowerBI, yoe: `~2 years`, desc: `` }
     ]
 };
+
+
