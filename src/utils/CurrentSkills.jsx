@@ -38,11 +38,28 @@ export const CURRENT_SKILLS = {
         }
     ],
     frameworks: [
-        { name: `ReactJS`, imgSrc: ReactJS, yoe: `~1 year`, desc: `` },
-        { name: `VueJS`, imgSrc: VueJS, yoe: `~1 year`, desc: `` },
-        { name: `PostgreSQL`, imgSrc: PostgreSQL, yoe: `~1 year`, desc: `` },
-        { name: `MongoDB`, imgSrc: MongoDB, yoe: `~1 year`, desc: `` },
-        { name: `NodeJS`, imgSrc: NodeJS, yoe: `~1 year`, desc: `` }
+        {
+            name: `ReactJS`, imgSrc: ReactJS, yoe: `~1 year`,
+            desc: `I’ve been using ReactJS for about a year in my current role to develop innovate projects that require a frontend that needs to connect to a backend. It’s my go-to for building dynamic, responsive user interfaces.`
+        },
+        {
+            name: `VueJS`, imgSrc: VueJS, yoe: `~1 year`,
+            desc: `Like ReactJS, I’ve been working with VueJS for about a year, primarily focusing on frontend development. I use it to maintain and enhance our enterprise website, which manages HR resources and data.`
+        },
+        {
+            name: `PostgreSQL`, imgSrc: PostgreSQL, yoe: `~1 year`,
+            desc: `In my current role, I use PostgreSQL to manage and store user feedback related to all of our websites. I’ve built an API that efficiently stores and retrieves responses, ensuring reliable data handling and analysis.`
+        },
+        {
+            name: `MongoDB`, imgSrc: MongoDB, yoe: `~1 year`,
+            desc: `In my current role, I use MongoDB to manage and store data for various projects. For instance, I log user login activity across our websites, leveraging MongoDB’s flexibility to efficiently handle large volumes of unstructured data.`
+        },
+        {
+            name: `NodeJS`,
+            imgSrc: NodeJS,
+            yoe: `~1 year`,
+            desc: `I’ve been using NodeJS for about a year alongside ReactJS in my current role. I use it to build and manage backend services, including maintaining security, optimizing performance, and creating APIs for full-stack applications.`
+        }
     ],
     tools: [
         { name: `Kubernetes`, imgSrc: Kubernetes, yoe: `~1 year`, desc: `` },
