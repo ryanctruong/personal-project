@@ -153,7 +153,8 @@
     color: white;
 }
 
-.usage-example {
+.usage-example,
+.code-example {
     display: grid;
     grid-template-rows: auto 1fr;
 }
@@ -166,4 +167,23 @@
 
 .usage-desc {
     text-align: center;
+}
+
+.usage-header.ub-link {
+    display: flex;
+    justify-content: center;
+}
+
+.usage-header a {
+    margin: 0.625rem;
+}
+
+.usage-header a:hover {
+    font-weight: 700;
+}
+
+.code-usage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
