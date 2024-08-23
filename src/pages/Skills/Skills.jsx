@@ -111,7 +111,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                         <h4 style={{ marginBottom: '0.625rem' }}>Current Mood</h4>
                     </div>
                     <div className={`code-example ${displayType ? 'light' : 'dark'}`}>
-                        {selectedSkill && (
+                        {selectedSkill && showDesc && (
                             <div className='code-usage' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                 <img src={selectedSkill.meme} />
                             </div>
