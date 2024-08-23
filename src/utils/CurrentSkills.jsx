@@ -62,11 +62,26 @@ export const CURRENT_SKILLS = {
         }
     ],
     tools: [
-        { name: `Kubernetes`, imgSrc: Kubernetes, yoe: `~1 year`, desc: `` },
-        { name: `Docker`, imgSrc: Docker, yoe: `~1 year`, desc: `` },
-        { name: `Postman`, imgSrc: Postman, yoe: `~1 year`, desc: `` },
-        { name: `GCP`, imgSrc: GCP, yoe: `~1 year`, desc: `` },
-        { name: `PowerBI`, imgSrc: PowerBI, yoe: `~2 years`, desc: `` }
+        {
+            name: `Kubernetes`, imgSrc: Kubernetes, yoe: `~1 year`,
+            desc: `I’ve been working with Kubernetes for about a year to orchestrate and manage containerized applications. I use it to automate deployment and scaling of Docker containers, including deploying them to GCP.`
+        },
+        {
+            name: `Docker`, imgSrc: Docker, yoe: `~1 year`,
+            desc: `I use Docker to containerize applications for deployment and management through Kubernetes and GCP, to automate our deployment processes. I’m fairly new to Docker and will continue to learn more.`
+        },
+        {
+            name: `Postman`, imgSrc: Postman, yoe: `~1 year`,
+            desc: `I’ve been learning and using Postman recently to test our API calls in my current role. I’ve found it easy to use and incredibly helpful for testing APIs before running unit tests, significantly streamlining our development process.`
+        },
+        {
+            name: `GCP`, imgSrc: GCP, yoe: `~1 year`,
+            desc: `At my current company, which utilizes GCP extensively, I work with this platform to manage data, streamline processes, and support AI applications. Currently, I’m working on getting my certification in GCP.`
+        },
+        {
+            name: `PowerBI`, imgSrc: PowerBI, yoe: `~2 years`,
+            desc: `This was one of the first data analytics tools I have used. I have utilized it in every professional experience, from building detailed reports to completely redesigning our monthly reports. It has proven to be an invaluable tool.`
+        }
     ]
 };
 
