@@ -44,9 +44,9 @@ const Skills = ({ selectedTab, displayType, colors }) => {
 
 
     const handleSkillClick = (skill) => {
-        setSelectedSkill(skill);
+        setSelectedSkill(skill === selectedSkill ? null : skill);
     };
-
+        
     return (
         <div className={`skills-main-box ${selectedSkill ? 'visible' : ''}`}>
             <div className='skill-list' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>

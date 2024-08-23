@@ -31,6 +31,11 @@
     padding: 1.875rem;
 }
 
+.no-select {
+    align-content: center;
+    opacity: 1;
+}
+
 .text-detail:hover,
 .code-detail:hover {
     box-shadow: 0 0 1rem black !important;
