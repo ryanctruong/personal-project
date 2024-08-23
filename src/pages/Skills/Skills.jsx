@@ -112,14 +112,9 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                     </div>
                     <div className={`code-example ${displayType ? 'light' : 'dark'}`}>
                         {selectedSkill && (
-                            <>
-                                {/* <div className='usage-header ub-link'>
-                                    <a href={selectedSkill.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">Documentation</a>
-                                </div> */}
-                                <div className='code-usage' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                                    <img src={selectedSkill.meme} />
-                                </div>
-                            </>
+                            <div className='code-usage' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                                <img src={selectedSkill.meme} />
+                            </div>
                         )}
                     </div>
                 </div>
