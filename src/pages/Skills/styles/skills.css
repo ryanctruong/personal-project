@@ -153,8 +153,7 @@
     color: white;
 }
 
-.usage-example,
-.code-example {
+.usage-example {
     display: grid;
     grid-template-rows: auto 1fr;
 }
@@ -182,8 +181,21 @@
     font-weight: 700;
 }
 
-.code-usage{
+.code-example {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.code-usage img {
+    width: 100%;
+    height: 100%;
+}
+
+.code-usage {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

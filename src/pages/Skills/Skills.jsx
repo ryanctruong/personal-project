@@ -108,16 +108,16 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                 </div>
                 <div className={`code-detail ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                     <div className={`skill-header ${displayType ? 'light' : 'dark'}`}>
-                        <h4>Go-To Code Snippet</h4>
+                        <h4 style={{ marginBottom: '0.625rem' }}>Current Mood</h4>
                     </div>
                     <div className={`code-example ${displayType ? 'light' : 'dark'}`}>
                         {selectedSkill && (
                             <>
-                                <div className='usage-header ub-link'>
+                                {/* <div className='usage-header ub-link'>
                                     <a href={selectedSkill.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">Documentation</a>
-                                </div>
-                                <div className='code-usage'>
-                                <p>{selectedSkill.code}</p>
+                                </div> */}
+                                <div className='code-usage' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                                    <img src={selectedSkill.meme} />
                                 </div>
                             </>
                         )}
