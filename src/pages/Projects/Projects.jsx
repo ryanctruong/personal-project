@@ -49,7 +49,7 @@ const Projects = ({ displayType, colors }) => {
                         cursor: 'pointer',
                         borderBottom: selectedTab === 'Research' ? `2px solid ${pokeTheme_TWO}` : 'none',
                         fontWeight: selectedTab === 'Research' ? `700` : '',
-                        
+
                     }}
                     onClick={() => handleTabClick('Research')}
                 >
@@ -89,7 +89,7 @@ const Projects = ({ displayType, colors }) => {
                     <>
                         <div />
                         <div className={`coding-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                            Coding
+                            <p>Coding</p>
                         </div>
                         <div />
                     </>
@@ -99,7 +99,7 @@ const Projects = ({ displayType, colors }) => {
                     <>
                         <div />
                         <div className={`research-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                            Research
+                            <p>Research</p>
                         </div>
                         <div />
                     </>
@@ -109,7 +109,7 @@ const Projects = ({ displayType, colors }) => {
                     <>
                         <div />
                         <div className={`filler-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                            Filler
+                            <p>Filler</p>
                         </div>
                         <div />
                     </>

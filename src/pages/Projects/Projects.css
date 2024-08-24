@@ -18,11 +18,12 @@
     justify-content: space-between;
 }
 
-.projects-category p{
+.projects-category p {
     font-size: 1.125rem;
+
 }
 
-.projects-category p:hover{
+.projects-category p:hover {
     font-weight: 700;
 }
 
@@ -45,6 +46,19 @@
 .filler-projects {
     border-radius: 3.125rem;
     padding: 1.875rem;
+}
+
+.coding-projects p,
+.research-projects p,
+.filler-projects p {
+    font-weight: 500;
+}
+
+
+.coding-projects.dark p,
+.research-projects.dark p,
+.filler-projects.dark p {
+    color: white;
 }
 
 .projects-category:hover,
