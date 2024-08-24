@@ -18,6 +18,10 @@
     justify-content: space-between;
 }
 
+.projects-category p{
+    font-size: 1.125rem;
+}
+
 .projects-category p:hover{
     font-weight: 700;
 }
@@ -35,7 +39,6 @@
     opacity: 0;
     transform: translateY(10px);
 }
-
 
 .coding-projects,
 .research-projects,
