@@ -1,0 +1,124 @@
+.skill-detail {
+    display: none;
+    gap: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.skill-detail.visible {
+    opacity: 1;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+
+/* TEXT DETAIL */
+.text-detail {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 3.125rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
+    transition: background-color 0.5s linear;
+    transition: opacity 0.5s linear;
+    padding: 1.875rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.text-detail:hover {
+    box-shadow: 0 0 1rem black !important;
+}
+
+.text-detail.dark:hover {
+    box-shadow: 0 0 0.5rem white !important;
+}
+
+.usage-example {
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.usage-example.dark {
+    color: white;
+}
+
+.usage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.usage-header p {
+    font-weight: 500;
+}
+
+.usage-header.ub-link {
+    display: flex;
+    justify-content: center;
+}
+
+.usage-header a {
+    margin: 0.625rem;
+}
+
+.usage-header a:hover {
+    font-weight: 700;
+}
+
+.usage-desc {
+    text-align: center;
+}
+
+.usage-desc p {
+    margin: 0;
+    line-height: 1.8rem;
+    font-weight: 500;
+}
+
+/* CODE DETAIL */
+.code-detail {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 3.125rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.38);
+    transition: background-color 0.5s linear;
+    transition: opacity 0.5s linear;
+    padding: 1.875rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.code-detail:hover {
+    box-shadow: 0 0 1rem black !important;
+}
+
+.code-detail.dark:hover {
+    box-shadow: 0 0 0.5rem white !important;
+}
+
+.code-example {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.code-example.dark {
+    color: white;
+}
+
+.code-usage {
+    width: 12.5rem;
+    height: 12.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-usage img {
+    width: 100%;
+    height: 100%;
+}

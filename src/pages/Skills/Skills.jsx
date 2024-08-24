@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { CURRENT_SKILLS } from '../../utils/CurrentSkills';
 
-import './styles/skills.css'
+import './styles/skills.css';
+import './styles/skills-list.css';
+import './styles/skills-details.css';
 
 const Skills = ({ selectedTab, displayType, colors }) => {
     const [skillsChunk1, setSkillsChunk1] = useState([]);
