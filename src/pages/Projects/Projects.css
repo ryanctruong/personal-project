@@ -3,14 +3,57 @@
 /* PARENT CONTAINER */
 .projects-main-box {
     font-family: 'Montserrat';
-    width: 67.708vw;
-    margin: 2% auto;
-    background-color: white;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.38);
-    display: grid;
-    grid-template-columns: auto 1fr;
     position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    height: 55vh;
+    width: 75rem;
+    height: 37.5rem;
+    display: grid;
+    grid-template-rows: 0.2fr 1fr;
+    gap: 1.25rem;
+}
+
+.projects-category {
+    border-radius: 3.125rem;
+    padding: 1.875rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.projects-category p:hover{
+    font-weight: 700;
+}
+
+.projects-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.projects-list.hidden {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+
+.coding-projects,
+.research-projects,
+.filler-projects {
+    border-radius: 3.125rem;
+    padding: 1.875rem;
+}
+
+.projects-category:hover,
+.coding-projects:hover,
+.research-projects:hover,
+.filler-projects:hover {
+    box-shadow: 0 0 1rem black !important;
+}
+
+.projects-category.dark:hover,
+.coding-projects.dark:hover,
+.research-projects.dark:hover,
+.filler-projects.dark:hover {
+    box-shadow: 0 0 0.5rem white !important;
 }

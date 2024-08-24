@@ -128,7 +128,9 @@ function App() {
               />
             </div>
             <div className="content-item">
-              {/* <Projects /> */}
+              <Projects
+                displayType={displayType}
+                colors={colors} />
             </div>
           </div>
         </div>
