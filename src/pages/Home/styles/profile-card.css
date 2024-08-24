@@ -10,6 +10,11 @@
     background-color: white;
     box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
     transition: background-color 0.5s linear;
+    transition: color 0.5s ease-in-out;
+}
+
+.profile-card:hover {
+    box-shadow: 0 0 1rem black !important;
 }
 
 .picture {
@@ -74,15 +79,16 @@
 }
 
 .basic-desc a {
-    color: red;
+    /* color: red; */
     text-overflow: ellipsis;
     text-decoration: none;
     white-space: nowrap;
+    font-weight: 550;
 }
 
-.basic-desc.dark a {
+/* .basic-desc.dark a {
     color: #d26666;
-}
+} */
 
 .basic-desc a:hover {
     font-weight: 700;

@@ -4,6 +4,7 @@
     gap: 1.25rem;
     height: 100%;
     width: 100%;
+    transition: color 0.5s ease-in-out;
 }
 
 .pb-full-desc {
@@ -16,6 +17,11 @@
     position: relative;
     z-index: 1;
     transition: background-color 0.5s linear;
+}
+
+.pb-full-desc:hover,
+.detailed-desc:hover {
+    box-shadow: 0 0 1rem black !important;
 }
 
 .pb-header {
@@ -46,17 +52,13 @@
 
 .pb-full-desc a,
 .dd-desc-text a {
-    color: red;
     text-decoration: none;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 550;
 }
 
-.pb-full-desc.dark a,
-.detailed-desc.dark a {
-    color: #d26666;
-}
 
 .pb-full-desc a:hover,
 .dd-desc-text a:hover {

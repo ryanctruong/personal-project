@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
     height: 100%;
+    transition: color 0.5s ease-in-out;
 }
 
 .box1,
@@ -85,8 +86,8 @@
 }
 
 .card-subtitle {
-    color: red !important;
-    font-weight: 600;
+    /* color: red !important; */
+    font-weight: 700 !important;
 }
 
 .card-info p {
@@ -139,14 +140,15 @@
 
 .gh a {
     background-image: linear-gradient(to right,
-            red,
-            red 50%,
+            black,
+            black 50%,
             black 50%);
     background-size: 200% 100%;
     background-position: -100%;
     display: inline-block;
     position: relative;
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease-in-out;
     font-weight: 500;
@@ -154,15 +156,15 @@
 
 .gh.dark a {
     background-image: linear-gradient(to right,
-            red,
-            red 50%,
+            black,
+            black 50%,
             white 50%);
     font-weight: 600;
 }
 
 .gh a:before {
     content: '';
-    background: red;
+    background: black;
     display: block;
     position: absolute;
     bottom: -3px;
@@ -203,18 +205,9 @@
     text-align: center;
 }
 
-.easy {
-    color: green;
-    font-weight: 600;
-}
-
-.medium {
-    color: #FFAA33;
-    font-weight: 600;
-}
-
+.easy,
+.medium,
 .hard {
-    color: red;
     font-weight: 600;
 }
 
@@ -264,6 +257,7 @@
     color: white;
 }
 
-.card-subtitle.dark {
-    color: #d26666 !important;
+.box1:hover,
+.box2:hover {
+    box-shadow: 0 0 1rem black !important;
 }

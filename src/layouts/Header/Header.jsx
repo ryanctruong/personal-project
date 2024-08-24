@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { AiOutlineSun } from "react-icons/ai";
+import { FaExchangeAlt } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import './Header.css';
 
-const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
+const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPokemon }) => {
     const [selected, setSelected] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -18,9 +19,21 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
         setMenuOpen(!menuOpen);
     };
 
+    const pokeTheme_ONE = colors.baseColor;
+
+    const selectedStyle = {
+        borderBottom: `0.104vw solid ${pokeTheme_ONE}`,
+        color: `${pokeTheme_ONE}`,
+        fontWeight: 'bold',
+    };
+
+    const baseStyle = {
+        cursor: 'pointer',
+    };
+
     return (
         <div className='nav-header'>
-            <div className={`red-bar ${displayType ? 'light' : 'dark'}`}>
+            <div className={`red-bar ${displayType ? 'light' : 'dark'}`} style={{ backgroundColor: pokeTheme_ONE }}>
                 <h4>Ryan Truong</h4>
                 <button className={`menu-toggle`} onClick={toggleMenu}>
                     &#9776;
@@ -32,6 +45,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
                         <li
                             key={index}
                             className={selected === index ? 'selected' : ''}
+                            style={selected === index ? selectedStyle : baseStyle}
                             onClick={() => handleSelect(index)}
                         >
                             {item}
@@ -50,7 +64,13 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType }) => {
                             <FaRegMoon size={25} onClick={handleDisplaySelect} />
                         </IconContext.Provider>
                     </div>
+                    <div className={`wand-icon`}>
+                        <IconContext.Provider value={{ color: "#696969", className: "contactIcon wand" }}>
+                            <FaExchangeAlt  size={25} onClick={fetchPokemon} />
+                        </IconContext.Provider>
+                    </div>
                 </div>
+
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import fetchData from '../../utils/apiUtils';
 import { SIMPLE_DESC, DETAIL_DESC } from './Descriptions';
@@ -13,14 +13,14 @@ import './styles/popup.css'
 
 import ProfilePic from '/beanhead.svg'
 import meme from '/images/meme.png'
-import dog from '/images/dog-profile-pic.png'
 import bear from '/images/brown-bear.png'
 import coder from '/images/coder.png'
 import weather from '/images/weather-man.png'
+import seal from '/images/sappy-seals.gif'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = ({ displayType }) => {
+const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
@@ -32,24 +32,10 @@ const Home = ({ displayType }) => {
     const [hardP, setHardP] = useState(0);
     const [setUp, setSetUp] = useState('How much money does a skunk have?');
     const [punchline, setPunchline] = useState('Just one scent');
-    const [pokeName, setPokeName] = useState('');
-    const [pokeIMG, setPokeIMG] = useState('');
+
     const [showPopup, setShowPopup] = useState(false);
     const [totalCommits, setTotalCommits] = useState(0);
     const [totalRepos, setTotalRepos] = useState(0);
-
-    useEffect(() => {
-        const fetchPokemon = () => {
-            const number = Math.floor(Math.random() * 1025) + 1;
-            const url = `https://pokeapi.co/api/v2/pokemon/${number}`;
-
-            fetchData(url, (data) => {
-                setPokeName(data.name);
-                setPokeIMG(data.sprites.other['official-artwork'].front_default);
-            });
-        };
-        fetchPokemon();
-    }, []);
 
     useEffect(() => {
         const fetchGitHubStats = () => {
@@ -107,18 +93,38 @@ const Home = ({ displayType }) => {
         };
 
         fetchJoke();
+    }, []);
 
-        const leftInterval = setInterval(() => {
+    const leftIntervalRef = useRef(null);
+    const rightIntervalRef = useRef(null);
+
+    const startLeftInterval = () => {
+        leftIntervalRef.current = setInterval(() => {
             setLeftSlide(prevSlide => (prevSlide + 1) % 3);
         }, 4500);
+    };
 
-        const rightInterval = setInterval(() => {
+    const startRightInterval = () => {
+        rightIntervalRef.current = setInterval(() => {
             setRightSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 7000);
+        }, 5200);
+    };
+
+    const stopLeftInterval = () => {
+        clearInterval(leftIntervalRef.current);
+    };
+
+    const stopRightInterval = () => {
+        clearInterval(rightIntervalRef.current);
+    };
+
+    useEffect(() => {
+        startLeftInterval();
+        startRightInterval();
 
         return () => {
-            clearInterval(leftInterval);
-            clearInterval(rightInterval);
+            stopLeftInterval();
+            stopRightInterval();
         };
     }, []);
 
@@ -191,36 +197,26 @@ const Home = ({ displayType }) => {
         setShowPopup(!showPopup);
     };
 
+    const pokeTheme_ONE = colors.baseColor;
+    const pokeTheme_TWO = colors.complementaryColor;
+
     const style = {
         repos: {
-            color: displayType ? "#6FB3D1" : "#89CFF0",
+            color: displayType ? pokeTheme_ONE : pokeTheme_ONE,
             fontStyle: "italic",
             fontWeight: "600"
         },
         commits: {
-            color: displayType ? "#E598A6" : "#FFB6C1",
+            color: displayType ? pokeTheme_TWO : pokeTheme_TWO,
             fontStyle: "italic",
             fontWeight: "600"
-        }
-    };
-
-    const getColor = (temperature) => {
-        if (temperature <= 32) {
-            return '#0000FF';
-        } else if (temperature <= 50) {
-            return '#00BFFF';
-        } else if (temperature <= 70) {
-            return '#FFD700';
-        } else if (temperature <= 90) {
-            return '#FFA500';
-        } else {
-            return '#FF4500';
         }
     };
 
     return (
         <div className='home-main-box'>
-            <div className={`profile-card ${displayType ? 'light' : 'dark'}`}>
+            <div className={`profile-card ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+
                 <div className='picture'>
                     <div className='picture-container'>
                         <img src={ProfilePic} id='profile-pic'></img>
@@ -230,8 +226,8 @@ const Home = ({ displayType }) => {
                     <ul>
                         <li id='full-name'>Ryan Truong</li>
                         <li id='job-title'>Software Engineer</li>
-                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank'>HCA Healthcare</a></li>
-                        <li id='university'><a href="https://www.belmont.edu/" target='__blank'>Belmont University</a></li>
+                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank' style={{ color: pokeTheme_TWO }}>HCA Healthcare</a></li>
+                        <li id='university'><a href="https://www.belmont.edu/" target='__blank' style={{ color: pokeTheme_TWO }}>Belmont University</a></li>
                     </ul>
                 </div>
             </div>
@@ -239,7 +235,7 @@ const Home = ({ displayType }) => {
                 {!showPopup ? (
                     <>
                         <div className='profile-detail'>
-                            <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`}>
+                            <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                 <div className="pb-header">
                                     <h4>About Me</h4>
                                     <div className='expand-container'>
@@ -248,12 +244,28 @@ const Home = ({ displayType }) => {
                                         </IconContext.Provider>
                                     </div>
                                 </div>
-                                <SIMPLE_DESC />
+                                <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
                             </div>
                             <div className="pb-lists">
-                                <div className={`box1 ${displayType ? 'light' : 'dark'}`}>
+                                <div
+                                    className={`box1 ${displayType ? 'light' : 'dark'}`}
+                                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+                                    onMouseEnter={stopLeftInterval}
+                                    onMouseLeave={startLeftInterval}
+                                >
                                     <div className='slide-container'>
                                         <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
+                                            <div className='card pokemon'>
+                                                <div className='card-icon'>
+                                                    <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
+                                                </div>
+                                                <div className='card-info'>
+                                                    <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
+                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{pokeName}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
                                             <div className='card weather'>
                                                 <div className='card-icon'>
                                                     <img src={weather} alt="Dog" />
@@ -264,35 +276,30 @@ const Home = ({ displayType }) => {
                                                     </div>
                                                     <p>{currentTime}</p>
                                                     <p>{location}</p>
-                                                    <p><span style={{ color: getColor(temp), fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
+                                                    <p><span style={{ color: pokeTheme_TWO, fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
+
+                                        <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
                                             <div className='card joke'>
                                                 <div className='card-info'>
                                                     <p className='card-title-setup'>{setUp}</p>
-                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`}>{punchline}</p>
+                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{punchline}</p>
                                                 </div>
                                                 <div className='card-icon'>
                                                     <img src={bear} alt="Bear" />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
-                                            <div className='card pokemon'>
-                                                <div className='card-icon'>
-                                                    <img src={pokeIMG}></img>
-                                                </div>
-                                                <div className='card-info'>
-                                                    <p className='card-title'>Whoa! This Pokémon looks just like you!</p>
-                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`}>{pokeName}</p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                                <div className={`box2 ${displayType ? 'light' : 'dark'}`}>
+                                <div
+                                    className={`box2 ${displayType ? 'light' : 'dark'}`}
+                                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+                                    onMouseEnter={stopRightInterval}
+                                    onMouseLeave={startRightInterval}
+                                >
                                     <div className='slide-container'>
                                         <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
                                             <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
@@ -318,9 +325,9 @@ const Home = ({ displayType }) => {
                                                     <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
                                                         <p>LC Problems Solved</p>
                                                     </div>
-                                                    <p>Easy Solved: <span className='easy'>{easyP}</span></p>
-                                                    <p>Medium Solved: <span className='medium'>{medP}</span></p>
-                                                    <p>Hard Solved: <span className='hard'>{hardP}</span></p>
+                                                    <p>Easy Solved: <span className='easy' style={{ color: pokeTheme_TWO }}>{easyP}</span></p>
+                                                    <p>Medium Solved: <span className='medium' style={{ color: pokeTheme_ONE }}>{medP}</span></p>
+                                                    <p>Hard Solved: <span className='hard' style={{ color: pokeTheme_TWO }}>{hardP}</span></p>
                                                 </div>
                                                 <div className='card-icon cat'>
                                                     <img src={meme}></img>
@@ -330,7 +337,7 @@ const Home = ({ displayType }) => {
                                         <div className={`slide-content ${currentSlideClass(2, rightSlide)}`}>
                                             <div className='fill-card'>
                                                 <div className='card-icon fill-img'>
-                                                    <img src={dog} />
+                                                    <img src={seal} />
                                                 </div>
                                             </div>
                                         </div>
@@ -347,7 +354,7 @@ const Home = ({ displayType }) => {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.5 }}
                             transition={{ duration: 0.5 }} >
-                            <div className={`detailed-desc ${displayType ? 'light' : 'dark'}`}>
+                            <div className={`detailed-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                 <div className='dd-header'>
                                     <h4>About Me</h4>
                                     <div className="close-container" onClick={togglePopup}>
@@ -356,7 +363,7 @@ const Home = ({ displayType }) => {
                                     </div>
                                 </div>
                                 <div className='dd-desc-text'>
-                                    <DETAIL_DESC />
+                                    <DETAIL_DESC pokeTheme={pokeTheme_TWO} />
                                 </div>
                             </div>
                         </motion.div>
