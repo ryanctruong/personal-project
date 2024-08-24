@@ -26,6 +26,7 @@ const Projects = ({ displayType, colors }) => {
                         color: pokeTheme_TWO,
                         cursor: 'pointer',
                         borderBottom: selectedTab === 'All' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                        fontWeight: selectedTab === 'All' ? `700` : '',
                     }}
                     onClick={() => handleTabClick('All')}
                 >
@@ -36,6 +37,7 @@ const Projects = ({ displayType, colors }) => {
                         color: pokeTheme_TWO,
                         cursor: 'pointer',
                         borderBottom: selectedTab === 'Coding' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                        fontWeight: selectedTab === 'Coding' ? `700` : '',
                     }}
                     onClick={() => handleTabClick('Coding')}
                 >
@@ -46,6 +48,8 @@ const Projects = ({ displayType, colors }) => {
                         color: pokeTheme_TWO,
                         cursor: 'pointer',
                         borderBottom: selectedTab === 'Research' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                        fontWeight: selectedTab === 'Research' ? `700` : '',
+                        
                     }}
                     onClick={() => handleTabClick('Research')}
                 >
@@ -56,6 +60,7 @@ const Projects = ({ displayType, colors }) => {
                         color: pokeTheme_TWO,
                         cursor: 'pointer',
                         borderBottom: selectedTab === 'Filler' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                        fontWeight: selectedTab === 'Filler' ? `700` : '',
                     }}
                     onClick={() => handleTabClick('Filler')}
                 >
