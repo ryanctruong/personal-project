@@ -261,3 +261,8 @@
 .box2:hover {
     box-shadow: 0 0 1rem black !important;
 }
+
+.box1.dark:hover,
+.box2.dark:hover {
+    box-shadow: 0 0 0.5rem white !important;
+}
