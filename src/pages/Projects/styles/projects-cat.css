@@ -1,0 +1,23 @@
+.projects-category {
+    border-radius: 3.125rem;
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.projects-category p {
+    font-size: 1.125rem;
+
+}
+
+.projects-category p:hover {
+    font-weight: 700;
+}
+
+.projects-category:hover {
+    box-shadow: 0 0 1rem black !important;
+}
+
+.projects-category.dark:hover {
+    box-shadow: 0 0 0.5rem white !important;
+}

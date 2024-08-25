@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CodeProjects, ResearchProjects, ArtProjects } from '../../utils/ProjectData';
-import './Projects.css';
+import './styles/projects.css';
+import './styles/projects-cat.css';
+import './styles/projects-list.css';
 
 const Projects = ({ displayType, colors }) => {
     const [selectedTab, setSelectedTab] = useState('All');
