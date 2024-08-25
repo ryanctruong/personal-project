@@ -2,6 +2,7 @@
     border-radius: 3.125rem;
     padding: 1.25rem;
     display: flex;
+    height: 100%;
     justify-content: space-around;
 }
 

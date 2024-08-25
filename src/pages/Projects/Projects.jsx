@@ -220,7 +220,7 @@ const Projects = ({ displayType, colors }) => {
                             <div className='slide-container'>
                                 {ArtProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
-                                        <div className='project-info art'>
+                                        <div className='project-info'>
                                             <a href={''} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
                                                 {project.title}
                                             </a>
