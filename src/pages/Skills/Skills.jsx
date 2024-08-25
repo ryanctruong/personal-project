@@ -52,7 +52,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
     };
 
     useEffect(() => {
-        const timer = selectedSkill ? setTimeout(() => setShowDesc(true), 500) : null;
+        const timer = selectedSkill ? setTimeout(() => setShowDesc(true), 300) : null;
 
         return () => {
             if (timer) clearTimeout(timer);

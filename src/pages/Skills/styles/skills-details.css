@@ -25,7 +25,7 @@
     transition: opacity 0.5s ease, transform 0.5s ease;
     padding: 1.875rem;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto;
 }
 
 .text-detail:hover {
@@ -90,7 +90,7 @@
     transition: opacity 0.5s linear;
     padding: 1.875rem;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto;
 }
 
 .code-detail:hover {
@@ -126,6 +126,14 @@
 
 @media (max-width: 960px) {
     .skill-detail.visible {
-        grid-template-rows: auto auto;
+        grid-template-columns: 0.5fr 0.5fr;
+        grid-template-rows: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .skill-detail.visible {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
     }
 }

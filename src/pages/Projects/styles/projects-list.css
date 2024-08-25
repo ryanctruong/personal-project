@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.25rem;
+    height: 100%;
     transition: opacity 0.3s ease, transform 0.3s ease;
     opacity: 1;
     transform: translateY(0);
@@ -16,6 +17,9 @@
 .projects {
     border-radius: 3.125rem;
     padding: 1.875rem;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
 .projects p {
@@ -83,13 +87,38 @@
 
 .project-info {
     display: grid;
-    grid-template-rows: 0.1fr 0.5fr 0.3fr;
+    grid-template-rows: 0.1fr auto;
     height: 100%;
+    gap: 1rem;
 }
 
 .project-info p {
     text-align: center;
     line-height: 1.5rem;
+}
+
+.project-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-desc.art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-desc img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.project-desc p {
+    margin: 0;
 }
 
 .project-info a {
@@ -105,10 +134,6 @@
     font-weight: 700 !important;
 }
 
-.project-img {
-    height: 100%;
-    width: 100%;
-}
 
 .project-info.art {
     grid-template-rows: auto 1fr;
@@ -127,13 +152,19 @@
     cursor: pointer;
 }
 
-.project-img.art {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+@media (max-width: 500px) {
+    .projects-list {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+    }
 
-.project-img.art img {
-    height: 90%;
-    width: 70%;
+    .projects {
+        gap: 0.625rem;
+    }
+
+    .project-desc {
+        overflow-y: auto;
+        z-index: 1003;
+    }
+
 }
