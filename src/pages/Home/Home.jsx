@@ -32,7 +32,6 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
     const [hardP, setHardP] = useState(0);
     const [setUp, setSetUp] = useState('How much money does a skunk have?');
     const [punchline, setPunchline] = useState('Just one scent');
-
     const [showPopup, setShowPopup] = useState(false);
     const [totalCommits, setTotalCommits] = useState(0);
     const [totalRepos, setTotalRepos] = useState(0);
