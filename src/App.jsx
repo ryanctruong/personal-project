@@ -121,7 +121,11 @@ function App() {
               )}
             </div>
             <div className="content-item">
-              {/* <Skills selectedTab={selectedTab} /> */}
+              <Skills
+                selectedTab={selectedTab}
+                displayType={displayType}
+                colors={colors}
+              />
             </div>
             <div className="content-item">
               {/* <Projects /> */}

@@ -12,11 +12,11 @@ import './styles/profile-box.css'
 import './styles/popup.css'
 
 import ProfilePic from '/beanhead.svg'
-import meme from '/images/meme.png'
-import bear from '/images/brown-bear.png'
-import coder from '/images/coder.png'
-import weather from '/images/weather-man.png'
-import seal from '/images/sappy-seals.gif'
+import meme from '/images/profile-box/meme.png'
+import bear from '/images/profile-box/brown-bear.png'
+import coder from '/images/profile-box/coder.png'
+import weather from '/images/profile-box/weather-man.png'
+import seal from '/images/profile-box/sappy-seals.gif'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
