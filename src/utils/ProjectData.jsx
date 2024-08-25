@@ -1,6 +1,6 @@
 // projectData.js
-import jirachi from '/jirachi.png';
-import octo from '/octo.png';
+import jirachi from '/images/projects/jirachi.png';
+import octo from '/images/projects/octo.png';
 
 export const CodeProjects = [
     {
