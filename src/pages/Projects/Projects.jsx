@@ -216,7 +216,7 @@ const Projects = ({ displayType, colors }) => {
                             <div className='slide-container'>
                                 {ArtProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
-                                        <div className='project-img art'>
+                                        <div className='project-info art'>
                                             <p style={{ color: pokeTheme_TWO }}>{project.title}</p>
                                             <div className='project-img art'>
                                                 <img src={project.imgContent} className='art' />
@@ -320,7 +320,7 @@ const Projects = ({ displayType, colors }) => {
                             <div className='slide-container'>
                                 {ArtProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
-                                        <div className='project-img art'>
+                                        <div className='project-info art'>
                                             <p style={{ color: pokeTheme_TWO }}>{project.title}</p>
                                             <div className='project-img art'>
                                                 <img src={project.imgContent} className='art' />
