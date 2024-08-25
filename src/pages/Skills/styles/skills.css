@@ -52,7 +52,7 @@
 @media (max-width: 960px) {
     .skills-main-box {
         grid-template-columns: 1fr;
-        grid-template-rows: auto 0.15fr auto;
+        grid-template-rows: auto 0 auto;
     }
 
     .skills-main-box.visible {

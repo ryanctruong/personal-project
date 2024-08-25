@@ -10,3 +10,10 @@
     grid-template-rows: 0.2fr 1fr;
     gap: 1.25rem;
 }
+
+@media (max-width: 1097px) {
+    .projects-main-box {
+        height: 100%;
+        width: 95%;
+    }
+}

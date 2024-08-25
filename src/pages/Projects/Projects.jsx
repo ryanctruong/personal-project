@@ -221,9 +221,11 @@ const Projects = ({ displayType, colors }) => {
                                 {ArtProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
                                         <div className='project-info'>
-                                            <a href={''} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
-                                                {project.title}
-                                            </a>
+                                            <div className='project-title'>
+                                                <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                    {project.title}
+                                                </a>
+                                            </div>
                                             <div className='project-desc art'>
                                                 <img src={project.imgContent} className='art' />
                                             </div>
@@ -329,9 +331,11 @@ const Projects = ({ displayType, colors }) => {
                                 {ArtProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
                                         <div className='project-info art'>
-                                            <a href={''} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
-                                                {project.title}
-                                            </a>
+                                            <div className='project-title'>
+                                                <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                    {project.title}
+                                                </a>
+                                            </div>
                                             <div className='project-desc art'>
                                                 <img src={project.imgContent} className='art' />
                                             </div>
