@@ -83,13 +83,36 @@
 
 .project-info {
     display: grid;
-    grid-template-rows: 0.1fr 0.5fr 0.3fr;
+    grid-template-rows: 0.1fr auto;
     height: 100%;
+    gap: 1rem;
 }
 
 .project-info p {
     text-align: center;
     line-height: 1.5rem;
+}
+
+.project-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-desc.art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3rem 1.25rem 3rem;
+}
+
+.project-desc p {
+    margin: 0;
+}
+
+.project-desc img {
+    height: 100%;
+    width: 100%;
 }
 
 .project-info a {
@@ -105,10 +128,6 @@
     font-weight: 700 !important;
 }
 
-.project-img {
-    height: 100%;
-    width: 100%;
-}
 
 .project-info.art {
     grid-template-rows: auto 1fr;
@@ -125,15 +144,4 @@
 .project-info.art p:hover {
     font-weight: 700;
     cursor: pointer;
-}
-
-.project-img.art {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.project-img.art img {
-    height: 90%;
-    width: 70%;
 }

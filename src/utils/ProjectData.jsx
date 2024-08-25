@@ -38,7 +38,7 @@ export const CodeProjects = [
 export const ResearchProjects = [
     {
         link: '/personal-project/images/projects/agoa.docx',
-        title: 'The Impact of AGOA on Corruption',
+        title: 'AGOA on Corruption',
         desc: `I wrote an economic research paper examining AGOA's impact on corruption levels. I presented it at the 49th IPE Conference in New York City in 2023, and it's currently being published in academic journals.`,
         imgContent: ''
     },

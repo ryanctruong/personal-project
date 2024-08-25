@@ -51,7 +51,7 @@ const Projects = ({ displayType, colors }) => {
 
     const startArtInterval = () => {
         artIntervalRef.current = setInterval(() => {
-            setArtSlide(prevSlide => (prevSlide + 1) % 2); 
+            setArtSlide(prevSlide => (prevSlide + 1) % 2);
         }, 7000);
     };
 
@@ -159,12 +159,13 @@ const Projects = ({ displayType, colors }) => {
                                 {CodeProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, codingSlide)}`}>
                                         <div className='project-info'>
-                                            <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
-                                                {project.title}
-                                            </a>
-                                            <p>{project.desc}</p>
-                                            <div className='project-img'>
-                                                <p>{project.imgContent}</p>
+                                            <div className='project-title'>
+                                                <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                    {project.title}
+                                                </a>
+                                            </div>
+                                            <div className='project-desc'>
+                                                <p>{project.desc}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -189,12 +190,13 @@ const Projects = ({ displayType, colors }) => {
                                 {ResearchProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, researchSlide)}`}>
                                         <div className='project-info'>
-                                            <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
-                                                {project.title}
-                                            </a>
-                                            <p>{project.desc}</p>
-                                            <div className='project-img'>
-                                                <p>{project.imgContent}</p>
+                                            <div className='project-title'>
+                                                <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                    {project.title}
+                                                </a>
+                                            </div>
+                                            <div className='project-desc'>
+                                                <p>{project.desc}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -219,8 +221,10 @@ const Projects = ({ displayType, colors }) => {
                                 {ArtProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
                                         <div className='project-info art'>
-                                            <p style={{ color: pokeTheme_TWO }}>{project.title}</p>
-                                            <div className='project-img art'>
+                                            <a href={''} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                {project.title}
+                                            </a>
+                                            <div className='project-desc art'>
                                                 <img src={project.imgContent} className='art' />
                                             </div>
                                         </div>
@@ -251,12 +255,13 @@ const Projects = ({ displayType, colors }) => {
                                 {CodeProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, codingSlide)}`}>
                                         <div className='project-info'>
-                                            <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
-                                                {project.title}
-                                            </a>
-                                            <p>{project.desc}</p>
-                                            <div className='project-img'>
-                                                <p>{project.imgContent}</p>
+                                            <div className='project-title'>
+                                                <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                    {project.title}
+                                                </a>
+                                            </div>
+                                            <div className='project-desc'>
+                                                <p>{project.desc}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -287,12 +292,13 @@ const Projects = ({ displayType, colors }) => {
                                 {ResearchProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, researchSlide)}`}>
                                         <div className='project-info'>
-                                            <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
-                                                {project.title}
-                                            </a>
-                                            <p>{project.desc}</p>
-                                            <div className='project-img'>
-                                                <p>{project.imgContent}</p>
+                                            <div className='project-title'>
+                                                <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                    {project.title}
+                                                </a>
+                                            </div>
+                                            <div className='project-desc'>
+                                                <p>{project.desc}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -323,8 +329,10 @@ const Projects = ({ displayType, colors }) => {
                                 {ArtProjects.map((project, index) => (
                                     <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
                                         <div className='project-info art'>
-                                            <p style={{ color: pokeTheme_TWO }}>{project.title}</p>
-                                            <div className='project-img art'>
+                                            <a href={''} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                {project.title}
+                                            </a>
+                                            <div className='project-desc art'>
                                                 <img src={project.imgContent} className='art' />
                                             </div>
                                         </div>
