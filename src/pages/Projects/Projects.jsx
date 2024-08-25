@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CodeProjects } from '../../utils/ProjectData';
+import { CodeProjects, ResearchProjects } from '../../utils/ProjectData';
 import './Projects.css';
 
 const Projects = ({ displayType, colors }) => {
@@ -19,25 +19,39 @@ const Projects = ({ displayType, colors }) => {
         }
     };
 
-    const [leftSlide, setLeftSlide] = useState(0);
-    const leftIntervalRef = useRef(null);
+    const [codingSlide, setCodingSlide] = useState(0);
+    const [researchSlide, setResearchSlide] = useState(0);
 
-    const startLeftInterval = () => {
-        leftIntervalRef.current = setInterval(() => {
-            setLeftSlide(prevSlide => (prevSlide + 1) % 5);
+    const codingIntervalRef = useRef(null);
+    const researchIntervalRef = useRef(null);
+
+    const startCodingInterval = () => {
+        codingIntervalRef.current = setInterval(() => {
+            setCodingSlide(prevSlide => (prevSlide + 1) % 5);
         }, 7000);
     };
 
-    const stopLeftInterval = () => {
-        clearInterval(leftIntervalRef.current);
+    const stopCodingInterval = () => {
+        clearInterval(codingIntervalRef.current);
     };
 
+    const startResearchInterval = () => {
+        researchIntervalRef.current = setInterval(() => {
+            setResearchSlide(prevSlide => (prevSlide + 1) % 1);
+        }, 7000);
+    };
+
+    const stopResearchInterval = () => {
+        clearInterval(researchIntervalRef.current);
+    };
 
     useEffect(() => {
-        startLeftInterval();
+        startCodingInterval();
+        startResearchInterval();
 
         return () => {
-            stopLeftInterval();
+            stopCodingInterval();
+            stopResearchInterval();
         };
     }, []);
 
@@ -48,8 +62,13 @@ const Projects = ({ displayType, colors }) => {
     };
 
     const handleClick = (index) => {
-        setLeftSlide(index);
+        setCodingSlide(index);
+
     };
+
+    const handleResearchClick = (index) => {
+        setResearchSlide(index);
+    }
 
     return (
         <div className="projects-main-box">
@@ -104,13 +123,13 @@ const Projects = ({ displayType, colors }) => {
             <div className={`projects-list ${displayType ? 'light' : 'dark'} ${isTransitioning ? 'hidden' : ''}`}>
                 {selectedTab === 'All' && (
                     <>
-                        <div className={`coding-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopLeftInterval} onMouseLeave={startLeftInterval} >
+                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopCodingInterval} onMouseLeave={startCodingInterval} >
                             <div className='tabs'>
                                 {[0, 1, 2, 3, 4].map(index => (
                                     <button
                                         key={index}
                                         className='tab'
-                                        style={{ borderBottom: leftSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                        style={{ borderBottom: codingSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
                                         onClick={() => handleClick(index)}
                                     >
                                         {`${index + 1}`}
@@ -119,12 +138,12 @@ const Projects = ({ displayType, colors }) => {
                             </div>
                             <div className='slide-container'>
                                 {CodeProjects.map((project, index) => (
-                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, leftSlide)}`}>
+                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, codingSlide)}`}>
                                         <div className='project-info'>
-                                            <a href={project.href} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                            <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
                                                 {project.title}
                                             </a>
-                                            <p>{project.description}</p>
+                                            <p>{project.desc}</p>
                                             <div className='project-img'>
                                                 <p>{project.imgContent}</p>
                                             </div>
@@ -134,11 +153,37 @@ const Projects = ({ displayType, colors }) => {
                             </div>
                         </div>
 
-                        <div className={`research-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-
+                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopResearchInterval} onMouseLeave={startResearchInterval} >
+                            <div className='tabs'>
+                                {[0].map(index => (
+                                    <button
+                                        key={index}
+                                        className='tab'
+                                        style={{ borderBottom: researchSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                        onClick={() => handleResearchClick(index)}
+                                    >
+                                        {`${index + 1}`}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className='slide-container'>
+                                {ResearchProjects.map((project, index) => (
+                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, researchSlide)}`}>
+                                        <div className='project-info'>
+                                            <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                {project.title}
+                                            </a>
+                                            <p>{project.desc}</p>
+                                            <div className='project-img'>
+                                                <p>{project.imgContent}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
-                        <div className={`filler-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
 
                         </div>
                     </>
@@ -147,13 +192,13 @@ const Projects = ({ displayType, colors }) => {
                 {selectedTab === 'Coding' && (
                     <>
                         <div />
-                        <div className={`coding-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopLeftInterval} onMouseLeave={startLeftInterval} >
+                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopCodingInterval} onMouseLeave={startCodingInterval} >
                             <div className='tabs'>
                                 {[0, 1, 2, 3, 4].map(index => (
                                     <button
                                         key={index}
                                         className='tab'
-                                        style={{ borderBottom: leftSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                        style={{ borderBottom: codingSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
                                         onClick={() => handleClick(index)}
                                     >
                                         {`${index + 1}`}
@@ -162,12 +207,12 @@ const Projects = ({ displayType, colors }) => {
                             </div>
                             <div className='slide-container'>
                                 {CodeProjects.map((project, index) => (
-                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, leftSlide)}`}>
+                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, codingSlide)}`}>
                                         <div className='project-info'>
-                                            <a href={project.href} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                            <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
                                                 {project.title}
                                             </a>
-                                            <p>{project.description}</p>
+                                            <p>{project.desc}</p>
                                             <div className='project-img'>
                                                 <p>{project.imgContent}</p>
                                             </div>
@@ -183,8 +228,34 @@ const Projects = ({ displayType, colors }) => {
                 {selectedTab === 'Research' && (
                     <>
                         <div />
-                        <div className={`research-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                            <p>Research</p>
+                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopResearchInterval} onMouseLeave={startResearchInterval} >
+                            <div className='tabs'>
+                                {[0].map(index => (
+                                    <button
+                                        key={index}
+                                        className='tab'
+                                        style={{ borderBottom: researchSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                        onClick={() => handleResearchClick(index)}
+                                    >
+                                        {`${index + 1}`}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className='slide-container'>
+                                {ResearchProjects.map((project, index) => (
+                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, researchSlide)}`}>
+                                        <div className='project-info'>
+                                            <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                {project.title}
+                                            </a>
+                                            <p>{project.desc}</p>
+                                            <div className='project-img'>
+                                                <p>{project.imgContent}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         <div />
                     </>
@@ -193,7 +264,7 @@ const Projects = ({ displayType, colors }) => {
                 {selectedTab === 'Filler' && (
                     <>
                         <div />
-                        <div className={`filler-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                             <p>Filler</p>
                         </div>
                         <div />

@@ -41,38 +41,28 @@
     transform: translateY(10px);
 }
 
-.coding-projects,
-.research-projects,
-.filler-projects {
+.projects{
     border-radius: 3.125rem;
     padding: 1.875rem;
 }
 
-.coding-projects p,
-.research-projects p,
-.filler-projects p {
+.projects p {
     font-weight: 500;
 }
 
 
-.coding-projects.dark p,
-.coding-projects.dark button,
-.research-projects.dark p,
-.filler-projects.dark p {
+.projects.dark p,
+.projects.dark button {
     color: white;
 }
 
 .projects-category:hover,
-.coding-projects:hover,
-.research-projects:hover,
-.filler-projects:hover {
+.projects:hover{
     box-shadow: 0 0 1rem black !important;
 }
 
 .projects-category.dark:hover,
-.coding-projects.dark:hover,
-.research-projects.dark:hover,
-.filler-projects.dark:hover {
+.projects.dark:hover {
     box-shadow: 0 0 0.5rem white !important;
 }
 
@@ -119,10 +109,11 @@
     text-decoration: none;
     font-weight: 500;
     font-size: 1.25rem;
+    z-index: 1000;
 }
 
 .project-info a:hover {
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 
 .project-img {
@@ -138,7 +129,6 @@
     transition: opacity 0.5s ease;
     opacity: 0;
     height: 100%;
-
 }
 
 .slide-content-opacity.enter {
