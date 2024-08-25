@@ -101,3 +101,51 @@
     border-bottom: 2px solid currentColor;
     font-family: 'Montserrat';
 }
+
+.project-info {
+    display: grid;
+    grid-template-rows: 0.1fr 0.5fr 0.3fr;
+    height: 100%;
+}
+
+.project-info p {
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.project-info a {
+    text-align: center;
+    margin-top: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.project-info a:hover {
+    font-weight: 700;
+}
+
+.project-img {
+    height: 100%;
+    width: 100%;
+}
+
+.slide-content-opacity {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    height: 100%;
+
+}
+
+.slide-content-opacity.enter {
+    opacity: 1;
+}
+
+.slide-content-opacity.exit,
+.slide-content-opacity.hidden {
+    opacity: 0;
+}

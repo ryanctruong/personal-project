@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { CodeProjects } from '../../utils/ProjectData';
 import './Projects.css';
 
 const Projects = ({ displayType, colors }) => {
@@ -19,37 +20,24 @@ const Projects = ({ displayType, colors }) => {
     };
 
     const [leftSlide, setLeftSlide] = useState(0);
-    const [rightSlide, setRightSlide] = useState(0);
     const leftIntervalRef = useRef(null);
-    const rightIntervalRef = useRef(null);
 
     const startLeftInterval = () => {
         leftIntervalRef.current = setInterval(() => {
-            setLeftSlide(prevSlide => (prevSlide + 1) % 4);
+            setLeftSlide(prevSlide => (prevSlide + 1) % 5);
         }, 7000);
-    };
-
-    const startRightInterval = () => {
-        rightIntervalRef.current = setInterval(() => {
-            setRightSlide(prevSlide => (prevSlide + 1) % 3);
-        }, 5200);
     };
 
     const stopLeftInterval = () => {
         clearInterval(leftIntervalRef.current);
     };
 
-    const stopRightInterval = () => {
-        clearInterval(rightIntervalRef.current);
-    };
 
     useEffect(() => {
         startLeftInterval();
-        startRightInterval();
 
         return () => {
             stopLeftInterval();
-            stopRightInterval();
         };
     }, []);
 
@@ -116,8 +104,34 @@ const Projects = ({ displayType, colors }) => {
             <div className={`projects-list ${displayType ? 'light' : 'dark'} ${isTransitioning ? 'hidden' : ''}`}>
                 {selectedTab === 'All' && (
                     <>
-                        <div className={`coding-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-
+                        <div className={`coding-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopLeftInterval} onMouseLeave={startLeftInterval} >
+                            <div className='tabs'>
+                                {[0, 1, 2, 3, 4].map(index => (
+                                    <button
+                                        key={index}
+                                        className='tab'
+                                        style={{ borderBottom: leftSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                        onClick={() => handleClick(index)}
+                                    >
+                                        {`${index + 1}`}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className='slide-container'>
+                                {CodeProjects.map((project, index) => (
+                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, leftSlide)}`}>
+                                        <div className='project-info'>
+                                            <a href={project.href} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                {project.title}
+                                            </a>
+                                            <p>{project.description}</p>
+                                            <div className='project-img'>
+                                                <p>{project.imgContent}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                         <div className={`research-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
@@ -135,7 +149,7 @@ const Projects = ({ displayType, colors }) => {
                         <div />
                         <div className={`coding-projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopLeftInterval} onMouseLeave={startLeftInterval} >
                             <div className='tabs'>
-                                {[0, 1, 2, 3].map(index => (
+                                {[0, 1, 2, 3, 4].map(index => (
                                     <button
                                         key={index}
                                         className='tab'
@@ -147,10 +161,19 @@ const Projects = ({ displayType, colors }) => {
                                 ))}
                             </div>
                             <div className='slide-container'>
-                                <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}><p>Coding 1</p></div>
-                                <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}><p>Coding 2</p></div>
-                                <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}><p>Coding 3</p></div>
-                                <div className={`slide-content ${currentSlideClass(3, leftSlide)}`}><p>Coding 4</p></div>
+                                {CodeProjects.map((project, index) => (
+                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, leftSlide)}`}>
+                                        <div className='project-info'>
+                                            <a href={project.href} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                {project.title}
+                                            </a>
+                                            <p>{project.description}</p>
+                                            <div className='project-img'>
+                                                <p>{project.imgContent}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         <div />
