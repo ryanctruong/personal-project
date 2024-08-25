@@ -75,6 +75,10 @@
     font-size: 1.25rem;
 }
 
+.nav-list ul li:first-child {
+    margin: 0 1%;
+}
+
 .nav-list li:hover {
     font-weight: 650;
 }
@@ -98,6 +102,11 @@
         border-radius: 1rem;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     }
+
+    .nav-list ul li:first-child {
+        margin: .5rem 0;
+    }
+
 
     .nav-list.dark ul {
         background-color: #313338;
