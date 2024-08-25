@@ -75,10 +75,6 @@
     font-size: 1.25rem;
 }
 
-.nav-list ul li:first-child {
-    margin: 0 1%;
-}
-
 .nav-list li:hover {
     font-weight: 650;
 }
