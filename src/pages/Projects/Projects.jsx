@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CodeProjects, ResearchProjects } from '../../utils/ProjectData';
+import { CodeProjects, ResearchProjects, ArtProjects } from '../../utils/ProjectData';
 import './Projects.css';
 
 const Projects = ({ displayType, colors }) => {
@@ -21,9 +21,11 @@ const Projects = ({ displayType, colors }) => {
 
     const [codingSlide, setCodingSlide] = useState(0);
     const [researchSlide, setResearchSlide] = useState(0);
+    const [artSlide, setArtSlide] = useState(0);
 
     const codingIntervalRef = useRef(null);
     const researchIntervalRef = useRef(null);
+    const artIntervalRef = useRef(null);
 
     const startCodingInterval = () => {
         codingIntervalRef.current = setInterval(() => {
@@ -37,7 +39,7 @@ const Projects = ({ displayType, colors }) => {
 
     const startResearchInterval = () => {
         researchIntervalRef.current = setInterval(() => {
-            setResearchSlide(prevSlide => (prevSlide + 1) % 1);
+            setResearchSlide(prevSlide => (prevSlide + 1) % 2);
         }, 7000);
     };
 
@@ -45,13 +47,25 @@ const Projects = ({ displayType, colors }) => {
         clearInterval(researchIntervalRef.current);
     };
 
+    const startArtInterval = () => {
+        artIntervalRef.current = setInterval(() => {
+            setArtSlide(prevSlide => (prevSlide + 1) % 2); 
+        }, 7000);
+    };
+
+    const stopArtInterval = () => {
+        clearInterval(artIntervalRef.current);
+    };
+
     useEffect(() => {
         startCodingInterval();
         startResearchInterval();
+        startArtInterval();
 
         return () => {
             stopCodingInterval();
             stopResearchInterval();
+            stopArtInterval();
         };
     }, []);
 
@@ -63,12 +77,15 @@ const Projects = ({ displayType, colors }) => {
 
     const handleClick = (index) => {
         setCodingSlide(index);
-
     };
 
     const handleResearchClick = (index) => {
         setResearchSlide(index);
-    }
+    };
+
+    const handleArtClick = (index) => {
+        setArtSlide(index);
+    };
 
     return (
         <div className="projects-main-box">
@@ -111,12 +128,12 @@ const Projects = ({ displayType, colors }) => {
                     style={{
                         color: pokeTheme_TWO,
                         cursor: 'pointer',
-                        borderBottom: selectedTab === 'Filler' ? `2px solid ${pokeTheme_TWO}` : 'none',
-                        fontWeight: selectedTab === 'Filler' ? `700` : '',
+                        borderBottom: selectedTab === 'Art' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                        fontWeight: selectedTab === 'Art' ? `700` : '',
                     }}
-                    onClick={() => handleTabClick('Filler')}
+                    onClick={() => handleTabClick('Art')}
                 >
-                    Filler Projects
+                    Art Projects
                 </p>
             </div>
 
@@ -155,7 +172,7 @@ const Projects = ({ displayType, colors }) => {
 
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopResearchInterval} onMouseLeave={startResearchInterval} >
                             <div className='tabs'>
-                                {[0].map(index => (
+                                {[0, 1].map(index => (
                                     <button
                                         key={index}
                                         className='tab'
@@ -183,8 +200,31 @@ const Projects = ({ displayType, colors }) => {
                             </div>
                         </div>
 
-                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-
+                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopArtInterval} onMouseLeave={startArtInterval} >
+                            <div className='tabs'>
+                                {[0, 1].map(index => (
+                                    <button
+                                        key={index}
+                                        className='tab'
+                                        style={{ borderBottom: artSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                        onClick={() => handleArtClick(index)}
+                                    >
+                                        {`${index + 1}`}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className='slide-container'>
+                                {ArtProjects.map((project, index) => (
+                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
+                                        <div className='project-img art'>
+                                            <p style={{ color: pokeTheme_TWO }}>{project.title}</p>
+                                            <div className='project-img art'>
+                                                <img src={project.imgContent} className='art' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </>
                 )}
@@ -230,7 +270,7 @@ const Projects = ({ displayType, colors }) => {
                         <div />
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopResearchInterval} onMouseLeave={startResearchInterval} >
                             <div className='tabs'>
-                                {[0].map(index => (
+                                {[0, 1].map(index => (
                                     <button
                                         key={index}
                                         className='tab'
@@ -261,11 +301,34 @@ const Projects = ({ displayType, colors }) => {
                     </>
                 )}
 
-                {selectedTab === 'Filler' && (
+                {selectedTab === 'Art' && (
                     <>
                         <div />
-                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                            <p>Filler</p>
+                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopArtInterval} onMouseLeave={startArtInterval} >
+                            <div className='tabs'>
+                                {[0, 1].map(index => (
+                                    <button
+                                        key={index}
+                                        className='tab'
+                                        style={{ borderBottom: artSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                        onClick={() => handleArtClick(index)}
+                                    >
+                                        {`${index + 1}`}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className='slide-container'>
+                                {ArtProjects.map((project, index) => (
+                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, artSlide)}`}>
+                                        <div className='project-img art'>
+                                            <p style={{ color: pokeTheme_TWO }}>{project.title}</p>
+                                            <div className='project-img art'>
+                                                <img src={project.imgContent} className='art' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                         <div />
                     </>

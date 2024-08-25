@@ -1,4 +1,7 @@
 // projectData.js
+import jirachi from '/jirachi.png';
+import octo from '/octo.png';
+
 export const CodeProjects = [
     {
         link: "https://github.com/ryanctruong/StuffBay",
@@ -38,5 +41,22 @@ export const ResearchProjects = [
         title: 'The Impact of AGOA on Corruption',
         desc: `I wrote an economic research paper examining AGOA's impact on corruption levels. I presented it at the 49th IPE Conference in New York City in 2023, and it's currently being published in academic journals.`,
         imgContent: ''
+    },
+    {
+        link: 'https://www.belmont.edu/academics/majors-programs/economics/',
+        title: 'Independent Reseach',
+        desc: `As an economics major, I had the opportunity to write multiple research papers as part of the classes I took, covering topics from supply and demand to exploring how increasing sidewalks can help reduce hypertension. If you're interested in learning more about any of the research I've conducted, please feel free to reach out to me.`,
+        imgContent: ''
     }
 ];
+
+export const ArtProjects = [
+    {
+        title: `Jirachi's Cosmic Journey`,
+        imgContent: jirachi
+    },
+    {
+        title: `The Joyful Orange Octopus`,
+        imgContent: octo
+    },
+]
