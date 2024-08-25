@@ -101,36 +101,26 @@ function App() {
           fetchPokemon={fetchPokemon}
         />
         <div className={`content ${displayType ? 'light' : 'dark'}`}>
-          <div className="content-wrapper"
-            style={{ transform: getTransformValue() }}
-          >
-            <div className="content-item">
+          <div className="content-wrapper" style={{ transform: getTransformValue() }}>
+            <div className="content-item home">
               {revealContainer && (
                 <>
-                  <ColorExtractor
-                    src={pokeIMG}
-                    getColors={handleColors}
-                  />
+                  <ColorExtractor src={pokeIMG} getColors={handleColors} />
                   <Home
                     displayType={displayType}
                     pokeName={pokeName}
                     pokeIMG={pokeIMG}
                     fetchPokemon={fetchPokemon}
-                    colors={colors} />
+                    colors={colors}
+                  />
                 </>
               )}
             </div>
-            <div className="content-item">
-              <Skills
-                selectedTab={selectedTab}
-                displayType={displayType}
-                colors={colors}
-              />
+            <div className="content-item skills">
+              <Skills selectedTab={selectedTab} displayType={displayType} colors={colors} />
             </div>
-            <div className="content-item">
-              <Projects
-                displayType={displayType}
-                colors={colors} />
+            <div className="content-item projects1">
+              <Projects displayType={displayType} colors={colors} />
             </div>
           </div>
         </div>

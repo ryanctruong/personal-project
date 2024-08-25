@@ -72,11 +72,7 @@
     .skill-list {
         height: auto;
         transition: height 0.5s ease;
-    }
 
-    .skill-icons {
-        align-items: center;
-        justify-content: center;
     }
 
     .skill-header {
@@ -85,17 +81,23 @@
         justify-content: center;
     }
 
+    .skill-icons{
+        align-items: center;
+    }
+
     .skill-icon {
-        width: 4.5rem;
-        height: 4.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        justify-content: space-around;
     }
 
     .skill-item {
-        width: 7.5rem;
-        height: 7.5rem;
+        width: 5rem;
+        height: 5rem;
     }
 
     .skill-name {
-        font-size: 0.975rem;
+        font-size: 0.75rem;
     }
 }
+

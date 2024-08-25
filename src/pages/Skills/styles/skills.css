@@ -54,7 +54,6 @@
     }
 
     .no-select {
-        flex-direction: row;
-        gap: 1.25rem;
+        opacity: 0;
     }
 }
