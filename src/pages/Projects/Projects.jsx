@@ -92,52 +92,54 @@ const Projects = ({ displayType, colors }) => {
     return (
         <div className="projects-main-box">
             <div className={`projects-category ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                <p
-                    style={{
-                        color: pokeTheme_TWO,
-                        cursor: 'pointer',
-                        borderBottom: selectedTab === 'All' ? `2px solid ${pokeTheme_TWO}` : 'none',
-                        fontWeight: selectedTab === 'All' ? `700` : '',
-                    }}
-                    onClick={() => handleTabClick('All')}
-                >
-                    All
-                </p>
-                <p
-                    style={{
-                        color: pokeTheme_TWO,
-                        cursor: 'pointer',
-                        borderBottom: selectedTab === 'Coding' ? `2px solid ${pokeTheme_TWO}` : 'none',
-                        fontWeight: selectedTab === 'Coding' ? `700` : '',
-                    }}
-                    onClick={() => handleTabClick('Coding')}
-                >
-                    Coding Projects
-                </p>
-                <p
-                    style={{
-                        color: pokeTheme_TWO,
-                        cursor: 'pointer',
-                        borderBottom: selectedTab === 'Research' ? `2px solid ${pokeTheme_TWO}` : 'none',
-                        fontWeight: selectedTab === 'Research' ? `700` : '',
-
-                    }}
-                    onClick={() => handleTabClick('Research')}
-                >
-                    Research Projects
-                </p>
-                <p
-                    style={{
-                        color: pokeTheme_TWO,
-                        cursor: 'pointer',
-                        borderBottom: selectedTab === 'Art' ? `2px solid ${pokeTheme_TWO}` : 'none',
-                        fontWeight: selectedTab === 'Art' ? `700` : '',
-                    }}
-                    onClick={() => handleTabClick('Art')}
-                >
-                    Art Projects
-                </p>
+                <ul className='tab-list'>
+                    <li
+                        style={{
+                            color: pokeTheme_TWO,
+                            cursor: 'pointer',
+                            borderBottom: selectedTab === 'All' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                            fontWeight: selectedTab === 'All' ? `700` : '',
+                        }}
+                        onClick={() => handleTabClick('All')}
+                    >
+                        All
+                    </li>
+                    <li
+                        style={{
+                            color: pokeTheme_TWO,
+                            cursor: 'pointer',
+                            borderBottom: selectedTab === 'Coding' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                            fontWeight: selectedTab === 'Coding' ? `700` : '',
+                        }}
+                        onClick={() => handleTabClick('Coding')}
+                    >
+                        Coding Projects
+                    </li>
+                    <li
+                        style={{
+                            color: pokeTheme_TWO,
+                            cursor: 'pointer',
+                            borderBottom: selectedTab === 'Research' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                            fontWeight: selectedTab === 'Research' ? `700` : '',
+                        }}
+                        onClick={() => handleTabClick('Research')}
+                    >
+                        Research Projects
+                    </li>
+                    <li
+                        style={{
+                            color: pokeTheme_TWO,
+                            cursor: 'pointer',
+                            borderBottom: selectedTab === 'Art' ? `2px solid ${pokeTheme_TWO}` : 'none',
+                            fontWeight: selectedTab === 'Art' ? `700` : '',
+                        }}
+                        onClick={() => handleTabClick('Art')}
+                    >
+                        Art Projects
+                    </li>
+                </ul>
             </div>
+
 
             <div className={`projects-list ${displayType ? 'light' : 'dark'} ${isTransitioning ? 'hidden' : ''}`}>
                 {selectedTab === 'All' && (
@@ -239,7 +241,7 @@ const Projects = ({ displayType, colors }) => {
 
                 {selectedTab === 'Coding' && (
                     <>
-                        <div />
+                        <div className='single-select' />
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopCodingInterval} onMouseLeave={startCodingInterval} >
                             <div className='tabs'>
                                 {[0, 1, 2, 3, 4].map(index => (
@@ -270,13 +272,13 @@ const Projects = ({ displayType, colors }) => {
                                 ))}
                             </div>
                         </div>
-                        <div />
+                        <div className='single-select' />
                     </>
                 )}
 
                 {selectedTab === 'Research' && (
                     <>
-                        <div />
+                        <div className='single-select' />
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopResearchInterval} onMouseLeave={startResearchInterval} >
                             <div className='tabs'>
                                 {[0, 1].map(index => (
@@ -307,13 +309,13 @@ const Projects = ({ displayType, colors }) => {
                                 ))}
                             </div>
                         </div>
-                        <div />
+                        <div className='single-select' />
                     </>
                 )}
 
                 {selectedTab === 'Art' && (
                     <>
-                        <div />
+                        <div className='single-select' />
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopArtInterval} onMouseLeave={startArtInterval} >
                             <div className='tabs'>
                                 {[0, 1].map(index => (
@@ -344,7 +346,7 @@ const Projects = ({ displayType, colors }) => {
                                 ))}
                             </div>
                         </div>
-                        <div />
+                        <div className='single-select' />
                     </>
                 )}
             </div>
