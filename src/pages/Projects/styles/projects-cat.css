@@ -7,11 +7,26 @@
     align-items: center;
 }
 
-.projects-category p {
-    font-size: 1.125rem;
+.projects-category .tab-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.projects-category p:hover {
+.projects-category .tab-list li {
+    font-size: 1.125rem;
+    text-align: center;
+    cursor: pointer;
+    transition: font-weight 0.3s ease, border-bottom 0.3s ease;
+}
+
+.projects-category .tab-list li:hover {
     font-weight: 700;
 }
 
@@ -23,14 +38,20 @@
     box-shadow: 0 0 0.5rem white !important;
 }
 
+
 @media (max-width: 500px) {
     .projects-category {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding: 1rem;
     }
 
     .projects-category p {
         text-align: center;
+    }
+
+    .projects-category .tab-list li {
+        font-size: 0.9rem;
     }
 }

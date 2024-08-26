@@ -158,13 +158,24 @@
         grid-template-rows: repeat(3, auto);
     }
 
+    .project-info {
+        gap: 0.75rem;
+    }
+
     .projects {
         gap: 0.625rem;
     }
 
     .project-desc {
-        overflow-y: auto;
         z-index: 1003;
     }
 
+    .tab {
+        font-size: 0.75rem;
+    }
+
+    .project-title a,
+    .project-desc p {
+        font-size: 0.9rem;
+    }
 }
