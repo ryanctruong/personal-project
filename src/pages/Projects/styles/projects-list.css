@@ -87,7 +87,7 @@
 
 .project-info {
     display: grid;
-    grid-template-rows: 0.1fr auto;
+    grid-template-rows: auto auto;
     height: 100%;
     gap: 1rem;
 }
@@ -152,7 +152,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     .projects-list {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, auto);
@@ -162,14 +162,16 @@
         gap: 0.75rem;
     }
 
-    .projects {
-        gap: 0.625rem;
-    }
-
     .project-desc {
         z-index: 1003;
     }
 
+    .single-select {
+        display: none;
+    }
+}
+
+@media(max-width: 500px) {
     .tab {
         font-size: 0.75rem;
     }
@@ -177,9 +179,5 @@
     .project-title a,
     .project-desc p {
         font-size: 0.9rem;
-    }
-
-    .single-select{
-        display: none;
     }
 }
