@@ -9,7 +9,6 @@ const Skills = ({ selectedTab, displayType, colors }) => {
     const [skillsChunk1, setSkillsChunk1] = useState([]);
     const [skillsChunk2, setSkillsChunk2] = useState([]);
     const [selectedSkill, setSelectedSkill] = useState(null);
-    const [showDesc, setShowDesc] = useState(false);
 
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;
@@ -51,16 +50,6 @@ const Skills = ({ selectedTab, displayType, colors }) => {
         setSelectedSkill(skill === selectedSkill ? null : skill);
     };
 
-    useEffect(() => {
-        const timer = selectedSkill ? setTimeout(() => setShowDesc(true), 300) : null;
-
-        return () => {
-            if (timer) clearTimeout(timer);
-            if (!selectedSkill) setShowDesc(false);
-        };
-    }, [selectedSkill]);
-
-
     return (
         <div className={`skills-main-box ${selectedSkill ? 'visible' : ''}`}>
             <div className='skill-list' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
@@ -100,9 +89,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                                     <p style={{ color: pokeTheme_TWO }}>{selectedSkill.yoe}</p>
                                 </div>
                                 <div className='usage-desc'>
-                                    {showDesc && (
                                         <p>{selectedSkill.desc}</p>
-                                    )}
                                 </div>
                             </>
                         )}
@@ -113,7 +100,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                         <h4 style={{ marginBottom: '0.625rem' }}>Current Mood</h4>
                     </div>
                     <div className={`code-example ${displayType ? 'light' : 'dark'}`}>
-                        {selectedSkill && showDesc && (
+                        {selectedSkill &&  (
                             <div className='code-usage' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                 <img src={selectedSkill.meme} />
                             </div>

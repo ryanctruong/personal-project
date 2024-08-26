@@ -125,6 +125,11 @@
 }
 
 @media (max-width: 960px) {
+    .skill-detail {
+        display: grid;
+        opacity: 1;
+    }
+
     .skill-detail.visible {
         grid-template-columns: 0.5fr 0.5fr;
         grid-template-rows: 1fr;
