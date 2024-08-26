@@ -113,7 +113,7 @@ const Projects = ({ displayType, colors }) => {
                         }}
                         onClick={() => handleTabClick('Coding')}
                     >
-                        Coding Projects
+                        Coding
                     </li>
                     <li
                         style={{
@@ -124,7 +124,7 @@ const Projects = ({ displayType, colors }) => {
                         }}
                         onClick={() => handleTabClick('Research')}
                     >
-                        Research Projects
+                        Research
                     </li>
                     <li
                         style={{
@@ -135,7 +135,7 @@ const Projects = ({ displayType, colors }) => {
                         }}
                         onClick={() => handleTabClick('Art')}
                     >
-                        Art Projects
+                        Art
                     </li>
                 </ul>
             </div>
