@@ -178,4 +178,8 @@
     .project-desc p {
         font-size: 0.9rem;
     }
+
+    .single-select{
+        display: none;
+    }
 }

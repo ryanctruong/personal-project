@@ -241,7 +241,7 @@ const Projects = ({ displayType, colors }) => {
 
                 {selectedTab === 'Coding' && (
                     <>
-                        <div />
+                        <div className='single-select' />
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopCodingInterval} onMouseLeave={startCodingInterval} >
                             <div className='tabs'>
                                 {[0, 1, 2, 3, 4].map(index => (
@@ -272,13 +272,13 @@ const Projects = ({ displayType, colors }) => {
                                 ))}
                             </div>
                         </div>
-                        <div />
+                        <div className='single-select' />
                     </>
                 )}
 
                 {selectedTab === 'Research' && (
                     <>
-                        <div />
+                        <div className='single-select' />
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopResearchInterval} onMouseLeave={startResearchInterval} >
                             <div className='tabs'>
                                 {[0, 1].map(index => (
@@ -309,13 +309,13 @@ const Projects = ({ displayType, colors }) => {
                                 ))}
                             </div>
                         </div>
-                        <div />
+                        <div className='single-select' />
                     </>
                 )}
 
                 {selectedTab === 'Art' && (
                     <>
-                        <div />
+                        <div className='single-select' />
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopArtInterval} onMouseLeave={startArtInterval} >
                             <div className='tabs'>
                                 {[0, 1].map(index => (
@@ -346,7 +346,7 @@ const Projects = ({ displayType, colors }) => {
                                 ))}
                             </div>
                         </div>
-                        <div />
+                        <div className='single-select' />
                     </>
                 )}
             </div>
