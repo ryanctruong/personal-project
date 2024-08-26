@@ -176,8 +176,11 @@
         font-size: 0.75rem;
     }
 
-    .project-title a,
+    .project-title a {
+        font-size: 1rem;
+    }
+
     .project-desc p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 }
