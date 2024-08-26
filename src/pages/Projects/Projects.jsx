@@ -32,7 +32,7 @@ const Projects = ({ displayType, colors }) => {
     const startCodingInterval = () => {
         codingIntervalRef.current = setInterval(() => {
             setCodingSlide(prevSlide => (prevSlide + 1) % 5);
-        }, 7000);
+        }, 7500);
     };
 
     const stopCodingInterval = () => {
@@ -42,7 +42,7 @@ const Projects = ({ displayType, colors }) => {
     const startResearchInterval = () => {
         researchIntervalRef.current = setInterval(() => {
             setResearchSlide(prevSlide => (prevSlide + 1) % 2);
-        }, 7000);
+        }, 6300);
     };
 
     const stopResearchInterval = () => {
@@ -52,7 +52,7 @@ const Projects = ({ displayType, colors }) => {
     const startArtInterval = () => {
         artIntervalRef.current = setInterval(() => {
             setArtSlide(prevSlide => (prevSlide + 1) % 2);
-        }, 7000);
+        }, 5400);
     };
 
     const stopArtInterval = () => {
