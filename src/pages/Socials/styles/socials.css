@@ -1,0 +1,22 @@
+.socials-main-box {
+    font-family: 'Montserrat';
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    position: relative;
+    gap: 1.25rem;
+    width: 75rem;
+    height: 27rem;
+}
+
+.social-media {
+    border-radius: 3.125rem;
+    padding: 1.25rem;
+}
+
+.social-media:hover {
+    box-shadow: 0 0 1rem black !important;
+}
+
+.social-media.dark:hover {
+    box-shadow: 0 0 1rem white !important;
+}
