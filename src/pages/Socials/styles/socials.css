@@ -1,22 +1,17 @@
 .socials-main-box {
     font-family: 'Montserrat';
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    position: relative;
-    gap: 1.25rem;
     width: 75rem;
-    height: 27rem;
+    height: 37.5rem;
 }
 
-.social-media {
-    border-radius: 3.125rem;
-    padding: 1.25rem;
+@media(max-width: 1097px) {
+    .socials-main-box {
+        width: 95%;
+    }
 }
 
-.social-media:hover {
-    box-shadow: 0 0 1rem black !important;
-}
-
-.social-media.dark:hover {
-    box-shadow: 0 0 1rem white !important;
+@media (max-width: 768px) {
+    .socials-main-box {
+        height: 100%;
+    }
 }
