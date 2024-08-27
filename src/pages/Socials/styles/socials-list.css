@@ -61,6 +61,10 @@
     font-size: 1.25rem;
 }
 
+.sm-info p{
+    margin: 0.5rem;
+}
+
 .sm-info-li a {
     /* color: red; */
     text-overflow: ellipsis;
