@@ -83,6 +83,12 @@ body {
     }
 }
 
+@media (max-width: 960px){
+    .content-item {
+        align-items: start;
+    }
+}
+
 @media (max-width: 767px) and (orientation: portrait) {
     .content {
         height: 50%;

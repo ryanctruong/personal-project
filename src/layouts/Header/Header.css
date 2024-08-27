@@ -103,6 +103,11 @@
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     }
 
+    .nav-list ul li:first-child {
+        margin: .5rem 0;
+    }
+
+
     .nav-list.dark ul {
         background-color: #313338;
         border: 1px solid black;

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* PARENT CONTAINER */
+.projects-main-box {
+    font-family: 'Montserrat';
+    position: relative;
+    width: 75rem;
+    height: 37.5rem;
+    display: grid;
+    grid-template-rows: 0.2fr 1fr;
+    gap: 1.25rem;
+}
+
+@media (max-width: 1097px) {
+    .projects-main-box {
+        height: 100%;
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-main-box {
+        grid-template-rows: 0.1fr 1fr;
+    }
+}
