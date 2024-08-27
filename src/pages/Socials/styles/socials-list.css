@@ -46,7 +46,7 @@
     border: 0.125em solid black;
 }
 
-.sm-pic-container img{
+.sm-pic-container img {
     width: 120%;
     height: 120%;
 }
@@ -58,10 +58,17 @@
     justify-content: center;
     text-align: center;
     align-items: flex-start;
+}
+
+.sm-info a {
     font-size: 1.25rem;
 }
 
-.sm-info p{
+.sm-info p {
+    font-size: 1.125rem;
+}
+
+.sm-info p {
     margin: 0.5rem;
 }
 
