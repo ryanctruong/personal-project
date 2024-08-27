@@ -124,7 +124,7 @@ function App() {
               <Projects displayType={displayType} colors={colors} />
             </div>
             <div className="content-item socials">
-              <Socials displayType={displayType} colors={colors} />
+              <Socials key={selectedTab} displayType={displayType} colors={colors} />
             </div>
           </div>
         </div>
