@@ -41,7 +41,7 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPo
             </div>
             <div className={`nav-list ${menuOpen ? 'open' : ''} ${displayType ? 'light' : 'dark'}`}>
                 <ul>
-                    {['Home', 'Skills', 'Projects', 'CV'].map((item, index) => (
+                    {['Home', 'Skills', 'Projects', 'Socials'].map((item, index) => (
                         <li
                             key={index}
                             className={selected === index ? 'selected' : ''}
