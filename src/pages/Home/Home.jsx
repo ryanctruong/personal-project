@@ -12,6 +12,7 @@ import './styles/profile-box.css'
 import './styles/popup.css'
 
 import ProfilePic from '/beanhead.svg'
+import tongue from '/tongue.svg'
 import meme from '/images/profile-box/meme.png'
 import bear from '/images/profile-box/brown-bear.png'
 import coder from '/images/profile-box/coder.png'
@@ -212,13 +213,20 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
         }
     };
 
+    const [imageSrc, setImageSrc] = useState(ProfilePic);
+
     return (
         <div className='home-main-box'>
             <div className={`profile-card ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
 
                 <div className='picture'>
                     <div className='picture-container'>
-                        <img src={ProfilePic} id='profile-pic'></img>
+                        <img
+                            src={imageSrc}
+                            id='profile-pic'
+                            onMouseEnter={() => setImageSrc(tongue)}
+                            onMouseLeave={() => setImageSrc(ProfilePic)}
+                        />
                     </div>
                 </div>
                 <div className={`basic-desc ${displayType ? 'light' : 'dark'}`}>

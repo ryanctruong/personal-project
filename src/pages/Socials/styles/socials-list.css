@@ -49,6 +49,7 @@
 .sm-pic-container img {
     width: 120%;
     height: 120%;
+    z-index: 1200;
 }
 
 .sm-info {
