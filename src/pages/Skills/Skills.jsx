@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CURRENT_SKILLS } from '../../utils/CurrentSkills';
+import { CURRENT_SKILLS } from '../../utils/SkillsData';
 
 import './styles/skills.css';
 import './styles/skills-list.css';

@@ -39,7 +39,7 @@ export const CURRENT_SKILLS = {
         },
         {
             name: `JavaScript`, imgSrc: JavaScript, yoe: `~2 years`,
-            desc: `One of my favorite languages of all time. I appreciate how it can be used for everything from building websites to creating apps, making it incredibly versatile and useful. Lately, I’ve been using it primarily for web development.`,
+            desc: `One of my favorite languages of all time. I appreciate how it can be used for everything from building websites to writing algorithms, making it incredibly versatile and useful. Lately, I’ve been using it primarily for web development.`,
             meme: veryhappy
         },
         {

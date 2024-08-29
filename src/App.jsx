@@ -5,6 +5,7 @@ import Header from './layouts/Header/Header';
 import Home from './pages/Home/Home';
 import Skills from './pages/Skills/Skills';
 import Projects from './pages/Projects/Projects';
+import Socials from './pages/Socials/Socials';
 import Footer from './layouts/Footer/Footer';
 import WelcomePage from './pages/Welcome/WelcomePage';
 import './styles/style.css';
@@ -121,6 +122,9 @@ function App() {
             </div>
             <div className="content-item projects1">
               <Projects displayType={displayType} colors={colors} />
+            </div>
+            <div className="content-item socials">
+              <Socials key={selectedTab} displayType={displayType} colors={colors} />
             </div>
           </div>
         </div>

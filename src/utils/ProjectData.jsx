@@ -30,7 +30,7 @@ export const CodeProjects = [
     {
         link: "https://github.com/ryanctruong/personal-project",
         title: "Personal Project",
-        desc: "This very website! I leveraged my knowledge of web development, including ReactJS, APIs, and DevOps, to create a fun, interactive platform that showcases my skills. It’s designed to give anyone a glimpse into my creative mind while highlighting my technical abilities. This project allowed me to bring together everything I've learned in web development to build something personal and engaging—and yes, it took way longer than I’d like to admit!",
+        desc: "This very website! I leveraged my knowledge of web development, including ReactJS, APIs, and DevOps, to create a fun, interactive platform that showcases my skills. It’s designed to give anyone a glimpse into my crazy mind while highlighting my technical abilities. This project allowed me to combine everything I've learned in web development to create something personal and engaging. And yes, it took much longer than I’d like to admit!",
         imgContent: "IMG / MEME HERE"
     }
 ];
@@ -45,7 +45,7 @@ export const ResearchProjects = [
     {
         link: 'https://www.belmont.edu/academics/majors-programs/economics/',
         title: 'Independent Reseach',
-        desc: `As an economics major, I’ve written multiple research papers on a variety of topics, from supply and demand dynamics to the impact of increased sidewalks on reducing hypertension. These projects allowed me to delve into diverse economic issues and apply theoretical knowledge to real-world scenarios. If you’re interested in any of the research I’ve conducted or would like to discuss these topics further, please don’t hesitate to reach out—I’d love to share more!`,
+        desc: `As an economics major, I’ve written multiple research papers on a variety of topics, from supply and demand dynamics to the impact of increased sidewalks on reducing hypertension. These projects allowed me to delve into diverse economic issues and apply theoretical knowledge to real-world scenarios. If you’re interested in any of the research I’ve conducted or would like to discuss these topics further, please don’t hesitate to reach out!`,
         imgContent: ''
     }
 ];

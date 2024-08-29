@@ -30,7 +30,7 @@
 
 .nav-list {
     display: grid;
-    grid-template-columns: 1fr 0.1fr;
+    grid-template-columns: 1fr 0.2fr;
     align-items: center;
     background-color: white;
     box-shadow: 0.4vh 0.8vh 0.8vh hsl(0deg 0% 0% / 0.38);

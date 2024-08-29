@@ -1,0 +1,17 @@
+.socials-main-box {
+    font-family: 'Montserrat';
+    width: 75rem;
+    height: 32.5rem;
+}
+
+@media(max-width: 1097px) {
+    .socials-main-box {
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .socials-main-box {
+        height: 100%;
+    }
+}
