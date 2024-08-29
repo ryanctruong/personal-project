@@ -56,6 +56,10 @@
     margin-top: 0;
 }
 
+.dd-desc-text p{
+    text-align: center;
+}
+
 .pb-full-desc a,
 .dd-desc-text a {
     text-decoration: none;

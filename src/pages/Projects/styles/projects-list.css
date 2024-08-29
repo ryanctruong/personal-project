@@ -180,13 +180,17 @@
     }
 
     .projects-list.single {
-        grid-template-rows: 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 0.5fr 0.5fr;
     }
 
     .group-layout {
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr;
+    }
+
+    .single-select{
+        display: none;
     }
 }
 
@@ -194,6 +198,11 @@
     .projects-list.all {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 0.485147fr;
+    }
+
+    .projects-list.single {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
     }
 
     .tab {

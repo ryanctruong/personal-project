@@ -62,8 +62,9 @@
         grid-template-rows: repeat(3, auto);
     }
 
+
     .no-select {
-        opacity: 0;
-        display: none;
+        flex-direction: row;
+        gap: 10px;
     }
 }
