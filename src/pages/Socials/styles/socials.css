@@ -7,6 +7,7 @@
 @media(max-width: 1097px) {
     .socials-main-box {
         width: 95%;
+        height: 100%; 
     }
 }
 
