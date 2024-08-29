@@ -132,6 +132,7 @@
 
 .project-desc p {
     margin: 0;
+    font-size: 0.95rem;
 }
 
 .project-info a {
@@ -189,12 +190,20 @@
         grid-template-columns: 1fr;
     }
 
-    .single-select{
+    .single-select {
         display: none;
+    }
+
+    .project-title a {
+        font-size: 1.25rem;
+    }
+
+    .project-desc p {
+        font-size: 0.90rem;
     }
 }
 
-@media(max-width: 500px) {
+@media(max-width: 768px) {
     .projects-list.all {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 0.485147fr;
@@ -205,12 +214,8 @@
         grid-template-rows: 1fr 1fr 1fr;
     }
 
-    .tab {
-        font-size: 0.75rem;
-    }
-
     .project-title a {
-        font-size: 1rem;
+        font-size: 1.125rem;
     }
 
     .project-desc p {
