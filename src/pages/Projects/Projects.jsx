@@ -141,70 +141,73 @@ const Projects = ({ displayType, colors }) => {
             </div>
 
 
-            <div className={`projects-list ${displayType ? 'light' : 'dark'} ${isTransitioning ? 'hidden' : ''}`}>
+            <div className={`projects-list ${displayType ? 'light' : 'dark'} ${isTransitioning ? 'hidden' : ''} ${selectedTab === 'All' ? 'all' : 'single'}`}>
                 {selectedTab === 'All' && (
                     <>
-                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopCodingInterval} onMouseLeave={startCodingInterval} >
-                            <div className='tabs'>
-                                {[0, 1, 2, 3, 4].map(index => (
-                                    <button
-                                        key={index}
-                                        className='tab'
-                                        style={{ borderBottom: codingSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
-                                        onClick={() => handleClick(index)}
-                                    >
-                                        {`${index + 1}`}
-                                    </button>
-                                ))}
-                            </div>
-                            <div className='slide-container'>
-                                {CodeProjects.map((project, index) => (
-                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, codingSlide)}`}>
-                                        <div className='project-info'>
-                                            <div className='project-title'>
-                                                <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
-                                                    {project.title}
-                                                </a>
-                                            </div>
-                                            <div className='project-desc'>
-                                                <p>{project.desc}</p>
+                        <div className='group-layout'>
+                            <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopCodingInterval} onMouseLeave={startCodingInterval} >
+                                <div className='tabs'>
+                                    {[0, 1, 2, 3, 4].map(index => (
+                                        <button
+                                            key={index}
+                                            className='tab'
+                                            style={{ borderBottom: codingSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                            onClick={() => handleClick(index)}
+                                        >
+                                            {`${index + 1}`}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className='slide-container'>
+                                    {CodeProjects.map((project, index) => (
+                                        <div key={index} className={`slide-content-opacity ${currentSlideClass(index, codingSlide)}`}>
+                                            <div className='project-info'>
+                                                <div className='project-title'>
+                                                    <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                        {project.title}
+                                                    </a>
+                                                </div>
+                                                <div className='project-desc'>
+                                                    <p>{project.desc}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopResearchInterval} onMouseLeave={startResearchInterval} >
+                                <div className='tabs'>
+                                    {[0, 1].map(index => (
+                                        <button
+                                            key={index}
+                                            className='tab'
+                                            style={{ borderBottom: researchSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
+                                            onClick={() => handleResearchClick(index)}
+                                        >
+                                            {`${index + 1}`}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className='slide-container'>
+                                    {ResearchProjects.map((project, index) => (
+                                        <div key={index} className={`slide-content-opacity ${currentSlideClass(index, researchSlide)}`}>
+                                            <div className='project-info'>
+                                                <div className='project-title'>
+                                                    <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
+                                                        {project.title}
+                                                    </a>
+                                                </div>
+                                                <div className='project-desc'>
+                                                    <p>{project.desc}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
-                        <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopResearchInterval} onMouseLeave={startResearchInterval} >
-                            <div className='tabs'>
-                                {[0, 1].map(index => (
-                                    <button
-                                        key={index}
-                                        className='tab'
-                                        style={{ borderBottom: researchSlide === index ? `2px solid ${pokeTheme_TWO}` : 'none' }}
-                                        onClick={() => handleResearchClick(index)}
-                                    >
-                                        {`${index + 1}`}
-                                    </button>
-                                ))}
-                            </div>
-                            <div className='slide-container'>
-                                {ResearchProjects.map((project, index) => (
-                                    <div key={index} className={`slide-content-opacity ${currentSlideClass(index, researchSlide)}`}>
-                                        <div className='project-info'>
-                                            <div className='project-title'>
-                                                <a href={project.link} style={{ color: pokeTheme_TWO }} target="_blank" rel="noopener noreferrer">
-                                                    {project.title}
-                                                </a>
-                                            </div>
-                                            <div className='project-desc'>
-                                                <p>{project.desc}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
 
                         <div className={`projects ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }} onMouseEnter={stopArtInterval} onMouseLeave={startArtInterval} >
                             <div className='tabs'>
