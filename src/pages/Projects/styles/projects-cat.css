@@ -54,6 +54,6 @@
 
 @media(max-width: 500px) {
     .projects-category .tab-list li {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 }

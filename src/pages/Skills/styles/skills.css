@@ -51,9 +51,9 @@
 
 @media (max-width: 960px) {
     .skills-main-box {
-        height: 50%;
+        height: 60%;
         grid-template-columns: 1fr;
-        grid-template-rows: 0.5fr 0.5fr 0;
+        grid-template-rows: 1fr 0.1fr 1fr;
     }
 
     .skills-main-box.visible {
@@ -62,8 +62,9 @@
         grid-template-rows: repeat(3, auto);
     }
 
+
     .no-select {
-        opacity: 0;
-        display: none;
+        flex-direction: row;
+        gap: 10px;
     }
 }
