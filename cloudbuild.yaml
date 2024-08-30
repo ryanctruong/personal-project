@@ -17,6 +17,9 @@ steps:
       '--quiet'
     ]
 
+substitutions:
+  _GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+
 options:
   logging: CLOUD_LOGGING_ONLY
   machineType: 'E2_HIGHCPU_8'
