@@ -1,5 +1,9 @@
 FROM node:16-alpine as build
 
+ARG VITE_WEATHER_API_KEY
+
+ENV VITE_WEATHER_API_KEY=$VITE_WEATHER_API_KEY
+
 WORKDIR /app
 
 COPY package*.json ./
