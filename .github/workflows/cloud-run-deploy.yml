@@ -44,11 +44,4 @@ jobs:
           --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest \
           --region us-central1 \
           --platform managed \
-          --allow-unauthenticated \
-          --set-cloudsql-instances '' \
-          --update-env-vars '' \
-          --update-secrets '' \
-          --set-cloudsql-instances '' \
-          --update-env-vars '' \
-          --update-secrets '' \
-          --logging CLOUD_LOGGING_ONLY
+          --allow-unauthenticated
