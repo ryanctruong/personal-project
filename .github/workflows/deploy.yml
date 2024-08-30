@@ -38,7 +38,7 @@ jobs:
       - name: Build project
         env:
           VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
-        run: npm run build
+        run: npm run build -- --mode=github
 
       - name: Simulate Deployment (PRs only)
         if: github.event_name == 'pull_request'
