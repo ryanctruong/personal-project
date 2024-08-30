@@ -1,55 +1,78 @@
-# My Personal Portfolio
+# 🚀 My Personal Portfolio
 
-![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) 
 ![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-green)
 ![GCP Deployment](https://img.shields.io/badge/GCP-Deployment-orange)
+![React](https://img.shields.io/badge/React-17.0.2-blue?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-2.5.0-yellow?logo=vite&logoColor=white)
 
-## Overview
+Welcome to my personal portfolio project! Here, I showcase my skills, projects, and experiences. Built with modern web technologies like **Vite**, **React.js**, and **CSS**, this portfolio is a continuously evolving project as I add new content and refine the design.
 
-This is my personal portfolio project where I showcase my skills, projects, and experiences. The project is built using modern web technologies like Vite, React.js, and CSS. It is continuously evolving as I add new projects and update my portfolio.
+---
 
-## Branch Structure
+## 📑 Table of Contents
 
-This repository uses two primary branches:
+- [Overview](#-overview)
+- [Branch Structure](#-branch-structure)
+- [Technologies Used](#-technologies-used)
+- [Workflow](#-workflow-through-yaml)
 
-### `main` Branch (GitHub Pages Development)
+---
 
-- **Purpose**: The `main` branch serves as a development environment using GitHub Pages. It’s my playground for experimenting with new features, designs, and content.
-- **Tools Used**: 
-  - **Vite**: For fast development and building of the project.
-  - **React.js**: For building interactive and dynamic components.
-  - **CSS**: For styling the portfolio with custom designs.
-  - **YAML**: For managing GitHub Actions workflows.
-- **Deployment**: Changes in this branch are automatically reflected on [GitHub Pages](https://your-username.github.io/your-repo-name/).
-- **Usage**: I use this branch to test new ideas and ensure everything works as expected before making any changes public.
+## 📄 Overview
 
-### `dev` Branch (Google Cloud Platform Deployment)
+This project serves as my digital footprint in the tech world, reflecting my journey and growth. It features dynamic components, responsive design, and automated deployment workflows.
 
-- **Purpose**: The `dev` branch is used for deploying the finalized and stable version of the portfolio to Google Cloud Platform (GCP), making it publicly accessible.
+---
+
+## 🌿 Branch Structure
+
+This repository is structured into two primary branches, each serving a unique purpose:
+
+### `main` Branch | GitHub Pages Development
+
+- **Purpose**: The `main` branch is the development hub. It’s where I experiment with new features, designs, and content.
 - **Tools Used**:
-  - **Docker**: To create containerized images of the application.
-  - **GCP Cloud Run**: For deploying the Docker container.
-  - **GCP**: Hosting the portfolio on a scalable and reliable cloud platform.
-- **Deployment**: The `dev` branch is deployed to [GCP Cloud Run](https://rtruong-gcp.com) for public access.
-- **Usage**: Only stable and tested features from the `main` branch are merged into `dev` for public deployment.
+  - **Vite**: Lightning-fast build tool for a modern development experience.
+  - **React.js**: For crafting interactive and dynamic user interfaces.
+  - **CSS**: Custom styles for a unique and responsive design.
+  - **YAML**: Automating workflows using GitHub Actions.
+- **Deployment**: Changes pushed to this branch are automatically live on [GitHub Pages](https://ryanctruong.github.io/personal-project/).
+- **Usage**: Ideal for testing and iterating on new ideas before public release.
 
-## Technologies Used
+### `dev` Branch | Google Cloud Platform Deployment
 
-- **Vite**: A next-generation front-end tooling for faster builds.
-- **React.js**: JavaScript library for building user interfaces.
-- **CSS**: Styling the portfolio with modern and responsive designs.
-- **YAML**:  For managing GitHub Actions workflows and CI/CD pipelines.
-- **Docker**: For containerizing the application to create images that can be deployed on GCP Cloud Run.
-- **Google Cloud Platform (GCP)**: Hosting the portfolio using Cloud Run to manage and scale the containerized application.
+- **Purpose**: The `dev` branch is dedicated to stable releases. This is where the final version of the portfolio is deployed.
+- **Tools Used**:
+  - **Docker**: Containerization of the application for consistent environments.
+  - **GCP Cloud Run**: Deploying Docker containers in a scalable manner.
+  - **GCP**: Ensuring the portfolio is hosted on a reliable cloud platform.
+- **Deployment**: The stable version is deployed to [GCP Cloud Run](https://rtruong-gcp.com).
+- **Usage**: Only thoroughly tested features from `main` are merged into `dev` for production deployment.
 
-## Workflow through YAML
+---
+
+## 🛠️ Technologies Used
+
+- **Vite**: Fast, modern front-end tooling.
+- **React.js**: Building rich, interactive user interfaces.
+- **CSS**: Designing a responsive and modern look.
+- **YAML**: Configuration of CI/CD pipelines with GitHub Actions.
+- **Docker**: Containerizing the application for deployment.
+- **Google Cloud Platform (GCP)**: Cloud hosting using Cloud Run for scalability.
+
+---
+
+## 🔄 Workflow through YAML
 
 1. **Development**:
    - Work in the `main` branch using Vite, React.js, and CSS.
-   - Test and preview changes via GitHub Pages.
+   - Preview changes live via GitHub Pages.
 2. **Dockerization**:
-   - Create a Docker image of the application when ready for deployment.
+   - When ready, create a Docker image of the application.
    - Push the Docker image to Google Container Registry.
 3. **Deployment**:
-   - Merge stable changes from `main` into the `dev` branch.
-   - Deploy the Docker image from the `dev` branch to GCP Cloud Run, making the portfolio publicly accessible.
+   - Merge stable changes from `main` into `dev`.
+   - Deploy the Docker image from `dev` to GCP Cloud Run, making the portfolio publicly accessible.
+
+---
