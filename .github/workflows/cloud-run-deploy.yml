@@ -45,5 +45,4 @@ jobs:
           --region us-central1 \
           --platform managed \
           --allow-unauthenticated \
-          --service-account=989496242585-compute@developer.gserviceaccount.com \
-          --default-logs-bucket-behavior=REGIONAL_USER_OWNED_BUCKET
+          --service-account=989496242585-compute@developer.gserviceaccount.com
