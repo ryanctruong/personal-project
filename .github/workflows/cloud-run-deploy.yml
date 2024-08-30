@@ -3,10 +3,10 @@ name: Build and Deploy to Cloud Run
 on:
   push:
     branches:
-      - dev  
+      - dev
   pull_request:
     branches:
-      - dev  
+      - dev
 
 jobs:
   build-and-deploy:
@@ -25,18 +25,17 @@ jobs:
       run: |
         echo "steps:
         - name: 'gcr.io/cloud-builders/docker'
-          args: ['build', '--build-arg', 'VITE_WEATHER_API_KEY=$_VITE_WEATHER_API_KEY', '-t', 'us-central1-docker.pkg.dev/$_GCP_PROJECT_ID/personal-project-repo/personal-project:latest', '.']
+          args: ['build', '--build-arg', 'VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }}', '-t', 'us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest', '.']
         - name: 'gcr.io/cloud-builders/docker'
-          args: ['push', 'us-central1-docker.pkg.dev/$_GCP_PROJECT_ID/personal-project-repo/personal-project:latest']
+          args: ['push', 'us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest']
         images:
-        - 'us-central1-docker.pkg.dev/$_GCP_PROJECT_ID/personal-project-repo/personal-project:latest'
+        - 'us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest'
         options:
           logging: CLOUD_LOGGING_ONLY" > cloudbuild_tmp.yaml
 
     - name: Trigger Cloud Build
       run: |
         gcloud builds submit --config=cloudbuild_tmp.yaml \
-          --substitutions=_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }},_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }} \
           --project=${{ secrets.GCP_PROJECT_ID }} \
           --service-account=989496242585-compute@developer.gserviceaccount.com
 
