@@ -25,11 +25,11 @@ jobs:
       run: |
         echo "steps:
         - name: 'gcr.io/cloud-builders/docker'
-          args: ['build', '--build-arg', 'VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }}', '-t', 'us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest', '.']
+          args: ['build', '--build-arg', 'VITE_WEATHER_API_KEY=$_VITE_WEATHER_API_KEY', '-t', 'us-central1-docker.pkg.dev/$_GCP_PROJECT_ID/personal-project-repo/personal-project:latest', '.']
         - name: 'gcr.io/cloud-builders/docker'
-          args: ['push', 'us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest']
+          args: ['push', 'us-central1-docker.pkg.dev/$_GCP_PROJECT_ID/personal-project-repo/personal-project:latest']
         images:
-        - 'us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest'
+        - 'us-central1-docker.pkg.dev/$_GCP_PROJECT_ID/personal-project-repo/personal-project:latest'
         options:
           logging: CLOUD_LOGGING_ONLY" > cloudbuild_tmp.yaml
 
