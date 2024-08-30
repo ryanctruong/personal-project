@@ -45,4 +45,6 @@ jobs:
           --region us-central1 \
           --platform managed \
           --allow-unauthenticated \
-          --service-account=989496242585-compute@developer.gserviceaccount.com
+          --service-account=989496242585-compute@developer.gserviceaccount.com \
+          --log-http \
+          --log-bucket=gs://deploy-log-bucket/
