@@ -31,7 +31,6 @@ jobs:
       env:
         VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
       run: |
-        echo "VITE_WEATHER_API_KEY=$VITE_WEATHER_API_KEY"
         docker build --build-arg VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }} \
         -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest .
 
@@ -45,4 +44,5 @@ jobs:
           --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest \
           --region us-central1 \
           --platform managed \
-          --allow-unauthenticated
+          --allow-unauthenticated \
+          --service-account=989496242585-compute@developer.gserviceaccount.com
