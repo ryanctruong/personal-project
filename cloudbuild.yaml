@@ -18,7 +18,7 @@ steps:
     ]
 
 substitutions:
-  _GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  _GCP_PROJECT_ID: 'rtruong-project'
 
 options:
   logging: CLOUD_LOGGING_ONLY
