@@ -16,9 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
     - name: Log in to Google Cloud
       uses: google-github-actions/auth@v1
       with:
@@ -27,22 +24,8 @@ jobs:
     - name: Configure Docker for Artifact Registry
       run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
-    - name: Build the Docker image
-      env:
-        VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
+    - name: Trigger Cloud Build
       run: |
-        docker build --build-arg VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }} \
-        -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest .
-
-    - name: Push the Docker image
-      run: |
-        docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest
-
-    - name: Deploy to Cloud Run
-      run: |
-        gcloud run deploy personal-project \
-          --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/personal-project-repo/personal-project:latest \
-          --region us-central1 \
-          --platform managed \
-          --allow-unauthenticated \
-          --service-account=989496242585-compute@developer.gserviceaccount.com
+        gcloud builds submit --config=cloudbuild.yaml \
+          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
+ 
