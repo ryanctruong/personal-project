@@ -1,6 +1,11 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/${_GCP_PROJECT_ID}/personal-project-repo/personal-project:latest', '.']
+    args: [
+      'build', 
+      '--build-arg', 'VITE_WEATHER_API_KEY=${_VITE_WEATHER_API_KEY}', 
+      '-t', 'us-central1-docker.pkg.dev/${_GCP_PROJECT_ID}/personal-project-repo/personal-project:latest', 
+      '.'
+    ]
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/${_GCP_PROJECT_ID}/personal-project-repo/personal-project:latest']
@@ -19,6 +24,7 @@ steps:
 
 substitutions:
   _GCP_PROJECT_ID: 'rtruong-project'
+  _VITE_WEATHER_API_KEY: ''
 
 options:
   logging: CLOUD_LOGGING_ONLY
