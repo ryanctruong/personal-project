@@ -53,26 +53,31 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPo
                     ))}
                 </ul>
                 <div className='react-icons'>
-                    <div className={`sun-icon ${displayType ? 'lightmode' : ''}`}>
-                        <IconContext.Provider value={{ color: "#E1C16E", className: "contactIcon sun" }}>
-                            <AiOutlineSun size={35} onClick={handleDisplaySelect} />
-                        </IconContext.Provider>
-                    </div>
-                    <div className={`moon-icon ${!displayType ? 'darkmode' : ''}`}>
-                        <IconContext.Provider value={{ color: "#4F6D7A", className: "contactIcon moon" }}
-                        >
-                            <FaRegMoon size={25} onClick={handleDisplaySelect} />
-                        </IconContext.Provider>
-                    </div>
-                    <div className={`wand-icon`}>
-                        <IconContext.Provider value={{ color: "#696969", className: "contactIcon wand" }}>
-                            <FaExchangeAlt  size={25} onClick={fetchPokemon} />
-                        </IconContext.Provider>
-                    </div>
+                    <a data-tooltip-id="my-tooltip" data-tooltip-content={`Switch to ${displayType ? 'darkmode' : 'lightmode'}!`} data-tooltip-place="top" data-tooltip-offset={10}>
+                        <div className={`sun-icon ${displayType ? 'lightmode' : ''}`}>
+                            <IconContext.Provider value={{ color: "#E1C16E", className: "contactIcon sun" }}>
+                                <AiOutlineSun size={35} onClick={handleDisplaySelect} />
+                            </IconContext.Provider>
+                        </div>
+
+                        <div className={`moon-icon ${!displayType ? 'darkmode' : ''}`}>
+                            <IconContext.Provider value={{ color: "#4F6D7A", className: "contactIcon moon" }}
+                            >
+                                <FaRegMoon size={25} onClick={handleDisplaySelect} />
+                            </IconContext.Provider>
+                        </div>
+                    </a>
+                    <a data-tooltip-id="my-tooltip" data-tooltip-content="Switch the theme!" data-tooltip-place="top" data-tooltip-offset={10}>
+                        <div className={`wand-icon`}>
+                            <IconContext.Provider value={{ color: "#696969", className: "contactIcon wand" }}>
+                                <FaExchangeAlt size={25} onClick={fetchPokemon} />
+                            </IconContext.Provider>
+                        </div>
+                    </a>
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 
