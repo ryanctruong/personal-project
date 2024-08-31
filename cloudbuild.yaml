@@ -23,7 +23,7 @@ steps:
     ]
 
 substitutions:
-  _GCP_PROJECT_ID: ''
+  _GCP_PROJECT_ID: 'rtruong-project'
   _VITE_WEATHER_API_KEY: ''
 
 options:
