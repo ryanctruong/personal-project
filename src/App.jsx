@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Tooltip } from 'react-tooltip'
 import { ColorExtractor } from 'react-color-extractor'
 import fetchData from './utils/apiUtils';
 import Header from './layouts/Header/Header';
@@ -94,6 +95,7 @@ function App() {
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
+        <Tooltip id="my-tooltip" style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', zIndex: '2000' }} />
         <Header
           onTabSelect={(index) => setSelectedTab(index)}
           handleDisplaySelect={handleDisplaySelect}

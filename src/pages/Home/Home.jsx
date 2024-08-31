@@ -245,11 +245,13 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
                             <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                 <div className="pb-header">
                                     <h4>About Me</h4>
-                                    <div className='expand-container'>
-                                        <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
-                                            <FaExpand size={25} onClick={togglePopup} />
-                                        </IconContext.Provider>
-                                    </div>
+                                    <a data-tooltip-id="my-tooltip" data-tooltip-content="Click to Learn More!" data-tooltip-place="top">
+                                        <div className='expand-container'>
+                                            <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
+                                                <FaExpand size={25} onClick={togglePopup} />
+                                            </IconContext.Provider>
+                                        </div>
+                                    </a>
                                 </div>
                                 <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
                             </div>
