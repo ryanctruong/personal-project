@@ -76,13 +76,13 @@
 }
 
 .nav-list ul li:first-child {
-    margin: 0 1%;
+    margin: 0 2%;
 }
 
 .nav-list li:hover {
     font-weight: 650;
 }
-
+ 
 @media (max-width: 767px) {
     .nav-list ul {
         display: flex;
