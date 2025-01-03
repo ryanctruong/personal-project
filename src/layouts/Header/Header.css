@@ -82,7 +82,7 @@
 .nav-list li:hover {
     font-weight: 650;
 }
-
+ 
 @media (max-width: 767px) {
     .nav-list ul {
         display: flex;
