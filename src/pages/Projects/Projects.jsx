@@ -5,10 +5,16 @@ import './styles/projects.css';
 import './styles/projects-cat.css';
 import './styles/projects-list.css';
 
-const Projects = ({ colors }) => {
+const Projects = () => {
     const [selectedTab, setSelectedTab] = useState('All');
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const { displayType } = useStore((state) => ({ displayType: state.displayType }));
+    const {
+        colors,
+        displayType,
+    } = useStore((state) => ({
+        colors: state.colors,
+        displayType: state.displayType,
+    }));
 
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;

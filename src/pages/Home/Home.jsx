@@ -22,7 +22,7 @@ import seal from '/images/profile-box/sappy-seals.gif'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = ({ pokeName, pokeIMG, fetchPokemon, colors }) => {
+const Home = ({ fetchPokemon }) => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
@@ -37,7 +37,17 @@ const Home = ({ pokeName, pokeIMG, fetchPokemon, colors }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [totalCommits, setTotalCommits] = useState(0);
     const [totalRepos, setTotalRepos] = useState(0);
-    const { displayType } = useStore((state) => ({ displayType: state.displayType }));
+    const {
+        colors,
+        displayType,
+        pokeName,
+        pokeIMG,
+    } = useStore((state) => ({
+        colors: state.colors,
+        displayType: state.displayType,
+        pokeName: state.pokeName,
+        pokeIMG: state.pokeIMG,
+    }));
 
     useEffect(() => {
         const fetchGitHubStats = () => {

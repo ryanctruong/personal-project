@@ -5,11 +5,19 @@ import useStore from '../../utils/VariableStore.jsx';
 import './styles/socials.css';
 import './styles/socials-list.css';
 
-const Socials = ({ colors }) => {
+const Socials = () => {
     const [hoveredImage, setHoveredImage] = useState(null);
+
+    const {
+        colors,
+        displayType,
+    } = useStore((state) => ({
+        colors: state.colors,
+        displayType: state.displayType,
+    }));
+
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;
-    const { displayType } = useStore((state) => ({ displayType: state.displayType }));
 
     const socialMediaVariants = {
         hidden: { opacity: 0, y: 20 },

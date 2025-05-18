@@ -8,41 +8,29 @@ import Skills from './pages/Skills/Skills';
 import Projects from './pages/Projects/Projects';
 import Socials from './pages/Socials/Socials';
 import Footer from './layouts/Footer/Footer';
-import WelcomePage from './pages/Welcome/WelcomePage';
 import './styles/style.css';
 
 import useStore from './utils/VariableStore';
 
 function App() {
   const [selectedTab, setSelectedTab] = useState(0);
-  const [showWelcomePage, setShowWelcomePage] = useState(true);
-  const [transitionClass, setTransitionClass] = useState('');
-  const [revealContainer, setRevealContainer] = useState(false);
-  const [pokeName, setPokeName] = useState('');
-  const [pokeIMG, setPokeIMG] = useState('');
-  const [colors, setColors] = useState({
-    baseColor: '',
-    complementaryColor: '',
-  });
 
   const {
     displayType,
-    setDisplay
+    pokeIMG,
+    setColors,
+    setPokeName,
+    setPokeIMG
   } = useStore((state) => ({
     displayType: state.displayType,
-    setDisplay: state.setDisplay,
+    pokeIMG: state.pokeIMG,
+    setColors: state.setColors,
+    setPokeName: state.setPokeName,
+    setPokeIMG: state.setPokeIMG
   }));
 
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
-  };
-
-  const handleDownButtonClick = () => {
-    setTransitionClass('slide-up');
-    setRevealContainer(true);
-    setTimeout(() => {
-      setShowWelcomePage(false);
-    }, 1000);
   };
 
   const fetchPokemon = () => {
@@ -91,46 +79,34 @@ function App() {
 
   return (
     <>
-      {showWelcomePage ? (
-        <WelcomePage
-          onDownButtonClick={handleDownButtonClick}
-          transitionClass={transitionClass}
-        />
-      ) : null}
-      <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
+      <div className={`parent-container reveal ${displayType ? 'light' : 'dark'}`}>
         <Tooltip id="my-tooltip" style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', zIndex: '2000' }} />
         <Header
           onTabSelect={(index) => setSelectedTab(index)}
-          colors={colors}
           fetchPokemon={fetchPokemon}
         />
         <div className={`content ${displayType ? 'light' : 'dark'}`}>
           <div className="content-wrapper" style={{ transform: getTransformValue() }}>
             <div className="content-item home">
-              {revealContainer && (
-                <>
-                  <ColorExtractor src={pokeIMG} getColors={handleColors} />
-                  <Home
-                    pokeName={pokeName}
-                    pokeIMG={pokeIMG}
-                    fetchPokemon={fetchPokemon}
-                    colors={colors}
-                  />
-                </>
-              )}
+              <>
+                <ColorExtractor src={pokeIMG} getColors={handleColors} />
+                <Home
+                  fetchPokemon={fetchPokemon}
+                />
+              </>
             </div>
             <div className="content-item skills">
-              <Skills selectedTab={selectedTab} colors={colors} />
+              <Skills selectedTab={selectedTab} />
             </div>
             <div className="content-item projects1">
-              <Projects colors={colors} />
+              <Projects />
             </div>
             <div className="content-item socials">
-              <Socials key={selectedTab} colors={colors} />
+              <Socials key={selectedTab} />
             </div>
           </div>
         </div>
-        <Footer className="footer" displayType={displayType} />
+        <Footer className="footer" />
       </div>
     </>
   );

@@ -6,11 +6,17 @@ import './styles/skills.css';
 import './styles/skills-list.css';
 import './styles/skills-details.css';
 
-const Skills = ({ selectedTab, colors }) => {
+const Skills = ({ selectedTab }) => {
     const [skillsChunk1, setSkillsChunk1] = useState([]);
     const [skillsChunk2, setSkillsChunk2] = useState([]);
     const [selectedSkill, setSelectedSkill] = useState(null);
-    const { displayType } = useStore((state) => ({ displayType: state.displayType }));
+    const {
+        colors,
+        displayType,
+    } = useStore((state) => ({
+        colors: state.colors,
+        displayType: state.displayType,
+    }));
 
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;

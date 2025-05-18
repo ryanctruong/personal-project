@@ -6,14 +6,19 @@ import { IconContext } from "react-icons";
 import useStore from "../../utils/VariableStore";
 import './Header.css';
 
-const Header = ({ onTabSelect, colors, fetchPokemon }) => {
+const Header = ({ onTabSelect, fetchPokemon }) => {
     const [selected, setSelected] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const { displayType, setDisplay } = useStore((state) => ({
-        displayType: state.displayType,
-        setDisplay: state.setDisplay
-    }));
+  const {
+    colors,
+    displayType,
+    setDisplay
+  } = useStore((state) => ({
+    colors: state.colors,
+    displayType: state.displayType,
+    setDisplay: state.setDisplay
+  }));
 
     const handleSelect = (index) => {
         setSelected(index);
