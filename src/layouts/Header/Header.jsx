@@ -4,23 +4,25 @@ import { FaExchangeAlt } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import useStore from "../../utils/VariableStore";
+import { fetchPokemonData } from "../../utils/FetchPokemon";
 import './Header.css';
 
-const Header = ({ fetchPokemon }) => {
+const Header = () => {
     const [selected, setSelected] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
+    const fetchPokemon = fetchPokemonData();
 
-  const {
-    colors,
-    displayType,
-    setDisplay,
-    setSelectedTab,
-  } = useStore((state) => ({
-    colors: state.colors,
-    displayType: state.displayType,
-    setDisplay: state.setDisplay,
-    setSelectedTab: state.setSelectedTab,
-  }));
+    const {
+        colors,
+        displayType,
+        setDisplay,
+        setSelectedTab,
+    } = useStore((state) => ({
+        colors: state.colors,
+        displayType: state.displayType,
+        setDisplay: state.setDisplay,
+        setSelectedTab: state.setSelectedTab,
+    }));
 
     const handleSelect = (index) => {
         setSelected(index);
