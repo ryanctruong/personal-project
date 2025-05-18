@@ -13,20 +13,20 @@ import './styles/style.css';
 import useStore from './utils/VariableStore';
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState(0);
-
   const {
     displayType,
     pokeIMG,
+    selectedTab,
     setColors,
     setPokeName,
-    setPokeIMG
+    setPokeIMG,
   } = useStore((state) => ({
     displayType: state.displayType,
     pokeIMG: state.pokeIMG,
+    selectedTab: state.selectedTab,
     setColors: state.setColors,
     setPokeName: state.setPokeName,
-    setPokeIMG: state.setPokeIMG
+    setPokeIMG: state.setPokeIMG,
   }));
 
   const getTransformValue = () => {
@@ -82,7 +82,6 @@ function App() {
       <div className={`parent-container reveal ${displayType ? 'light' : 'dark'}`}>
         <Tooltip id="my-tooltip" style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', zIndex: '2000' }} />
         <Header
-          onTabSelect={(index) => setSelectedTab(index)}
           fetchPokemon={fetchPokemon}
         />
         <div className={`content ${displayType ? 'light' : 'dark'}`}>
@@ -96,13 +95,13 @@ function App() {
               </>
             </div>
             <div className="content-item skills">
-              <Skills selectedTab={selectedTab} />
+              <Skills />
             </div>
             <div className="content-item projects1">
               <Projects />
             </div>
             <div className="content-item socials">
-              <Socials key={selectedTab} />
+              <Socials />
             </div>
           </div>
         </div>

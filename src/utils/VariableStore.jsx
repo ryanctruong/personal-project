@@ -12,6 +12,9 @@ const useStore = create((set) => ({
 
     colors: { baseColor: '', complementaryColor: '' },
     setColors: (update) => { set((state) => ({ colors: typeof update === 'function' ? update(state.colors) : update, })) },
+
+    selectedTab: 0,
+    setSelectedTab: (update) => { set((state) => ({ selectedTab: typeof update === 'function' ? update(state.selectedTab) : update, })) },
 }));
 
 export default useStore;
