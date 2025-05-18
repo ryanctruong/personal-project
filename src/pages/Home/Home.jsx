@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import fetchData from '../../utils/apiUtils';
+import fetchData from '../../utils/ApiUtils';
 import { SIMPLE_DESC, DETAIL_DESC } from './Descriptions';
 import { FaExpand } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import useStore from '../../utils/VariableStore';
+import { fetchPokemonData } from '../../utils/FetchPokemon';
 
 import './styles/home.css'
 import './styles/profile-card.css'
@@ -21,7 +23,7 @@ import seal from '/images/profile-box/sappy-seals.gif'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
+const Home = () => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
@@ -36,6 +38,19 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [totalCommits, setTotalCommits] = useState(0);
     const [totalRepos, setTotalRepos] = useState(0);
+    const [imageSrc, setImageSrc] = useState(ProfilePic);
+    const fetchPokemon = fetchPokemonData();
+    const {
+        colors,
+        displayType,
+        pokeName,
+        pokeIMG,
+    } = useStore((state) => ({
+        colors: state.colors,
+        displayType: state.displayType,
+        pokeName: state.pokeName,
+        pokeIMG: state.pokeIMG,
+    }));
 
     useEffect(() => {
         const fetchGitHubStats = () => {
@@ -93,6 +108,10 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
         };
 
         fetchJoke();
+    }, []);
+
+    useEffect(() => {
+        fetchPokemon();
     }, []);
 
     const leftIntervalRef = useRef(null);
@@ -213,173 +232,173 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
         }
     };
 
-    const [imageSrc, setImageSrc] = useState(ProfilePic);
-
     return (
-        <div className='home-main-box'>
-            <div className={`profile-card ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+        <div className="content-item home">
+            <div className='home-main-box'>
+                <div className={`profile-card ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
 
-                <div className='picture'>
-                    <div className='picture-container'>
-                        <img
-                            src={imageSrc}
-                            id='profile-pic'
-                            onMouseEnter={() => setImageSrc(tongue)}
-                            onMouseLeave={() => setImageSrc(ProfilePic)}
-                        />
+                    <div className='picture'>
+                        <div className='picture-container'>
+                            <img
+                                src={imageSrc}
+                                id='profile-pic'
+                                onMouseEnter={() => setImageSrc(tongue)}
+                                onMouseLeave={() => setImageSrc(ProfilePic)}
+                            />
+                        </div>
+                    </div>
+                    <div className={`basic-desc ${displayType ? 'light' : 'dark'}`}>
+                        <ul>
+                            <li id='full-name'>Ryan Truong</li>
+                            <li id='job-title'>Software Engineer</li>
+                            <li id='company'><a href="https://hcahealthcare.com/" target='__blank' style={{ color: pokeTheme_TWO }}>HCA Healthcare</a></li>
+                            <li id='university'><a href="https://www.belmont.edu/" target='__blank' style={{ color: pokeTheme_TWO }}>Belmont University</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div className={`basic-desc ${displayType ? 'light' : 'dark'}`}>
-                    <ul>
-                        <li id='full-name'>Ryan Truong</li>
-                        <li id='job-title'>Software Engineer</li>
-                        <li id='company'><a href="https://hcahealthcare.com/" target='__blank' style={{ color: pokeTheme_TWO }}>HCA Healthcare</a></li>
-                        <li id='university'><a href="https://www.belmont.edu/" target='__blank' style={{ color: pokeTheme_TWO }}>Belmont University</a></li>
-                    </ul>
-                </div>
-            </div>
-            <AnimatePresence>
-                {!showPopup ? (
-                    <>
-                        <div className='profile-detail'>
-                            <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                                <div className="pb-header">
-                                    <h4>About Me</h4>
-                                    <a data-tooltip-id="my-tooltip" data-tooltip-content="Click to Learn More!" data-tooltip-place="top">
-                                        <div className='expand-container'>
-                                            <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
-                                                <FaExpand size={25} onClick={togglePopup} />
-                                            </IconContext.Provider>
-                                        </div>
-                                    </a>
+                <AnimatePresence>
+                    {!showPopup ? (
+                        <>
+                            <div className='profile-detail'>
+                                <div className={`pb-full-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                                    <div className="pb-header">
+                                        <h4>About Me</h4>
+                                        <a data-tooltip-id="my-tooltip" data-tooltip-content="Click to Learn More!" data-tooltip-place="top">
+                                            <div className='expand-container'>
+                                                <IconContext.Provider value={{ color: "#696969", className: "expandIcon" }}>
+                                                    <FaExpand size={25} onClick={togglePopup} />
+                                                </IconContext.Provider>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
                                 </div>
-                                <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
-                            </div>
-                            <div className="pb-lists">
-                                <div
-                                    className={`box1 ${displayType ? 'light' : 'dark'}`}
-                                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
-                                    onMouseEnter={stopLeftInterval}
-                                    onMouseLeave={startLeftInterval}
-                                >
-                                    <div className='slide-container'>
-                                        <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
-                                            <div className='card pokemon'>
-                                                <div className='card-icon'>
-                                                    <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
-                                                </div>
-                                                <div className='card-info'>
-                                                    <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
-                                                    <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{pokeName}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
-                                            <div className='card weather'>
-                                                <div className='card-icon'>
-                                                    <img src={weather} alt="Dog" />
-                                                </div>
-                                                <div className='card-info'>
-                                                    <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
-                                                        <p>My Current Weather</p>
+                                <div className="pb-lists">
+                                    <div
+                                        className={`box1 ${displayType ? 'light' : 'dark'}`}
+                                        style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+                                        onMouseEnter={stopLeftInterval}
+                                        onMouseLeave={startLeftInterval}
+                                    >
+                                        <div className='slide-container'>
+                                            <div className={`slide-content ${currentSlideClass(0, leftSlide)}`}>
+                                                <div className='card pokemon'>
+                                                    <div className='card-icon'>
+                                                        <img src={pokeIMG} onClick={fetchPokemon} style={{ cursor: 'pointer' }}></img>
                                                     </div>
-                                                    <p>{currentTime}</p>
-                                                    <p>{location}</p>
-                                                    <p><span style={{ color: pokeTheme_TWO, fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
+                                                    <div className='card-info'>
+                                                        <p className='card-title-setup'>Tap the Pokémon and let the theme catch a new color!</p>
+                                                        <p className={`card-subtitle pokemon-name ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{pokeName}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div className={`slide-content ${currentSlideClass(1, leftSlide)}`}>
+                                                <div className='card weather'>
+                                                    <div className='card-icon'>
+                                                        <img src={weather} alt="Dog" />
+                                                    </div>
+                                                    <div className='card-info'>
+                                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
+                                                            <p>My Current Weather</p>
+                                                        </div>
+                                                        <p>{currentTime}</p>
+                                                        <p>{location}</p>
+                                                        <p><span style={{ color: pokeTheme_TWO, fontWeight: "600" }}>{temp}&deg;F</span> <span style={{ fontStyle: "italic" }}>{condition}</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                        <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
-                                            <div className='card joke'>
-                                                <div className='card-info'>
-                                                    <p className='card-title-setup'>{setUp}</p>
-                                                    <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{punchline}</p>
-                                                </div>
-                                                <div className='card-icon'>
-                                                    <img src={bear} alt="Bear" />
+                                            <div className={`slide-content ${currentSlideClass(2, leftSlide)}`}>
+                                                <div className='card joke'>
+                                                    <div className='card-info'>
+                                                        <p className='card-title-setup'>{setUp}</p>
+                                                        <p className={`card-subtitle ${displayType ? 'light' : 'dark'}`} style={{ color: pokeTheme_TWO }}>{punchline}</p>
+                                                    </div>
+                                                    <div className='card-icon'>
+                                                        <img src={bear} alt="Bear" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div
-                                    className={`box2 ${displayType ? 'light' : 'dark'}`}
-                                    style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
-                                    onMouseEnter={stopRightInterval}
-                                    onMouseLeave={startRightInterval}
-                                >
-                                    <div className='slide-container'>
-                                        <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
-                                            <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
-                                                <div className='card-info'>
-                                                    <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
-                                                        <p>Github Stats</p>
+                                    <div
+                                        className={`box2 ${displayType ? 'light' : 'dark'}`}
+                                        style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}
+                                        onMouseEnter={stopRightInterval}
+                                        onMouseLeave={startRightInterval}
+                                    >
+                                        <div className='slide-container'>
+                                            <div className={`slide-content ${currentSlideClass(0, rightSlide)}`}>
+                                                <div className={`card gh ${displayType ? 'light' : 'dark'}`}>
+                                                    <div className='card-info'>
+                                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
+                                                            <p>Github Stats</p>
+                                                        </div>
+                                                        <p># of Repos: <span style={style.repos}>{totalRepos ? totalRepos : "too many"}</span></p>
+                                                        <p>WTD Commits: <span style={style.commits}>{totalCommits ? totalCommits : "a lot"}</span></p>
                                                     </div>
-                                                    <p># of Repos: <span style={style.repos}>{totalRepos ? totalRepos : "too many"}</span></p>
-                                                    <p>WTD Commits: <span style={style.commits}>{totalCommits ? totalCommits : "a lot"}</span></p>
-                                                </div>
-                                                <div className='card-icon cat' onClick={() => window.open('https://www.github.com/ryanctruong', '__blank')} >
-                                                    <div className='img-container'>
-                                                        <img src={coder} alt="Icon" />
-                                                        <p><a href={'https://www.github.com/ryanctruong'} target='__blank'>ryanctruong</a></p>
+                                                    <div className='card-icon cat' onClick={() => window.open('https://www.github.com/ryanctruong', '__blank')} >
+                                                        <div className='img-container'>
+                                                            <img src={coder} alt="Icon" />
+                                                            <p><a href={'https://www.github.com/ryanctruong'} target='__blank'>ryanctruong</a></p>
+                                                        </div>
                                                     </div>
-                                                </div>
 
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
-                                            <div className='card lc'>
-                                                <div className='card-info'>
-                                                    <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
-                                                        <p>LC Problems Solved</p>
+                                            <div className={`slide-content ${currentSlideClass(1, rightSlide)}`}>
+                                                <div className='card lc'>
+                                                    <div className='card-info'>
+                                                        <div className={`card-title ${displayType ? 'light' : 'dark'}`}>
+                                                            <p>LC Problems Solved</p>
+                                                        </div>
+                                                        <p>Easy Solved: <span className='easy' style={{ color: pokeTheme_TWO }}>{easyP}</span></p>
+                                                        <p>Medium Solved: <span className='medium' style={{ color: pokeTheme_ONE }}>{medP}</span></p>
+                                                        <p>Hard Solved: <span className='hard' style={{ color: pokeTheme_TWO }}>{hardP}</span></p>
                                                     </div>
-                                                    <p>Easy Solved: <span className='easy' style={{ color: pokeTheme_TWO }}>{easyP}</span></p>
-                                                    <p>Medium Solved: <span className='medium' style={{ color: pokeTheme_ONE }}>{medP}</span></p>
-                                                    <p>Hard Solved: <span className='hard' style={{ color: pokeTheme_TWO }}>{hardP}</span></p>
-                                                </div>
-                                                <div className='card-icon cat'>
-                                                    <img src={meme}></img>
+                                                    <div className='card-icon cat'>
+                                                        <img src={meme}></img>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className={`slide-content ${currentSlideClass(2, rightSlide)}`}>
-                                            <div className='fill-card'>
-                                                <div className='card-icon fill-img'>
-                                                    <img src={seal} />
+                                            <div className={`slide-content ${currentSlideClass(2, rightSlide)}`}>
+                                                <div className='fill-card'>
+                                                    <div className='card-icon fill-img'>
+                                                        <img src={seal} />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <motion.div
-                            key="modal"
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.5 }}
-                            transition={{ duration: 0.5 }} >
-                            <div className={`detailed-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-                                <div className='dd-header'>
-                                    <h4>About Me</h4>
-                                    <div className="close-container" onClick={togglePopup}>
-                                        <div className="leftright"></div>
-                                        <div className="rightleft"></div>
+                        </>
+                    ) : (
+                        <>
+                            <motion.div
+                                key="modal"
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.5 }}
+                                transition={{ duration: 0.5 }} >
+                                <div className={`detailed-desc ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
+                                    <div className='dd-header'>
+                                        <h4>About Me</h4>
+                                        <div className="close-container" onClick={togglePopup}>
+                                            <div className="leftright"></div>
+                                            <div className="rightleft"></div>
+                                        </div>
+                                    </div>
+                                    <div className='dd-desc-text'>
+                                        <DETAIL_DESC pokeTheme={pokeTheme_TWO} />
                                     </div>
                                 </div>
-                                <div className='dd-desc-text'>
-                                    <DETAIL_DESC pokeTheme={pokeTheme_TWO} />
-                                </div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
-        </div >
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
+            </div >
+        </div>
     );
 }
 
