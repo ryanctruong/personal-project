@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { SOCIALMEDIA } from '../../utils/SocialMediaData,jsx';
+import { SOCIALMEDIA } from '../../utils/SocialMediaData.jsx';
+import useStore from '../../utils/VariableStore.jsx';
 import './styles/socials.css';
 import './styles/socials-list.css';
 
-const Socials = ({ displayType, colors }) => {
+const Socials = ({ colors }) => {
     const [hoveredImage, setHoveredImage] = useState(null);
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;
+    const { displayType } = useStore((state) => ({ displayType: state.displayType }));
 
     const socialMediaVariants = {
         hidden: { opacity: 0, y: 20 },

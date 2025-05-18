@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { CURRENT_SKILLS } from '../../utils/SkillsData';
+import useStore from '../../utils/VariableStore';
 
 import './styles/skills.css';
 import './styles/skills-list.css';
 import './styles/skills-details.css';
 
-const Skills = ({ selectedTab, displayType, colors }) => {
+const Skills = ({ selectedTab, colors }) => {
     const [skillsChunk1, setSkillsChunk1] = useState([]);
     const [skillsChunk2, setSkillsChunk2] = useState([]);
     const [selectedSkill, setSelectedSkill] = useState(null);
+    const { displayType } = useStore((state) => ({ displayType: state.displayType }));
 
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;
@@ -89,7 +91,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                                     <p style={{ color: pokeTheme_TWO }}>{selectedSkill.yoe}</p>
                                 </div>
                                 <div className='usage-desc'>
-                                        <p>{selectedSkill.desc}</p>
+                                    <p>{selectedSkill.desc}</p>
                                 </div>
                             </>
                         )}
@@ -100,7 +102,7 @@ const Skills = ({ selectedTab, displayType, colors }) => {
                         <h4 style={{ marginBottom: '0.625rem' }}>Current Mood</h4>
                     </div>
                     <div className={`code-example ${displayType ? 'light' : 'dark'}`}>
-                        {selectedSkill &&  (
+                        {selectedSkill && (
                             <div className='code-usage' style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
                                 <img src={selectedSkill.meme} />
                             </div>

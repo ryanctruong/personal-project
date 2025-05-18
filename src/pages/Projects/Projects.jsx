@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CodeProjects, ResearchProjects, ArtProjects } from '../../utils/ProjectData';
+import useStore from '../../utils/VariableStore';
 import './styles/projects.css';
 import './styles/projects-cat.css';
 import './styles/projects-list.css';
 
-const Projects = ({ displayType, colors }) => {
+const Projects = ({ colors }) => {
     const [selectedTab, setSelectedTab] = useState('All');
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const { displayType } = useStore((state) => ({ displayType: state.displayType }));
 
     const pokeTheme_ONE = colors.baseColor;
     const pokeTheme_TWO = colors.complementaryColor;

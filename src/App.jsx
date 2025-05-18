@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tooltip } from 'react-tooltip'
 import { ColorExtractor } from 'react-color-extractor'
-import fetchData from './utils/apiUtils';
+import fetchData from './utils/ApiUtils';
 import Header from './layouts/Header/Header';
 import Home from './pages/Home/Home';
 import Skills from './pages/Skills/Skills';
@@ -11,19 +11,27 @@ import Footer from './layouts/Footer/Footer';
 import WelcomePage from './pages/Welcome/WelcomePage';
 import './styles/style.css';
 
+import useStore from './utils/VariableStore';
+
 function App() {
-  const checkIsDarkSchemePreferred = () => window?.matchMedia?.('(prefers-color-scheme:light)')?.matches ?? false;
   const [selectedTab, setSelectedTab] = useState(0);
   const [showWelcomePage, setShowWelcomePage] = useState(true);
   const [transitionClass, setTransitionClass] = useState('');
   const [revealContainer, setRevealContainer] = useState(false);
-  const [displayType, setDisplay] = useState(checkIsDarkSchemePreferred());
   const [pokeName, setPokeName] = useState('');
   const [pokeIMG, setPokeIMG] = useState('');
   const [colors, setColors] = useState({
     baseColor: '',
     complementaryColor: '',
   });
+
+  const {
+    displayType,
+    setDisplay
+  } = useStore((state) => ({
+    displayType: state.displayType,
+    setDisplay: state.setDisplay,
+  }));
 
   const getTransformValue = () => {
     return `translateX(-${selectedTab * 100}%)`;
@@ -36,10 +44,6 @@ function App() {
       setShowWelcomePage(false);
     }, 1000);
   };
-
-  const handleDisplaySelect = () => {
-    setDisplay(!displayType);
-  }
 
   const fetchPokemon = () => {
     const number = Math.floor(Math.random() * 1025) + 1;
@@ -91,15 +95,12 @@ function App() {
         <WelcomePage
           onDownButtonClick={handleDownButtonClick}
           transitionClass={transitionClass}
-          displayType={displayType}
         />
       ) : null}
       <div className={`parent-container ${revealContainer ? 'reveal' : ''} ${displayType ? 'light' : 'dark'}`}>
         <Tooltip id="my-tooltip" style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', zIndex: '2000' }} />
         <Header
           onTabSelect={(index) => setSelectedTab(index)}
-          handleDisplaySelect={handleDisplaySelect}
-          displayType={displayType}
           colors={colors}
           fetchPokemon={fetchPokemon}
         />
@@ -110,7 +111,6 @@ function App() {
                 <>
                   <ColorExtractor src={pokeIMG} getColors={handleColors} />
                   <Home
-                    displayType={displayType}
                     pokeName={pokeName}
                     pokeIMG={pokeIMG}
                     fetchPokemon={fetchPokemon}
@@ -120,13 +120,13 @@ function App() {
               )}
             </div>
             <div className="content-item skills">
-              <Skills selectedTab={selectedTab} displayType={displayType} colors={colors} />
+              <Skills selectedTab={selectedTab} colors={colors} />
             </div>
             <div className="content-item projects1">
-              <Projects displayType={displayType} colors={colors} />
+              <Projects colors={colors} />
             </div>
             <div className="content-item socials">
-              <Socials key={selectedTab} displayType={displayType} colors={colors} />
+              <Socials key={selectedTab} colors={colors} />
             </div>
           </div>
         </div>

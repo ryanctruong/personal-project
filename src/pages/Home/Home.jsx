@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import fetchData from '../../utils/apiUtils';
+import fetchData from '../../utils/ApiUtils';
 import { SIMPLE_DESC, DETAIL_DESC } from './Descriptions';
 import { FaExpand } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import useStore from '../../utils/VariableStore';
 
 import './styles/home.css'
 import './styles/profile-card.css'
@@ -21,7 +22,7 @@ import seal from '/images/profile-box/sappy-seals.gif'
 
 const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
 
-const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
+const Home = ({ pokeName, pokeIMG, fetchPokemon, colors }) => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
     const [temp, setTemp] = useState(0);
@@ -36,6 +37,7 @@ const Home = ({ displayType, pokeName, pokeIMG, fetchPokemon, colors }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [totalCommits, setTotalCommits] = useState(0);
     const [totalRepos, setTotalRepos] = useState(0);
+    const { displayType } = useStore((state) => ({ displayType: state.displayType }));
 
     useEffect(() => {
         const fetchGitHubStats = () => {
