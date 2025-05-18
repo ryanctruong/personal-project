@@ -38,6 +38,7 @@ const Home = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [totalCommits, setTotalCommits] = useState(0);
     const [totalRepos, setTotalRepos] = useState(0);
+    const [imageSrc, setImageSrc] = useState(ProfilePic);
     const fetchPokemon = fetchPokemonData();
     const {
         colors,
@@ -230,8 +231,6 @@ const Home = () => {
             fontWeight: "600"
         }
     };
-
-    const [imageSrc, setImageSrc] = useState(ProfilePic);
 
     return (
         <div className="content-item home">
