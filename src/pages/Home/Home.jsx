@@ -271,7 +271,9 @@ const Home = () => {
                                             </div>
                                         </a>
                                     </div>
-                                    <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
+                                    <div className='pb-desc'>
+                                        <SIMPLE_DESC pokeTheme={pokeTheme_TWO} />
+                                    </div>
                                 </div>
                                 <div className="pb-lists">
                                     <div

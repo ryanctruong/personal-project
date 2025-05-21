@@ -36,7 +36,7 @@ function App() {
                         <Socials />
                     </div>
                 </div>
-                <Footer className="footer" />
+                <Footer />
             </div>
         </>
     );
