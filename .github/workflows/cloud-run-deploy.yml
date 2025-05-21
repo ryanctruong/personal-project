@@ -3,10 +3,10 @@ name: Build and Deploy to Cloud Run
 on:
   push:
     branches:
-      - dev  
+      - dev
   pull_request:
     branches:
-      - dev  
+      - dev
 
 jobs:
   build-and-deploy:
@@ -24,7 +24,14 @@ jobs:
     - name: Configure Docker for Artifact Registry
       run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
-    - name: Trigger Cloud Build
+    - name: Cloud Build and Test
+      if: github.event_name == 'pull_request'
+      run: |
+        gcloud builds submit --config=cloudbuild.yaml \
+          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }},_DEPLOY=false
+
+    - name: Cloud Build and Deploy
+      if: github.event_name == 'push'
       run: |
         gcloud builds submit --config=cloudbuild.yaml \
           --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }}
