@@ -48,11 +48,15 @@
     width: 100%;
 }
 
-.pb-desc,
 .dd-desc-text {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.dd-desc-text p {
+    margin: 0;
+    line-height: 1.6 !important;
 }
 
 .pb-full-desc p,
@@ -60,7 +64,7 @@
     font-size: 0.969em;
     font-weight: 450;
     line-height: 1.5;
-    margin: 0;
+    margin-top: 0;
 }
 
 .pb-full-desc a,
