@@ -96,10 +96,10 @@ export const CURRENT_SKILLS = {
             desc: `At my current company, which utilizes GCP extensively, I work with this platform to manage data, streamline processes, and support AI applications. Currently, I’m working on getting my certification in GCP.`,
             meme: idk
         },
-        {
-            name: `PowerBI`, imgSrc: PowerBI, yoe: `~2 years`,
-            desc: `This was one of the first data analytics tools I have used. I have utilized it in every professional experience, from building detailed reports to completely redesigning our monthly reports. It has proven to be an invaluable tool.`,
-            meme: okay
-        }
+        // {
+        //     name: `PowerBI`, imgSrc: PowerBI, yoe: `~2 years`,
+        //     desc: `This was one of the first data analytics tools I have used. I have utilized it in every professional experience, from building detailed reports to completely redesigning our monthly reports. It has proven to be an invaluable tool.`,
+        //     meme: okay
+        // }
     ]
 };
