@@ -3,15 +3,30 @@ import { AiOutlineSun } from "react-icons/ai";
 import { FaExchangeAlt } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import useStore from "../../utils/VariableStore";
+import { fetchPokemonData } from "../../utils/FetchPokemon";
 import './Header.css';
 
-const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPokemon }) => {
+const Header = () => {
     const [selected, setSelected] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
+    const fetchPokemon = fetchPokemonData();
+
+    const {
+        colors,
+        displayType,
+        setDisplay,
+        setSelectedTab,
+    } = useStore((state) => ({
+        colors: state.colors,
+        displayType: state.displayType,
+        setDisplay: state.setDisplay,
+        setSelectedTab: state.setSelectedTab,
+    }));
 
     const handleSelect = (index) => {
         setSelected(index);
-        onTabSelect(index);
+        setSelectedTab(index);
         setMenuOpen(false);
     };
 
@@ -56,14 +71,14 @@ const Header = ({ onTabSelect, handleDisplaySelect, displayType, colors, fetchPo
                     <a data-tooltip-id="my-tooltip" data-tooltip-content={`Switch to ${displayType ? 'darkmode' : 'lightmode'}!`} data-tooltip-place="top" data-tooltip-offset={10}>
                         <div className={`sun-icon ${displayType ? 'lightmode' : ''}`}>
                             <IconContext.Provider value={{ color: "#E1C16E", className: "contactIcon sun" }}>
-                                <AiOutlineSun size={35} onClick={handleDisplaySelect} />
+                                <AiOutlineSun size={35} onClick={() => setDisplay(!displayType)} />
                             </IconContext.Provider>
                         </div>
 
                         <div className={`moon-icon ${!displayType ? 'darkmode' : ''}`}>
                             <IconContext.Provider value={{ color: "#4F6D7A", className: "contactIcon moon" }}
                             >
-                                <FaRegMoon size={25} onClick={handleDisplaySelect} />
+                                <FaRegMoon size={25} onClick={() => setDisplay(!displayType)} />
                             </IconContext.Provider>
                         </div>
                     </a>
