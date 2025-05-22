@@ -25,7 +25,6 @@ steps:
               --quiet
           else
             echo "Skipping deploy because _DEPLOY=${_DEPLOY}"
-          fi
 
 substitutions:
   _GCP_PROJECT_ID: 'rtruong-project'
