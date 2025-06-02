@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
 import { ColorExtractor } from 'react-color-extractor'
 import useStore from './utils/VariableStore';
@@ -9,6 +10,8 @@ import Socials from './pages/Socials/Socials';
 import Footer from './layouts/Footer/Footer';
 import { handleRandomColors } from './utils/FetchPokemon';
 import './styles/style.css';
+
+const secret_mega_key = import.meta.env.VITE_SECRET_MEGA_KEY;
 
 function App() {
     const handleColors = handleRandomColors();
@@ -23,22 +26,27 @@ function App() {
     }));
 
     return (
-        <>
+        <BrowserRouter>
             <Tooltip id="my-tooltip" style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', zIndex: '2000' }} />
             <ColorExtractor src={pokeIMG} getColors={handleColors} />
-            <div className={`parent-container reveal ${displayType ? 'light' : 'dark'}`}>
-                <Header />
-                <div className={`content ${displayType ? 'light' : 'dark'}`}>
-                    <div className="content-wrapper" style={{ transform: `translateX(-${selectedTab * 100}%)` }}>
-                        <Home />
-                        <Skills />
-                        <Projects />
-                        <Socials />
+            <Routes>
+                <Route path='/' element={(
+                    <div className={`parent-container reveal ${displayType ? 'light' : 'dark'}`}>
+                        <Header />
+                        <div className={`content ${displayType ? 'light' : 'dark'}`}>
+                            <div className="content-wrapper" style={{ transform: `translateX(-${selectedTab * 100}%)` }}>
+                                <Home />
+                                <Skills />
+                                <Projects />
+                                <Socials />
+                            </div>
+                        </div>
+                        <Footer />
                     </div>
-                </div>
-                <Footer />
-            </div>
-        </>
+                )} />
+                <Route path={`/${secret_mega_key}`} element={<p>Hello World</p>} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
