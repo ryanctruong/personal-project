@@ -7,6 +7,7 @@ import Home from './pages/Home/Home';
 import Skills from './pages/Skills/Skills';
 import Projects from './pages/Projects/Projects';
 import Socials from './pages/Socials/Socials';
+import VertexAI from './pages/VertexAI/VertexAI';
 import Footer from './layouts/Footer/Footer';
 import { handleRandomColors } from './utils/FetchPokemon';
 import './styles/style.css';
@@ -44,7 +45,7 @@ function App() {
                         <Footer />
                     </div>
                 )} />
-                <Route path={`/${secret_mega_key}`} element={<p>Hello World</p>} />
+                <Route path={`/${secret_mega_key}`} element={<VertexAI />} />
             </Routes>
         </BrowserRouter>
     );
