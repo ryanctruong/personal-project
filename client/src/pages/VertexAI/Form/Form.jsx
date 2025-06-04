@@ -8,7 +8,7 @@ const Form = () => {
         { label: "Location:", name: "loc", placeholder: "Enter Location" },
         { label: "URL:", name: "url", placeholder: "Enter URL" }
     ];
-    
+
     const [formInputs, setFormInputs] = useState({
         org: "",
         pos: "",
@@ -34,7 +34,7 @@ const Form = () => {
         <div className="form-outer-box">
             <form className="form-box" onSubmit={handleSubmit}>
                 <div className="form-header">
-                    <h3 style={{ marginTop: 0 }}>Add new Job Info</h3>
+                    <h3 style={{ marginTop: 0, textDecoration: "underline" }}>Add new Job Info</h3>
                 </div>
                 <div className="form-inputs">
                     {fields.map(({ label, name, placeholder }) => (
