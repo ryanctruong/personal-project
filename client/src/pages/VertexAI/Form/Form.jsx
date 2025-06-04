@@ -1,0 +1,64 @@
+import React, { useState } from 'react';
+import './Form.css';
+
+const Form = () => {
+    const fields = [
+        { label: "Organization Name:", name: "org", placeholder: "Enter Company Name" },
+        { label: "Position Title:", name: "pos", placeholder: "Enter Position Title" },
+        { label: "Location:", name: "loc", placeholder: "Enter Location" },
+        { label: "URL:", name: "url", placeholder: "Enter URL" }
+    ];
+    
+    const [formInputs, setFormInputs] = useState({
+        org: "",
+        pos: "",
+        loc: "",
+        url: ""
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormInputs({
+            ...formInputs,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Submitting:", formInputs);
+        setFormInputs({ org: "", pos: "", loc: "", url: "" });
+    };
+
+    return (
+        <div className="form-outer-box">
+            <form className="form-box" onSubmit={handleSubmit}>
+                <div className="form-header">
+                    <h3 style={{ marginTop: 0 }}>Add new Job Info</h3>
+                </div>
+                <div className="form-inputs">
+                    {fields.map(({ label, name, placeholder }) => (
+                        <div className="form-text-boxes" key={name}>
+                            <h3 style={{ marginTop: 0 }}>{label}</h3>
+                            <input
+                                type="text"
+                                name={name}
+                                style={{ fontSize: "14px", height: "38px" }}
+                                value={formInputs[name]}
+                                placeholder={placeholder}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div className="form-submissions">
+                    <div className="lp-login-button">
+                        <button className="button-19" role="button" > Add  </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default Form;
