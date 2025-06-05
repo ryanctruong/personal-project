@@ -34,7 +34,7 @@ const Form = () => {
         <div className="form-outer-box">
             <form className="form-box" onSubmit={handleSubmit}>
                 <div className="form-header">
-                    <h3 style={{ marginTop: 0, textDecoration: "underline" }}>Add new Job Info</h3>
+                    <h3 style={{ margin: 0, textDecoration: "underline" }}>Add new Job Info</h3>
                 </div>
                 <div className="form-inputs">
                     {fields.map(({ label, name, placeholder }) => (
@@ -57,6 +57,9 @@ const Form = () => {
                     </div>
                 </div>
             </form>
+            <div className="form-stats">
+
+            </div>
         </div>
     );
 };
