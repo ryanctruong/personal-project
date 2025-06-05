@@ -1,0 +1,42 @@
+.full-table-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat' !important;
+}
+
+.full-table {
+    height: 85%;
+    width: 100%;
+    border: 1px solid black;
+    padding: 1.5rem;
+    border-radius: 3.125rem;
+    background-color: white;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
+    transition: background-color 0.5s linear, color 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.full-table td {
+    text-align: center;
+}
+
+.full-table th {
+    text-decoration: underline;
+    font-size: 18px;
+}
+
+.full-table select {
+    font-family: "Montserrat";
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.full-table textarea {
+    resize: none;
+}
