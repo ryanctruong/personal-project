@@ -24,10 +24,30 @@ const Form = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Submitting:", formInputs);
-        setFormInputs({ org: "", pos: "", loc: "", url: "" });
+
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/ryan/submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ organization: formInputs.org, position: formInputs.pos, location: formInputs.loc, url: formInputs.url })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Submission Successful", data);
+            } else {
+                const error = await response.json();
+                console.log("Submission Failed", error);
+            }
+        } catch (error) {
+            console.log(`Error: ${error}`);
+        } finally {
+            setFormInputs({ org: "", pos: "", loc: "", url: "" });
+        }
     };
 
     return (
