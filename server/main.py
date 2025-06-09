@@ -34,7 +34,7 @@ def create_item():
             item[field] = data[field]
 
         item['date_added'] = date.today().isoformat()
-
+        item['status'] = "Open"
         item['notes'] = data.get('notes', '')
 
         doc_ref = db.collection(COLLECTION_NAME).document()
@@ -49,7 +49,7 @@ def create_item():
 @app.route('/ryan/items', methods=['GET'])
 def list_items():
     try:
-        docs = db.collection(COLLECTION_NAME).order_by('date_added', direction=firestore.Query.DESCENDING).stream()
+        docs = db.collection(COLLECTION_NAME).order_by('date_added', direction=firestore.Query.ASCENDING).stream()
         items = []
         for doc in docs:
             doc_data = doc.to_dict()

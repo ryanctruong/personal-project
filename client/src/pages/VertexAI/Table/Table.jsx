@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import useStore from '../../../utils/VariableStore';
 import './Table.css';
 
 const Table = () => {
     const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-
+    const [loading, setLoading] = useState(false);
+    const {
+        refresh
+    } = useStore((state) => ({
+        refresh: state.refresh
+    }));
+    
     useEffect(() => {
         const fetchItems = async () => {
             try {
@@ -22,43 +28,23 @@ const Table = () => {
         };
 
         fetchItems();
-    }, []);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    }, [refresh]);
 
     return (
-        <div className="full-table-container">
-            <div className="full-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date Applied</th>
-                            <th>Organization Name</th>
-                            <th>Position Title</th>
-                            <th>Location</th>
-                            <th>URL</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {items.map(item => (
-                            <tr key={item.id}>
-                                <td>{new Date(item.date_added).toLocaleDateString()}</td>
-                                <td>{item.organization}</td>
-                                <td>{item.position}</td>
-                                <td>{item.location}</td>
-                                <td>
-                                    <a href={item.url} target="_blank" rel="noopener noreferrer">
-                                        {item.url}
-                                    </a>
-                                </td>
-                                <td>{item.notes}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+        <div className="table-outer-container">
+            <div className="table-results">
+                {items && items.length > 0 ? (
+                    items.map((item, index) => (
+                        <div className="table-cards" key={item.id || index}>
+                            <h3 style={{ margin: "12px 0" }}>{item.organization}</h3>
+                            <p style={{ margin: "12px 0" }}>{item.position}</p>
+                            <p style={{ margin: "12px 0" }}>{new Date(item.date_added).toLocaleDateString()}</p>
+                            <p style={{ margin: "12px 0" }}>{item.status}</p>
+                            <button>View More</button>
+                        </div>
+                    ))
+                ) : <div>Loading...</div>}
+
             </div>
         </div>
     );

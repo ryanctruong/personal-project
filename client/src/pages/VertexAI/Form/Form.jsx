@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import useStore from '../../../utils/VariableStore';
 import './Form.css';
 
 const Form = () => {
+    const {
+        setRefresh
+    } = useStore((state) => ({
+        setRefresh: state.setRefresh
+    }));
+
+
     const fields = [
         { label: "Organization Name:", name: "org", placeholder: "Enter Company Name" },
         { label: "Position Title:", name: "pos", placeholder: "Enter Position Title" },
@@ -47,6 +55,7 @@ const Form = () => {
             console.log(`Error: ${error}`);
         } finally {
             setFormInputs({ org: "", pos: "", loc: "", url: "" });
+            setRefresh(prev => !prev)
         }
     };
 
