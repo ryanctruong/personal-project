@@ -1,8 +1,33 @@
 import React, { useState, useEffect } from 'react';
-
-import './Table.css'
+import './Table.css';
 
 const Table = () => {
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/ryan/items');
+                if (!response.ok) {
+                    throw new Error(`Error fetching items: ${response.statusText}`);
+                }
+                const data = await response.json();
+                setItems(data);
+            } catch (err) {
+                console.error('Error fetching items from API:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchItems();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="full-table-container">
             <div className="full-table">
@@ -14,35 +39,29 @@ const Table = () => {
                             <th>Position Title</th>
                             <th>Location</th>
                             <th>URL</th>
-                            <th>Status</th>
                             <th>Notes</th>
-                            <th>Get Info</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>October 23, 2023</td>
-                            <td>HCA Healthcare</td>
-                            <td>Software Engineer</td>
-                            <td>Nashville, TN</td>
-                            <td><a href="https://www.hcahealthcare.com" target="_blank" rel="noopener noreferrer">HCA Healthcare</a></td>
-                            <td>
-                                <select defaultValue="">
-                                    <option value="" disabled>Select status</option>
-                                    <option value="open">Open</option>
-                                    <option value="closed">Closed</option>
-                                    <option value="coding-assessment">Coding Assessment</option>
-                                    <option value="interview">Interview</option>
-                                </select>
-                            </td>
-                            <td><textarea defaultValue={""} /></td>
-                            <td><button>Click Me!</button></td>
-                        </tr>
+                        {items.map(item => (
+                            <tr key={item.id}>
+                                <td>{new Date(item.date_added).toLocaleDateString()}</td>
+                                <td>{item.organization}</td>
+                                <td>{item.position}</td>
+                                <td>{item.location}</td>
+                                <td>
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                        {item.url}
+                                    </a>
+                                </td>
+                                <td>{item.notes}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
     );
-}
+};
 
 export default Table;
