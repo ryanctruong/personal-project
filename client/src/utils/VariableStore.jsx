@@ -15,6 +15,9 @@ const useStore = create((set) => ({
 
     selectedTab: 0,
     setSelectedTab: (update) => { set((state) => ({ selectedTab: typeof update === 'function' ? update(state.selectedTab) : update, })) },
+
+    refresh: false,
+    setRefresh: (update) => { set((state) => ({ refresh: typeof update === 'function' ? update(state.refresh) : update, })) },
 }));
 
 export default useStore;
