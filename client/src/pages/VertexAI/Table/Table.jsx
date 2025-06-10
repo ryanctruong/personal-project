@@ -10,7 +10,7 @@ const Table = () => {
     } = useStore((state) => ({
         refresh: state.refresh
     }));
-    
+
     useEffect(() => {
         const fetchItems = async () => {
             try {
@@ -30,6 +30,15 @@ const Table = () => {
         fetchItems();
     }, [refresh]);
 
+    const getStatusColor = status => {
+        switch (status) {
+            case 'Open': return 'green';
+            case 'In-progress': return 'yellow';
+            case 'Rejected': return 'red';
+            default: return 'black';
+        }
+    };
+
     return (
         <div className="table-outer-container">
             <div className="table-results">
@@ -39,7 +48,7 @@ const Table = () => {
                             <h3 style={{ margin: "12px 0" }}>{item.organization}</h3>
                             <p style={{ margin: "12px 0" }}>{item.position}</p>
                             <p style={{ margin: "12px 0" }}>{new Date(item.date_added).toLocaleDateString()}</p>
-                            <p style={{ margin: "12px 0" }}>{item.status}</p>
+                            <p style={{ margin: '12px 0', color: getStatusColor(item.status), fontWeight: "550" }}>{item.status}</p>
                             <button>View More</button>
                         </div>
                     ))
