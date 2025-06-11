@@ -18,6 +18,12 @@ const useStore = create((set) => ({
 
     refresh: false,
     setRefresh: (update) => { set((state) => ({ refresh: typeof update === 'function' ? update(state.refresh) : update, })) },
+
+    item: {},
+    setItem: (update) => { set((state) => ({ item: typeof update === 'function' ? update(state.item) : update, })) },
+
+    viewMore: false,
+    setViewMore: (update) => { set((state) => ({ viewMore: typeof update === 'function' ? update(state.viewMore) : update, })) },
 }));
 
 export default useStore;
