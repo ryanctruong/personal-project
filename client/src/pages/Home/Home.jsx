@@ -236,7 +236,6 @@ const Home = () => {
         <div className="content-item home">
             <div className='home-main-box'>
                 <div className={`profile-card ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-
                     <div className='picture'>
                         <div className='picture-container'>
                             <img
