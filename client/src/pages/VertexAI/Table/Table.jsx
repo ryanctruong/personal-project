@@ -14,11 +14,13 @@ const Table = () => {
         refresh,
         viewMore,
         setItem,
+        setRefresh,
         setViewMore,
     } = useStore((state) => ({
         refresh: state.refresh,
         viewMore: state.viewMore,
         setItem: state.setItem,
+        setRefresh: state.setRefresh,
         setViewMore: state.setViewMore
     }));
 
@@ -61,6 +63,27 @@ const Table = () => {
         console.log(item);
     };
 
+    const removeCard = async (id) => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/ryan/remove', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id }),
+            });
+            if (!response.ok) {
+                throw new Error(`Error removing item: ${response.statusText}`);
+            } else {
+                console.log("success");
+            }
+        } catch (err) {
+            console.error('Error removing item:', err);
+        } finally {
+            setRefresh(prev => !prev);
+        }
+    };
+
     return (
         <div className="table-outer-container">
             <div className="table-results" style={{ display: !viewMore ? "grid" : "block" }}>
@@ -87,7 +110,7 @@ const Table = () => {
                                         {item.status}
                                     </p>
                                     <button onClick={() => onViewMore(item)}>View More</button>
-                                    <img src={Delete} className="delete-btn"></img>
+                                    <img src={Delete} className="delete-btn" onClick={() => removeCard(item.id)}></img>
                                 </div>
                             ))
                         ) : (

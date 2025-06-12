@@ -39,10 +39,15 @@
 
 .delete-btn {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 25px;
+    top: 25px;
+    display: none;
 }
 
 .delete-btn:hover {
     cursor: pointer;
+}
+
+.table-cards:hover .delete-btn {
+    display: block;
 }
