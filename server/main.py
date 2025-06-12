@@ -41,7 +41,6 @@ def create_item():
         doc_ref.set(item)
 
         return jsonify({'id': doc_ref.id}), 200
-
     except Exception as e:
         print(f"Error in create_item: {e}")
         return jsonify({'error': str(e)}), 400
@@ -55,10 +54,41 @@ def list_items():
             doc_data = doc.to_dict()
             doc_data['id'] = doc.id
             items.append(doc_data)
-        return jsonify(items), 200
 
+        return jsonify(items), 200
     except Exception as e:
         print(f"Error in list_items: {e}")
+        return jsonify({'error': str(e)}), 400
+
+@app.route('/ryan/remove', methods=['DELETE'])
+def remove_item():
+    try:
+        data = request.get_json()
+        item_id = data['id']
+
+        doc_ref = db.collection(COLLECTION_NAME).document(item_id)
+        doc_ref.delete()
+
+        return jsonify({'id': item_id}), 200
+    except Exception as e:
+        print(f"Error in remove_item: {e}")
+        return jsonify({'error': str(e)}), 400
+    
+@app.route('/ryan/edit', methods=['PUT'])
+def edit_item():
+    try:
+        data = request.get_json()
+        item_id = data.get('id')
+
+        allowed = {'organization', 'position', 'location', 'url', 'status', 'notes'}
+        updates = {k: v for k, v in data.items() if k in allowed}
+
+        doc_ref = db.collection(COLLECTION_NAME).document(item_id)
+        doc_ref.update(updates)
+
+        return jsonify({'id': item_id}), 200
+    except Exception as e:
+        print(f"Error updating item: {e}")
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':

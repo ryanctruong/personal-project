@@ -12,9 +12,10 @@ const fields = [
 ];
 
 const Dashboard = () => {
-    const { item, setItem, setViewMore } = useStore(state => ({
+    const { item, setItem, setRefresh, setViewMore } = useStore(state => ({
         item: state.item,
         setItem: state.setItem,
+        setRefresh: state.setRefresh,
         setViewMore: state.setViewMore
     }));
 
@@ -35,9 +36,26 @@ const Dashboard = () => {
     const handleChange = ({ target: { name, value } }) =>
         setFormData(prev => ({ ...prev, [name]: value }));
 
-    const handleSave = () => {
-        setItem(formData);
-        setIsEditing(false);
+    const handleSave = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/ryan/edit', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: item.id, ...formData }),
+            });
+            if (!response.ok) {
+                throw new Error(`Error updating item: ${response.statusText}`);
+            }
+            console.log('Update success');
+            setItem(formData);
+        } catch (err) {
+            console.log('Error updating item:', err);
+        } finally {
+            setRefresh(prev => !prev);
+            setIsEditing(false);
+        }
     };
 
     return (
