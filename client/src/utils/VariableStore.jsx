@@ -24,6 +24,9 @@ const useStore = create((set) => ({
 
     viewMore: false,
     setViewMore: (update) => { set((state) => ({ viewMore: typeof update === 'function' ? update(state.viewMore) : update, })) },
+
+    stats: { totalItems: 0, totalOpen: 0, totalInProgress: 0, totalRejected: 0, },
+    setStats: (update) => { set((state) => ({ stats: typeof update === 'function' ? update(state.stats) : update, })) }
 }));
 
 export default useStore;

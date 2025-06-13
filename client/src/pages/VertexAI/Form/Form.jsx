@@ -4,8 +4,10 @@ import './Form.css';
 
 const Form = () => {
     const {
+        stats,
         setRefresh
     } = useStore((state) => ({
+        stats: state.stats,
         setRefresh: state.setRefresh
     }));
 
@@ -87,8 +89,20 @@ const Form = () => {
                 </div>
             </form>
             <div className="form-stats">
-
+                <div className="form-stats-box count">
+                    <p style={{ color: '#333' }}>Count:<br /> {stats.totalItems}</p>
+                </div>
+                <div className="form-stats-box open">
+                    <p style={{ color: '#28a745' }}>Open:<br /> {stats.totalOpen}</p>
+                </div>
+                <div className="form-stats-box in-progress">
+                    <p style={{ color: '#007bff' }}>In Progress:<br /> {stats.totalInProgress}</p>
+                </div>
+                <div className="form-stats-box rejected">
+                    <p style={{ color: '#dc3545' }}>Rejected:<br /> {stats.totalRejected}</p>
+                </div>
             </div>
+
         </div>
     );
 };
