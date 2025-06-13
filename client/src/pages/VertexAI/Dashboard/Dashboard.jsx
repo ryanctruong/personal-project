@@ -68,11 +68,47 @@ const Dashboard = () => {
                     <button>Generate Deep Research</button>
                 </div>
                 <div className="dashboard-info">
-                    <h3>General Information</h3>
-                    {fields.map(({ label, name }) =>
-                        isEditing ? (
+                    <h3 style={{ margin: "0px" }}>General Information</h3>
+
+                    {fields.map(({ label, name }) => (
+                        name === 'notes' ? (
                             <div key={name} style={{ width: "100%" }}>
-                                <label style={{ fontSize: "16px", fontWeight: "700", textDecoration: "underline" }}>{label}: </label>
+                                {isEditing && (
+                                    <label
+                                        style={{
+                                            fontSize: "16px",
+                                            fontWeight: "700",
+                                            textDecoration: "underline",
+                                            display: "block",
+                                            marginBottom: "0.5em"
+                                        }}
+                                    >
+                                        {label}:
+                                    </label>
+                                )}
+                                <textarea
+                                    rows={8}
+                                    name={name}
+                                    value={formData[name] || ''}
+                                    onChange={handleChange}
+                                    readOnly={!isEditing}
+                                    style={{
+                                        width: "100%",
+                                        resize: "none"
+                                    }}
+                                />
+                            </div>
+                        ) : isEditing ? (
+                            <div key={name} style={{ width: "100%" }}>
+                                <label
+                                    style={{
+                                        fontSize: "16px",
+                                        fontWeight: "700",
+                                        textDecoration: "underline"
+                                    }}
+                                >
+                                    {label}:
+                                </label>
                                 <input
                                     type="text"
                                     name={name}
@@ -83,7 +119,11 @@ const Dashboard = () => {
                         ) : (
                             <p key={name}>
                                 {name === 'url' && item[name] ? (
-                                    <a href={item[name]} target="_blank" rel="noopener noreferrer">
+                                    <a
+                                        href={item[name]}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         {item[name]}
                                     </a>
                                 ) : (
@@ -91,12 +131,13 @@ const Dashboard = () => {
                                 )}
                             </p>
                         )
-                    )}
+                    ))}
+
                     <div className="dashboard-actions">
                         <button onClick={isEditing ? handleSave : handleEditToggle}>
                             {isEditing ? 'Save' : 'Edit'}
                         </button>
-                        <button onClick={() => handleOnClose()}>Close</button>
+                        <button onClick={handleOnClose}>Close</button>
                     </div>
                 </div>
             </div>

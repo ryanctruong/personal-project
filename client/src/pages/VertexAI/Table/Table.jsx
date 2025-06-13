@@ -15,12 +15,14 @@ const Table = () => {
         viewMore,
         setItem,
         setRefresh,
+        setStats,
         setViewMore,
     } = useStore((state) => ({
         refresh: state.refresh,
         viewMore: state.viewMore,
         setItem: state.setItem,
         setRefresh: state.setRefresh,
+        setStats: state.setStats,
         setViewMore: state.setViewMore
     }));
 
@@ -34,6 +36,12 @@ const Table = () => {
                 }
                 const data = await response.json();
                 setItems(data);
+                setStats({
+                    totalItems: data.length,
+                    totalOpen: data.filter(item => item.status === 'Open').length,
+                    totalInProgress: data.filter(item => item.status === 'In-progress').length,
+                    totalRejected: data.filter(item => item.status === 'Rejected').length,
+                });
             } catch (err) {
                 console.error('Error fetching items from API:', err);
             } finally {
@@ -47,11 +55,11 @@ const Table = () => {
     const getStatusColor = (status) => {
         switch (status) {
             case 'Open':
-                return 'green';
+                return '#28a745';
             case 'In-progress':
-                return 'yellow';
+                return '#007bff';
             case 'Rejected':
-                return 'red';
+                return '#dc3545';
             default:
                 return 'black';
         }
@@ -60,7 +68,6 @@ const Table = () => {
     const onViewMore = (item) => {
         setItem(item);
         setViewMore(true);
-        console.log(item);
     };
 
     const removeCard = async (id) => {
