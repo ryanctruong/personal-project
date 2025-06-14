@@ -9,12 +9,15 @@ from google.cloud import firestore
 
 load_dotenv()
 
+username = os.getenv('ADMIN_USERNAME')
+password = os.getenv('ADMIN_PASSWORD')
+t_project = os.getenv('GOOGLE_CLOUD_PROJECT')
+database_id = os.getenv('FIRESTORE_DATABASE')
+
 app = Flask(__name__)
 CORS(app)
 
 COLLECTION_NAME = 'jobs'
-t_project = os.getenv('GOOGLE_CLOUD_PROJECT', 'rtruong-cs')
-database_id = os.getenv('FIRESTORE_DATABASE', 'app-management')
 db = firestore.Client(project=t_project, database=database_id)
 
 @app.route('/ryan/test', methods=['GET'])
@@ -22,6 +25,13 @@ def hello_world():
     """Return a hello world JSON response."""
     return jsonify({"message": "Hello, World!"})
 
+@app.route('/ryan/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    if data.get('username') == username and data.get('password') == password:
+        return jsonify({"message": "Login successful"}), 200
+    else:
+        return jsonify({"error": "Invalid credentials"}), 401
 
 @app.route('/ryan/submit', methods=['POST'])
 def create_item():
