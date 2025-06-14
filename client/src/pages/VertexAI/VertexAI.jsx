@@ -10,11 +10,11 @@ import './VertexAI.css'
 const VertexAI = () => {
     return (
         <>
-            {/* <LoginPage /> */}
-            <div className="VA-parent-container">
+            <LoginPage />
+            {/* <div className="VA-parent-container">
                 <Form />
                 <Table />
-            </div>
+            </div> */}
         </>
     )
 };
