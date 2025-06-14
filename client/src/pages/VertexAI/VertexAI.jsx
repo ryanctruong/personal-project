@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import LoginPage from './LoginPage/LoginPage';
+import useStore from '../../utils/VariableStore';
 import Form from './Form/Form';
 import Table from './Table/Table';
-import fetchData from '../../utils/ApiUtils';
 
 import './VertexAI.css'
 
 const VertexAI = () => {
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
     return (
         <>
-            <LoginPage />
-            {/* <div className="VA-parent-container">
-                <Form />
-                <Table />
-            </div> */}
+            {isLoggedIn ? (
+                <div className="VA-parent-container">
+                    <Form />
+                    <Table />
+                </div>
+            ) : (
+                <LoginPage />
+            )}
         </>
     )
 };

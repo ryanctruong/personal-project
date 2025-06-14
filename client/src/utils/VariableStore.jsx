@@ -26,7 +26,10 @@ const useStore = create((set) => ({
     setViewMore: (update) => { set((state) => ({ viewMore: typeof update === 'function' ? update(state.viewMore) : update, })) },
 
     stats: { totalItems: 0, totalOpen: 0, totalInProgress: 0, totalRejected: 0, },
-    setStats: (update) => { set((state) => ({ stats: typeof update === 'function' ? update(state.stats) : update, })) }
+    setStats: (update) => { set((state) => ({ stats: typeof update === 'function' ? update(state.stats) : update, })) },
+
+    isLoggedIn: false,
+    setIsLoggedIn: (update) => { set((state) => ({ isLoggedIn: typeof update === 'function' ? update(state.isLoggedIn) : update, })) },
 }));
 
 export default useStore;

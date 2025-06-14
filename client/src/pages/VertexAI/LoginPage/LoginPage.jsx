@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useStore from '../../../utils/VariableStore';
 
 import ProfilePic from '/beanhead.svg'
 import tongue from '/tongue.svg'
@@ -9,6 +10,12 @@ const LoginPage = () => {
     const [userName, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [imageSrc, setImageSrc] = useState(ProfilePic);
+
+    const {
+        setIsLoggedIn
+    } = useStore((state) => ({
+        setIsLoggedIn: state.setIsLoggedIn,
+    }));
 
     const checkLogin = async () => {
         try {
@@ -21,8 +28,8 @@ const LoginPage = () => {
             });
             if (response.ok) {
                 const data = await response.json();
-                if (data.success) {
-                    console.log('Login successful:', data);
+                if (data.message === 'Login successful') {
+                    setIsLoggedIn(true);
                 } else {
                     alert(data.message || 'Login failed');
                 }
