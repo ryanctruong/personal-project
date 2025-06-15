@@ -22,6 +22,7 @@ const Dashboard = () => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState(item);
+    const [loading, setLoading] = useState(false);
     const [results, setResults] = useState("");
 
     useEffect(() => {
@@ -61,6 +62,7 @@ const Dashboard = () => {
     };
 
     const handleDR = async () => {
+        setLoading(true);
         try {
             const response = await fetch('http://127.0.0.1:5000/ryan/deep-research', {
                 method: 'POST',
@@ -81,6 +83,8 @@ const Dashboard = () => {
         } catch (err) {
             console.error('Error generating deep research:', err)
             setResults('An error occurred while generating results.')
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -93,10 +97,11 @@ const Dashboard = () => {
             </div>
             <div className="dashboard-body">
                 <div className="vertex-ai-results">
-                    {results ? (
+                    {loading ? (
+                        <span className="loader"></span>
+                    ) : results ? (
                         <div
                             className="markdown"
-                            style={{  }}
                             dangerouslySetInnerHTML={{ __html: html }}
                         />
                     ) : (
