@@ -1,42 +1,53 @@
-.full-table-container {
+.table-outer-container {
+    width: 1200px;
     height: 100%;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Montserrat' !important;
+    flex-direction: column;
+    overflow: auto;
 }
 
-.full-table {
-    height: 85%;
+.table-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 250px;
+    gap: 1rem;
+    height: 800px;
     width: 100%;
+    transition: background-color 0.5s linear, color 0.5s ease-in-out;
+    overflow: auto;
+}
+
+.table-cards {
+    width: 100%;
+    height: 100%;
     border: 1px solid black;
-    padding: 1.5rem;
     border-radius: 3.125rem;
+    z-index: 30;
     background-color: white;
     box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
     transition: background-color 0.5s linear, color 0.5s ease-in-out;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    position: relative;
 }
 
-.full-table td {
-    text-align: center;
+.delete-btn {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    display: none;
 }
 
-.full-table th {
-    text-decoration: underline;
-    font-size: 18px;
+.delete-btn:hover {
+    cursor: pointer;
 }
 
-.full-table select {
-    font-family: "Montserrat";
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.full-table textarea {
-    resize: none;
+.table-cards:hover .delete-btn {
+    display: block;
 }

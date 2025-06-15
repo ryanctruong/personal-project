@@ -1,48 +1,144 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Dashboard from '../Dashboard/Dashboard';
+import useStore from '../../../utils/VariableStore';
 
-import './Table.css'
+import Delete from "/images/icons/delete.svg";
+import './Table.css';
 
 const Table = () => {
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const {
+        refresh,
+        viewMore,
+        setItem,
+        setRefresh,
+        setStats,
+        setViewMore,
+    } = useStore((state) => ({
+        refresh: state.refresh,
+        viewMore: state.viewMore,
+        setItem: state.setItem,
+        setRefresh: state.setRefresh,
+        setStats: state.setStats,
+        setViewMore: state.setViewMore
+    }));
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch('http://127.0.0.1:5000/ryan/items');
+                if (!response.ok) {
+                    throw new Error(`Error fetching items: ${response.statusText}`);
+                }
+                const data = await response.json();
+                setItems(data);
+                setStats({
+                    totalItems: data.length,
+                    totalOpen: data.filter(item => item.status === 'Open').length,
+                    totalInProgress: data.filter(item => item.status === 'In-progress').length,
+                    totalRejected: data.filter(item => item.status === 'Rejected').length,
+                });
+            } catch (err) {
+                console.error('Error fetching items from API:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchItems();
+    }, [refresh]);
+
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'Open':
+                return '#28a745';
+            case 'In-progress':
+                return '#007bff';
+            case 'Rejected':
+                return '#dc3545';
+            default:
+                return 'black';
+        }
+    };
+
+    const onViewMore = (item) => {
+        setItem(item);
+        setViewMore(true);
+    };
+
+    const removeCard = async (id) => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/ryan/remove', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id }),
+            });
+            if (!response.ok) {
+                throw new Error(`Error removing item: ${response.statusText}`);
+            } else {
+                console.log("success");
+            }
+        } catch (err) {
+            console.error('Error removing item:', err);
+        } finally {
+            setRefresh(prev => !prev);
+        }
+    };
+
     return (
-        <div className="full-table-container">
-            <div className="full-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date Applied</th>
-                            <th>Organization Name</th>
-                            <th>Position Title</th>
-                            <th>Location</th>
-                            <th>URL</th>
-                            <th>Status</th>
-                            <th>Notes</th>
-                            <th>Get Info</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>October 23, 2023</td>
-                            <td>HCA Healthcare</td>
-                            <td>Software Engineer</td>
-                            <td>Nashville, TN</td>
-                            <td><a href="https://www.hcahealthcare.com" target="_blank" rel="noopener noreferrer">HCA Healthcare</a></td>
-                            <td>
-                                <select defaultValue="">
-                                    <option value="" disabled>Select status</option>
-                                    <option value="open">Open</option>
-                                    <option value="closed">Closed</option>
-                                    <option value="coding-assessment">Coding Assessment</option>
-                                    <option value="interview">Interview</option>
-                                </select>
-                            </td>
-                            <td><textarea defaultValue={""} /></td>
-                            <td><button>Click Me!</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div className="table-outer-container">
+            <div className="table-results" style={{ display: !viewMore ? "grid" : "block" }}>
+                {!viewMore ? (
+                    loading ? (
+                        <div>Loading...</div>
+                    ) : (
+                        items.length > 0 ? (
+                            items.map((item, index) => (
+                                <div className="table-cards" key={item.id || index}>
+                                    <h3 style={{ margin: '12px 0' }}>{item.organization}</h3>
+                                    <p style={{ margin: '12px 0' }}>{item.position}</p>
+                                    <p style={{ margin: '12px 0' }}>
+                                        {new Date(item.date_added).toLocaleDateString()}
+                                    </p>
+                                    <p
+                                        style={{
+                                            margin: '12px 0',
+                                            color: getStatusColor(item.status),
+                                            fontWeight: '550',
+                                            textDecoration: 'underline',
+                                        }}
+                                    >
+                                        {item.status}
+                                    </p>
+                                    <button onClick={() => onViewMore(item)}>View More</button>
+                                    <img src={Delete} className="delete-btn" onClick={() => removeCard(item.id)}></img>
+                                </div>
+                            ))
+                        ) : (
+                            <div>No items found.</div>
+                        )
+                    )
+                ) : (
+                    <motion.div
+                        key="modal"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.5 }}
+                        transition={{ duration: 0.5 }}
+                        style={{ height: "100%", width: "100%" }}
+                    >
+                        <Dashboard />
+                    </motion.div>
+                )}
             </div>
-        </div>
+        </div >
     );
-}
+};
 
 export default Table;

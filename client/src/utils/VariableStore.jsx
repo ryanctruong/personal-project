@@ -15,6 +15,21 @@ const useStore = create((set) => ({
 
     selectedTab: 0,
     setSelectedTab: (update) => { set((state) => ({ selectedTab: typeof update === 'function' ? update(state.selectedTab) : update, })) },
+
+    refresh: false,
+    setRefresh: (update) => { set((state) => ({ refresh: typeof update === 'function' ? update(state.refresh) : update, })) },
+
+    item: {},
+    setItem: (update) => { set((state) => ({ item: typeof update === 'function' ? update(state.item) : update, })) },
+
+    viewMore: false,
+    setViewMore: (update) => { set((state) => ({ viewMore: typeof update === 'function' ? update(state.viewMore) : update, })) },
+
+    stats: { totalItems: 0, totalOpen: 0, totalInProgress: 0, totalRejected: 0, },
+    setStats: (update) => { set((state) => ({ stats: typeof update === 'function' ? update(state.stats) : update, })) },
+
+    isLoggedIn: false,
+    setIsLoggedIn: (update) => { set((state) => ({ isLoggedIn: typeof update === 'function' ? update(state.isLoggedIn) : update, })) },
 }));
 
 export default useStore;
