@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import useStore from '../../../utils/VariableStore';
+import { marked } from 'marked';
 import './Dashboard.css';
 
 const fields = [
@@ -63,21 +64,27 @@ const Dashboard = () => {
         try {
             const response = await fetch('http://127.0.0.1:5000/ryan/deep-research', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ job_title: item.position, job_description_url: item.url, company_name: item.organization }),
-            });
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    job_title: item.position,
+                    job_description_url: item.url,
+                    company_name: item.organization,
+                }),
+            })
             if (!response.ok) {
-                throw new Error(`Error generating deep research: ${response.statusText}`);
+                throw new Error(`Error: ${response.statusText}`)
             }
-            const data = await response.json();
-            setResults(data.results || "No results found");
+
+            const text = await response.text()
+            console.log(text);
+            setResults(text)
         } catch (err) {
-            console.error('Error generating deep research:', err);
-            setResults("An error occurred while generating results.");
+            console.error('Error generating deep research:', err)
+            setResults('An error occurred while generating results.')
         }
-    };
+    }
+
+    const html = useMemo(() => marked.parse(results || ''), [results])
 
     return (
         <div className="dashboard">
@@ -87,17 +94,13 @@ const Dashboard = () => {
             <div className="dashboard-body">
                 <div className="vertex-ai-results">
                     {results ? (
-                        <div className="results-content">
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: window.marked
-                                        ? window.marked.parse(results)
-                                        : results
-                                }}
-                            />
-                        </div>
+                        <div
+                            className="markdown"
+                            style={{  }}
+                            dangerouslySetInnerHTML={{ __html: html }}
+                        />
                     ) : (
-                        <button onClick={() => handleDR()}>Generate Deep Research</button>
+                        <button onClick={handleDR}>Generate Deep Research</button>
                     )}
                 </div>
                 <div className="dashboard-info">
@@ -157,7 +160,7 @@ const Dashboard = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        {item[name]}
+                                        Job Description URL
                                     </a>
                                 ) : (
                                     item[name]

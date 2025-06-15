@@ -3,22 +3,22 @@
 import os
 from datetime import date
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from google.cloud import firestore
 
 load_dotenv()
 
-username = os.getenv('ADMIN_USERNAME')
-password = os.getenv('ADMIN_PASSWORD')
-t_project = os.getenv('GOOGLE_CLOUD_PROJECT')
-database_id = os.getenv('FIRESTORE_DATABASE')
+USERNAME = os.getenv('ADMIN_USERNAME')
+PASSWORD = os.getenv('ADMIN_PASSWORD')
+PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT')
+DATABASE_ID = os.getenv('FIRESTORE_DATABASE')
 
 app = Flask(__name__)
 CORS(app)
 
 COLLECTION_NAME = 'jobs'
-db = firestore.Client(project=t_project, database=database_id)
+db = firestore.Client(project=PROJECT_ID, database=DATABASE_ID)
 
 @app.route('/ryan/test', methods=['GET'])
 def hello_world():
@@ -28,7 +28,7 @@ def hello_world():
 @app.route('/ryan/login', methods=['POST'])
 def login():
     data = request.get_json()
-    if data.get('username') == username and data.get('password') == password:
+    if data.get('username') == USERNAME and data.get('password') == PASSWORD:
         return jsonify({"message": "Login successful"}), 200
     else:
         return jsonify({"error": "Invalid credentials"}), 401
@@ -100,6 +100,23 @@ def edit_item():
     except Exception as e:
         print(f"Error updating item: {e}")
         return jsonify({'error': str(e)}), 400
+    
+@app.route('/ryan/deep-research', methods=['POST'])
+def deep_research():
+    from src.deep_research import build_and_run
 
+    data = request.get_json()
+    job_title = data.get('job_title')
+    job_description_url = data.get('job_description_url')
+    company_name = data.get('company_name')
+
+    try:
+        build_and_run(job_title, job_description_url, company_name)
+        output_file = "results/candidate_prep_guide.txt"
+        return send_file(output_file, as_attachment=True)
+    except Exception as e:
+        print(f"Error in deep_research: {e}")
+        return jsonify({'error': str(e)}), 400
+    
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
