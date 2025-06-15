@@ -71,7 +71,7 @@ const LoginPage = () => {
                         <div className="lp-password">
                             <h3>Password:</h3>
                             <input
-                                type="text"
+                                type="password"
                                 name="password"
                                 style={{ fontSize: "14px", height: "38px" }}
                                 value={password}
