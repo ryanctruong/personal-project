@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import useStore from '../../../utils/VariableStore';
+import { marked } from 'marked';
 import './Dashboard.css';
 
 const fields = [
@@ -21,6 +22,7 @@ const Dashboard = () => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState(item);
+    const [results, setResults] = useState("");
 
     useEffect(() => {
         setFormData(item);
@@ -58,6 +60,32 @@ const Dashboard = () => {
         }
     };
 
+    const handleDR = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/ryan/deep-research', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    job_title: item.position,
+                    job_description_url: item.url,
+                    company_name: item.organization,
+                }),
+            })
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`)
+            }
+
+            const text = await response.text()
+            console.log(text);
+            setResults(text)
+        } catch (err) {
+            console.error('Error generating deep research:', err)
+            setResults('An error occurred while generating results.')
+        }
+    }
+
+    const html = useMemo(() => marked.parse(results || ''), [results])
+
     return (
         <div className="dashboard">
             <div className="dashboard-header">
@@ -65,7 +93,15 @@ const Dashboard = () => {
             </div>
             <div className="dashboard-body">
                 <div className="vertex-ai-results">
-                    <button>Generate Deep Research</button>
+                    {results ? (
+                        <div
+                            className="markdown"
+                            style={{  }}
+                            dangerouslySetInnerHTML={{ __html: html }}
+                        />
+                    ) : (
+                        <button onClick={handleDR}>Generate Deep Research</button>
+                    )}
                 </div>
                 <div className="dashboard-info">
                     <h3 style={{ margin: "0px" }}>General Information</h3>
@@ -124,7 +160,7 @@ const Dashboard = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        {item[name]}
+                                        Job Description URL
                                     </a>
                                 ) : (
                                     item[name]
