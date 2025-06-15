@@ -29,3 +29,5 @@ dist-ssr
 venv
 
 rtruong-project-d392fc935eca.json
+
+__pycache__/
