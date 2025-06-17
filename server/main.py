@@ -1,6 +1,7 @@
 # pylint: disable-all
 
 import os
+import requests
 from datetime import date
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, send_file
@@ -9,6 +10,7 @@ from google.cloud import firestore
 
 load_dotenv()
 
+WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 USERNAME = os.getenv('ADMIN_USERNAME')
 PASSWORD = os.getenv('ADMIN_PASSWORD')
 PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT')
@@ -118,5 +120,17 @@ def deep_research():
         print(f"Error in deep_research: {e}")
         return jsonify({'error': str(e)}), 400
     
+@app.route('/ryan/weather', methods=['GET'])
+def get_weather():
+    try:
+        response = requests.get(
+            f'https://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q=Nashville&aqi=no'
+        )
+        response.raise_for_status()
+        return jsonify(response.json()), 200
+    except Exception as e:
+        print(f"Error in get_weather: {e}")
+        return jsonify({'error': str(e)}), 400
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
