@@ -119,6 +119,21 @@ def deep_research():
     except Exception as e:
         print(f"Error in deep_research: {e}")
         return jsonify({'error': str(e)}), 400
+
+@app.route('/ryan/pokemon-colors', methods=['POST'])
+def pokemon_colors():
+    from src.pokemon_colors import get_pokemon_colors
+
+    data = request.get_json()
+    pokemon_id = data.get('pokemon_id')
+    shiny = data.get('shiny')
+
+    try:
+        colors = get_pokemon_colors(pokemon_id, shiny)
+        return jsonify({'colors': colors}), 200
+    except Exception as e:
+        print(f"Error in pokemon_colors: {e}")
+        return jsonify({'error': str(e)}), 400  
     
 @app.route('/ryan/weather', methods=['GET'])
 def get_weather():
