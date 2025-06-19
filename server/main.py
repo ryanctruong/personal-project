@@ -129,8 +129,8 @@ def pokemon_colors():
     shiny = data.get('shiny')
 
     try:
-        colors = get_pokemon_colors(pokemon_id, shiny)
-        return jsonify({'colors': colors}), 200
+        name, colors, img_url = get_pokemon_colors(pokemon_id, shiny)
+        return jsonify({'name': name, 'colors': colors, 'img_url': img_url}), 200
     except Exception as e:
         print(f"Error in pokemon_colors: {e}")
         return jsonify({'error': str(e)}), 400  
