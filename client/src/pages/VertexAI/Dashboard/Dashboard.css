@@ -1,0 +1,163 @@
+.dashboard {
+    height: 100%;
+    width: 100%;
+    border-radius: 3.125rem;
+    display: grid;
+    grid-template-rows: 0.15fr 0.85fr;
+    gap: 20px;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
+}
+
+.dashboard button {
+    font-family: 'Montserrat' !important;
+}
+
+.dashboard-body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+
+.vertex-ai-results {
+    width: 65%
+}
+
+.dashboard-info {
+    width: 35%;
+}
+
+.dashboard-header,
+.vertex-ai-results,
+.dashboard-info {
+    height: 100%;
+    border-radius: 3.215rem;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
+}
+
+.dashboard-info {
+    flex-direction: column;
+    padding: 20px;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.dashboard-header h3 {
+    font-size: 32px;
+}
+
+.dashboard-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dashboard textarea {
+    font-family: 'Montserrat' !important;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.markdown {
+    line-height: 1.6;
+    color: #333;
+    padding: 20px 40px;
+    max-height: 663px;
+    overflow-y: auto;
+    max-width: 776.55px;
+}
+
+.markdown h1 {
+    font-size: 20px;
+    margin: 0;
+    border-bottom: 2px solid #eaecef;
+    padding-bottom: 0.3rem;
+}
+
+.markdown h2 {
+    font-size: 18px;
+    margin: 1.5rem 0 0.75rem;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.2rem;
+}
+
+.markdown h3 {
+    font-size: 16px;
+    margin: 1.25rem 0 0.5rem;
+}
+
+.markdown p {
+    margin: 0.75rem 0;
+}
+
+.markdown ul,
+.markdown ol {
+    margin: 0.75rem 0 0.75rem 1.5rem;
+}
+
+.markdown li {
+    margin: 0.3rem 0;
+}
+
+.markdown pre {
+    background: #f6f8fa;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.markdown code {
+    background: #eef0f1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+}
+
+.markdown blockquote {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid #dfe2e5;
+    color: #6a737d;
+    background: #f8f9fa;
+}
+
+.markdown a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.markdown a:hover {
+    text-decoration: underline;
+}
+
+.markdown hr {
+    border: none;
+    border-top: 1px solid #e1e4e8;
+    margin: 2rem 0;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #1CB0F6;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    z-index: 1200;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

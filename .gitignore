@@ -25,3 +25,9 @@ dist-ssr
 
 # .env file
 .env
+
+venv
+
+rtruong-project-d392fc935eca.json
+
+__pycache__/
