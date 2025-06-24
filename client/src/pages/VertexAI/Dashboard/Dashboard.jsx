@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import useStore from '../../../utils/VariableStore';
+import DisplayToast from '../../../utils/DisplayToast';
 import { marked } from 'marked';
+import { ToastContainer } from 'react-toastify';
 import './Dashboard.css';
 
 const fields = [
@@ -49,11 +51,12 @@ const Dashboard = () => {
                 body: JSON.stringify({ id: item.id, ...formData }),
             });
             if (!response.ok) {
-                throw new Error(`Error updating item: ${response.statusText}`);
+                DisplayToast(`Error updating item: ${response.statusText}`, 'error');
             }
-            console.log('Update success');
+            DisplayToast('Item updated successfully!', 'success');
             setItem(formData);
         } catch (err) {
+            DisplayToast('Error updating item. Please try again.', 'error');
             console.log('Error updating item:', err);
         } finally {
             setRefresh(prev => !prev);
@@ -74,14 +77,14 @@ const Dashboard = () => {
                 }),
             })
             if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`)
+                DisplayToast(`Error updating item: ${response.statusText}`, 'error');
             }
 
             const text = await response.text()
-            console.log(text);
+            DisplayToast('Deep research generated successfully!', 'success')
             setResults(text)
         } catch (err) {
-            console.error('Error generating deep research:', err)
+            DisplayToast('Error generating results. Please try again.', 'error');
             setResults('An error occurred while generating results.')
         } finally {
             setLoading(false);
@@ -92,6 +95,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
+            <ToastContainer />
             <div className="dashboard-header">
                 <h3>{item.organization}</h3>
             </div>

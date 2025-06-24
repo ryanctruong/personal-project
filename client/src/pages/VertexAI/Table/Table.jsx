@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { ToastContainer } from 'react-toastify';
 import Dashboard from '../Dashboard/Dashboard';
 import useStore from '../../../utils/VariableStore';
+import DisplayToast from '../../../utils/DisplayToast';
 
 import Delete from "/images/icons/delete.svg";
 import './Table.css';
@@ -32,7 +34,7 @@ const Table = () => {
             try {
                 const response = await fetch('http://127.0.0.1:5000/ryan/items');
                 if (!response.ok) {
-                    throw new Error(`Error fetching items: ${response.statusText}`);
+                    DisplayToast(`Error fetching items: ${response.statusText}`, 'error');
                 }
                 const data = await response.json();
                 setItems(data);
@@ -43,7 +45,7 @@ const Table = () => {
                     totalRejected: data.filter(item => item.status === 'Rejected').length,
                 });
             } catch (err) {
-                console.error('Error fetching items from API:', err);
+                DisplayToast(`Error fetching items. Please try again. ${err}`, 'error');
             } finally {
                 setLoading(false);
             }
@@ -80,12 +82,12 @@ const Table = () => {
                 body: JSON.stringify({ id }),
             });
             if (!response.ok) {
-                throw new Error(`Error removing item: ${response.statusText}`);
+                DisplayToast(`Error removing item: ${response.statusText}`, 'error');
             } else {
-                console.log("success");
+                DisplayToast('Item removed successfully!', 'success');
             }
         } catch (err) {
-            console.error('Error removing item:', err);
+            DisplayToast(`Error Deleting Card: ${err}`, 'error');
         } finally {
             setRefresh(prev => !prev);
         }
@@ -93,6 +95,7 @@ const Table = () => {
 
     return (
         <div className="table-outer-container">
+            <ToastContainer />
             <div className="table-results" style={{ display: !viewMore ? "grid" : "block" }}>
                 {!viewMore ? (
                     loading ? (

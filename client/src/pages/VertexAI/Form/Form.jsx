@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import useStore from '../../../utils/VariableStore';
+import DisplayToast from '../../../utils/DisplayToast';
+import { ToastContainer } from 'react-toastify';
 import './Form.css';
 
 const Form = () => {
@@ -48,10 +50,10 @@ const Form = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("Submission Successful", data);
+                DisplayToast(`Submission Successful: ${data.id}`, 'success');
             } else {
                 const error = await response.json();
-                console.log("Submission Failed", error);
+                DisplayToast(`Error: ${error.error}`, 'error');
             }
         } catch (error) {
             console.log(`Error: ${error}`);
@@ -63,6 +65,7 @@ const Form = () => {
 
     return (
         <div className="form-outer-box">
+            <ToastContainer />
             <form className="form-box" onSubmit={handleSubmit}>
                 <div className="form-header">
                     <h3 style={{ margin: 0, textDecoration: "underline" }}>Add new Job Info</h3>

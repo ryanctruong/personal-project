@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import useStore from '../../../utils/VariableStore';
-
+import DisplayToast from '../../../utils/DisplayToast';
 import ProfilePic from '/beanhead.svg'
 import tongue from '/tongue.svg'
 
@@ -31,19 +32,19 @@ const LoginPage = () => {
                 if (data.message === 'Login successful') {
                     setIsLoggedIn(true);
                 } else {
-                    alert(data.message || 'Login failed');
+                    DisplayToast('Login failed. Please check your username and password.', 'error');
                 }
             } else {
-                alert('Login failed. Please try again.');
+                DisplayToast('Login failed. Please check your username and password.', 'error');
             }
         } catch (error) {
-            console.error('Error during login:', error);
-            alert('An error occurred. Please try again later.');
+            DisplayToast('Login failed. Please check your username and password.', 'error');
         }
     };
 
     return (
         <>
+            <ToastContainer />
             <div className="lp-main-box">
                 <div className="lp-login-box">
                     <div className="lp-login-header">
