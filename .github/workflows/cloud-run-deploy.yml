@@ -26,14 +26,16 @@ jobs:
 
     - name: Cloud Build and Test
       if: github.event_name == 'pull_request'
-      working-directory: client
       run: |
-        gcloud builds submit --config=cloudbuild.yaml \
-          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }},_DEPLOY=false
+        gcloud builds submit client \
+          --config=client/cloudbuild.yaml \
+          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }},_DEPLOY=false \
+          --stream-logs
 
     - name: Cloud Build and Deploy
       if: github.event_name == 'push'
-      working-directory: client
       run: |
-        gcloud builds submit --config=cloudbuild.yaml \
-          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }}
+        gcloud builds submit client \
+          --config=client/cloudbuild.yaml \
+          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }} \
+          --stream-logs
