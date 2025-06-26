@@ -29,13 +29,11 @@ jobs:
       run: |
         gcloud builds submit client \
           --config=client/cloudbuild.yaml \
-          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }},_DEPLOY=false \
-          --stream-logs
+          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }},_DEPLOY=false
 
     - name: Cloud Build and Deploy
       if: github.event_name == 'push'
       run: |
         gcloud builds submit client \
           --config=client/cloudbuild.yaml \
-          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }} \
-          --stream-logs
+          --substitutions=_GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }},_VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }}
