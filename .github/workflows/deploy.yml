@@ -29,6 +29,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
+        working-directory: ./client
 
       - name: Debug Environment Variables
         env:
@@ -39,6 +40,7 @@ jobs:
         env:
           VITE_WEATHER_API_KEY: ${{ secrets.VITE_WEATHER_API_KEY }}
         run: npm run build -- --mode=github
+        working-directory: ./client
 
       - name: Simulate Deployment (PRs only)
         if: github.event_name == 'pull_request'
@@ -51,6 +53,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add dist --force
+          git add client/dist --force
           git commit -m "Deploy to GitHub Pages"
-          git push -f "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" `git subtree split --prefix dist main`:gh-pages
+          git push -f "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" `git subtree split --prefix client/dist main`:gh-pages

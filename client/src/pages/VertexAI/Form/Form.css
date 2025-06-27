@@ -1,0 +1,72 @@
+.form-outer-box {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat' !important;
+    flex-direction: column;
+    gap: 2%;
+}
+
+.form-box {
+    height: 50%;
+    width: 100%;
+    border: 1px solid black;
+    padding: 1.5rem;
+    border-radius: 3.125rem;
+    background-color: white;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
+    transition: background-color 0.5s linear, color 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.form-stats {
+    height: 33%;
+    width: 100%;
+    border: 1px solid black;
+    padding: 1.5rem;
+    border-radius: 3.125rem;
+    background-color: white;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
+    transition: background-color 0.5s linear, color 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.form-profile-picture {
+    height: 32%;
+    width: 100%;
+    border: 1px solid black;
+    padding: 1.5rem;
+    border-radius: 3.125rem;
+    background-color: white;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.38);
+    transition: background-color 0.5s linear, color 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.form-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-inputs h3 {
+    font-size: 16px;
+}

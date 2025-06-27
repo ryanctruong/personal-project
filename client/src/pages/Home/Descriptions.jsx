@@ -10,7 +10,7 @@ export const SIMPLE_DESC = ({ pokeTheme }) => {
                 I completed my Bachelor's degree at <a href={''} id='text-link' style={{ color: pokeTheme }}>Belmont University</a>, earning dual degrees in Computer Science and Economics. During my time there, I developed a strong foundation in both technical and analytical skills, which have been instrumental in my professional career. My academic journey included various projects and internships that provided hands-on experience and deepened my understanding of the practical applications of these fields.
             </p>
             <p>
-                In my free time, I enjoy running and spending most of my evenings convincing my dogs to talk to me. My produest accomplishment is placing <span style={{ color: pokeTheme, fontWeight: 550 }}>102st</span> in my  <span style={{ color: pokeTheme, fontWeight: 550 }}>first marathon</span>!
+                In my free time, I enjoy running and spending most of my evenings convincing my dogs to talk to me. My produest accomplishment is placing <span style={{ color: pokeTheme, fontWeight: 550 }}>102nd</span> in my  <span style={{ color: pokeTheme, fontWeight: 550 }}>first marathon</span>!
             </p>
         </>
     )
