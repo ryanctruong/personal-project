@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
 import useStore from '../../../utils/VariableStore';
 import DisplayToast from '../../../utils/DisplayToast';
 import ProfilePic from '/beanhead.svg'
@@ -44,7 +43,6 @@ const LoginPage = () => {
 
     return (
         <>
-            <ToastContainer />
             <div className="lp-main-box">
                 <div className="lp-login-box">
                     <div className="lp-login-header">

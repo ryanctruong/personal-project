@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
+import { ToastContainer } from 'react-toastify';
 import useStore from './utils/VariableStore';
 import Header from './layouts/Header/Header';
 import Home from './pages/Home/Home';
@@ -24,6 +25,7 @@ function App() {
 
     return (
         <BrowserRouter>
+            <ToastContainer />
             <Tooltip id="my-tooltip" style={{ fontFamily: 'Montserrat', fontSize: '0.75rem', zIndex: '2000' }} />
             <Routes>
                 <Route path='/' element={(

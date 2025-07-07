@@ -39,19 +39,17 @@ def login():
 def create_item():
     try:
         data = request.get_json()
-        required_fields = ['organization', 'position', 'location', 'url']
-
-        item = {}
-        for field in required_fields:
-            item[field] = data[field]
-
-        item['date_added'] = date.today().isoformat()
-        item['status'] = "Open"
-        item['notes'] = data.get('notes', '')
-
+        item = {
+            'organization': data['organization'],
+            'position':     data['position'],
+            'location':     data['location'],
+            'url':          data['url'],
+            'status':       "Open",
+            'notes':        data.get('notes', ''),
+            'date_added':   firestore.SERVER_TIMESTAMP,
+        }
         doc_ref = db.collection(COLLECTION_NAME).document()
         doc_ref.set(item)
-
         return jsonify({'id': doc_ref.id}), 200
     except Exception as e:
         print(f"Error in create_item: {e}")

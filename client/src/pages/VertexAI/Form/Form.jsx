@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import useStore from '../../../utils/VariableStore';
 import DisplayToast from '../../../utils/DisplayToast';
-import { ToastContainer } from 'react-toastify';
 import './Form.css';
 
 const Form = () => {
@@ -65,7 +64,6 @@ const Form = () => {
 
     return (
         <div className="form-outer-box">
-            <ToastContainer />
             <form className="form-box" onSubmit={handleSubmit}>
                 <div className="form-header">
                     <h3 style={{ margin: 0, textDecoration: "underline" }}>Add new Job Info</h3>

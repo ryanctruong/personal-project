@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import useStore from '../../../utils/VariableStore';
 import DisplayToast from '../../../utils/DisplayToast';
 import { marked } from 'marked';
-import { ToastContainer } from 'react-toastify';
 import './Dashboard.css';
 
 const fields = [
@@ -95,7 +94,6 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            <ToastContainer />
             <div className="dashboard-header">
                 <h3>{item.organization}</h3>
             </div>
