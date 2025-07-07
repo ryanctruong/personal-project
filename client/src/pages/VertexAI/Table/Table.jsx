@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ToastContainer } from 'react-toastify';
 import Dashboard from '../Dashboard/Dashboard';
 import useStore from '../../../utils/VariableStore';
 import DisplayToast from '../../../utils/DisplayToast';
@@ -95,7 +94,6 @@ const Table = () => {
 
     return (
         <div className="table-outer-container">
-            <ToastContainer />
             <div className="table-results" style={{ display: !viewMore ? "grid" : "block" }}>
                 {!viewMore ? (
                     loading ? (
