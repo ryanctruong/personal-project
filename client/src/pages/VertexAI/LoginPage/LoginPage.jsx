@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import useStore from '../../../utils/VariableStore';
+import DisplayToast from '../../../utils/DisplayToast';
 import ProfilePic from '/beanhead.svg'
 import tongue from '/tongue.svg'
 
@@ -10,14 +11,33 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const [imageSrc, setImageSrc] = useState(ProfilePic);
 
-    const secret_username = import.meta.env.VITE_SECRET_USERNAME;
-    const secret_password = import.meta.env.VITE_SECRET_PASSWORD;
+    const {
+        setIsLoggedIn
+    } = useStore((state) => ({
+        setIsLoggedIn: state.setIsLoggedIn,
+    }));
 
-    const checkLogin = () => {
-        if ((userName !== secret_username) || (password !== secret_password)) {
-            console.log("Incorrect!");
-        } else {
-            console.log("Welcome!")
+    const checkLogin = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/ryan/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: userName, password: password })
+            });
+            if (response.ok) {
+                const data = await response.json();
+                if (data.message === 'Login successful') {
+                    setIsLoggedIn(true);
+                } else {
+                    DisplayToast('Login failed. Please check your username and password.', 'error');
+                }
+            } else {
+                DisplayToast('Login failed. Please check your username and password.', 'error');
+            }
+        } catch (error) {
+            DisplayToast('Login failed. Please check your username and password.', 'error');
         }
     };
 
@@ -50,7 +70,7 @@ const LoginPage = () => {
                         <div className="lp-password">
                             <h3>Password:</h3>
                             <input
-                                type="text"
+                                type="password"
                                 name="password"
                                 style={{ fontSize: "14px", height: "38px" }}
                                 value={password}

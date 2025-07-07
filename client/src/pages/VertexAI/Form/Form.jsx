@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
+import useStore from '../../../utils/VariableStore';
+import DisplayToast from '../../../utils/DisplayToast';
 import './Form.css';
 
 const Form = () => {
+    const {
+        stats,
+        setRefresh
+    } = useStore((state) => ({
+        stats: state.stats,
+        setRefresh: state.setRefresh
+    }));
+
+
     const fields = [
         { label: "Organization Name:", name: "org", placeholder: "Enter Company Name" },
         { label: "Position Title:", name: "pos", placeholder: "Enter Position Title" },
@@ -24,10 +35,31 @@ const Form = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Submitting:", formInputs);
-        setFormInputs({ org: "", pos: "", loc: "", url: "" });
+
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/ryan/submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ organization: formInputs.org, position: formInputs.pos, location: formInputs.loc, url: formInputs.url })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                DisplayToast(`Submission Successful: ${data.id}`, 'success');
+            } else {
+                const error = await response.json();
+                DisplayToast(`Error: ${error.error}`, 'error');
+            }
+        } catch (error) {
+            console.log(`Error: ${error}`);
+        } finally {
+            setFormInputs({ org: "", pos: "", loc: "", url: "" });
+            setRefresh(prev => !prev)
+        }
     };
 
     return (
@@ -58,8 +90,20 @@ const Form = () => {
                 </div>
             </form>
             <div className="form-stats">
-
+                <div className="form-stats-box count">
+                    <p style={{ color: '#333' }}>Count:<br /> {stats.totalItems}</p>
+                </div>
+                <div className="form-stats-box open">
+                    <p style={{ color: '#28a745' }}>Open:<br /> {stats.totalOpen}</p>
+                </div>
+                <div className="form-stats-box in-progress">
+                    <p style={{ color: '#007bff' }}>In Progress:<br /> {stats.totalInProgress}</p>
+                </div>
+                <div className="form-stats-box rejected">
+                    <p style={{ color: '#dc3545' }}>Rejected:<br /> {stats.totalRejected}</p>
+                </div>
             </div>
+
         </div>
     );
 };

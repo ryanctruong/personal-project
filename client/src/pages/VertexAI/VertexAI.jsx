@@ -1,19 +1,26 @@
 import React from 'react';
 
 import LoginPage from './LoginPage/LoginPage';
+import useStore from '../../utils/VariableStore';
 import Form from './Form/Form';
 import Table from './Table/Table';
 
+import './VertexAI.css'
+
 const VertexAI = () => {
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
     return (
         <>
-            {/* <LoginPage /> */}
-            <div style={{ display:"flex", gap: "20px", height: "100%", margin: "20px" }}>
-                <Form />
-                <Table />
-            </div>
+            {isLoggedIn ? (
+                <div className="VA-parent-container">
+                    <Form />
+                    <Table />
+                </div>
+            ) : (
+                <LoginPage />
+            )}
         </>
-    );
-}
+    )
+};
 
 export default VertexAI;

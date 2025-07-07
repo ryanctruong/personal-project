@@ -1,60 +1,48 @@
-import fetchData from "./ApiUtils";
 import useStore from "./VariableStore";
 
 export const fetchPokemonData = () => {
     const {
+        setColors,
         setPokeName,
         setPokeIMG
     } = useStore((state) => ({
+        setColors: state.setColors,
         setPokeName: state.setPokeName,
         setPokeIMG: state.setPokeIMG,
     }))
 
-    const fetchPokemon = () => {
+    const fetchPokemon = async () => {
+        const shiny = Math.random() < 0.5;
         const number = Math.floor(Math.random() * 1025) + 1;
-        const url = `https://pokeapi.co/api/v2/pokemon/${number}`;
+        try {
+            const response = await fetch('http://127.0.0.1:5000/ryan/pokemon-colors', {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({ 'pokemon_id': number, 'shiny': shiny })
+            });
 
-        fetchData(url, (data) => {
-            const frontDefault = data.sprites.other['official-artwork'].front_default;
-            const frontShiny = data.sprites.other['official-artwork'].front_shiny;
+            if (!response.ok) {
+                throw new Error(`Error fetching Pokemon: ${response.statusText}`);
+            }
+            const data = await response.json();
+            const name = data.name;
+            const imageUrl = data.img_url; 
+            const baseColor = data.colors[0];  
+            const complementary = data.colors[1];   
+            
+            setPokeName(name);
+            setPokeIMG(imageUrl);
+            setColors({
+                baseColor,
+                complementaryColor: complementary
+            });
 
-            const availableImages = [];
-
-            if (frontDefault) availableImages.push({ url: frontDefault, type: 'default' });
-            if (frontShiny) availableImages.push({ url: frontShiny, type: 'shiny' });
-
-            const randomChoice = availableImages[Math.floor(Math.random() * availableImages.length)];
-            setPokeIMG(randomChoice.url);
-
-            const pokemonName = randomChoice.type === 'shiny' ? `Shiny ${data.name}` : data.name;
-            setPokeName(pokemonName);
-        });
+        } catch (error) {
+            console.log(`Error: ${error}`)
+        };
     };
 
     return fetchPokemon;
-};
-
-const getRandomColors = (colorArray) => {
-    const indices = new Set();
-
-    while (indices.size < 2) {
-        indices.add(Math.floor(Math.random() * colorArray.length));
-    }
-
-    const [index1, index2] = [...indices];
-    return [colorArray[index1], colorArray[index2]];
-};
-
-export const handleRandomColors = () => {
-    const { setColors } = useStore((state) => ({ setColors: state.setColors }))
-
-    const handleColors = (extractedColors) => {
-        const [base, complementary] = getRandomColors(extractedColors);
-        setColors({
-            baseColor: base,
-            complementaryColor: complementary,
-        });
-    }
-
-    return handleColors;
 };

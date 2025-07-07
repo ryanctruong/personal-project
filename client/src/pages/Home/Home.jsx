@@ -21,8 +21,6 @@ import coder from '/images/profile-box/coder.png'
 import weather from '/images/profile-box/weather-man.png'
 import seal from '/images/profile-box/sappy-seals.gif'
 
-const weatherAPIKey = import.meta.env.VITE_WEATHER_API_KEY;
-
 const Home = () => {
     const [location, setLocation] = useState('');
     const [currentTime, setCurrentTime] = useState('');
@@ -155,7 +153,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchWeatherData = () => {
-            const url = `https://api.weatherapi.com/v1/current.json?key=${weatherAPIKey}&q=Nashville&aqi=no`;
+            const url = `http://127.0.0.1:5000/ryan/weather`;
 
             fetchData(url, (data) => {
                 const location = `${data.location.region}`;
@@ -236,7 +234,6 @@ const Home = () => {
         <div className="content-item home">
             <div className='home-main-box'>
                 <div className={`profile-card ${displayType ? 'light' : 'dark'}`} style={{ boxShadow: `0 0 0.5em ${pokeTheme_ONE}` }}>
-
                     <div className='picture'>
                         <div className='picture-container'>
                             <img
