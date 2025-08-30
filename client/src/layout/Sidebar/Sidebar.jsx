@@ -4,7 +4,7 @@ const items = [
     { label: "Home", Icon: FaHome, bgClass: "bg-indigo-500" },
     { label: "Skills", Icon: FaTools, bgClass: "bg-teal-500" },
     { label: "Projects", Icon: FaProjectDiagram, bgClass: "bg-sky-500" },
-    { label: "Contact", Icon: FaEnvelope, bgClass: "bg-emerald-500" },
+    { label: "Socials", Icon: FaEnvelope, bgClass: "bg-emerald-500" },
 ];
 
 const SidebarItem = ({ Icon, label, bgClass }) => (
