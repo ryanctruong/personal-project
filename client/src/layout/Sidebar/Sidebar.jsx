@@ -20,7 +20,7 @@ const SidebarItem = ({ Icon, label, bgClass }) => (
 
 const Sidebar = () => {
     return (
-        <div className="group h-[calc(100vh-64px)] w-[64px] hover:w-[200px] border-r border-gray-300 absolute bottom-0 left-0 transition-[width] duration-300 ease-in-out flex flex-col pt-4 gap-8">
+        <div className="group h-[calc(100vh-64px)] w-[64px] hover:w-[200px] border-r border-gray-300 absolute bottom-0 left-0 transition-[width] duration-300 ease-in-out flex flex-col pt-4 gap-8 bg-white shadow-md">
             {items.map((it) => (
                 <SidebarItem key={it.label} {...it} />
             ))}
