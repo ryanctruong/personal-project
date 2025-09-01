@@ -73,7 +73,7 @@ export default function SlidingSlot({
                     <button
                         key={i}
                         onClick={() => setIdx(i)}
-                        className={`w-2 h-2 rounded-full transition ${i === idx ? "bg-gray-800" : "bg-gray-400"
+                        className={`w-2 h-2 rounded-full transition hover:cursor-pointer ${i === idx ? "bg-gray-800" : "bg-gray-400"
                             }`}
                     />
                 ))}

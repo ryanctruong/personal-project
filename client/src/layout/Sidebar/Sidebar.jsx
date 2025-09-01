@@ -1,9 +1,10 @@
-import { FaHome, FaTools, FaProjectDiagram, FaEnvelope } from "react-icons/fa";
+import { FaHome, FaTools, FaProjectDiagram, FaEnvelope, FaBriefcase } from "react-icons/fa";
 
 const items = [
     { label: "Home", Icon: FaHome, bgClass: "bg-indigo-500" },
     { label: "Skills", Icon: FaTools, bgClass: "bg-teal-500" },
     { label: "Projects", Icon: FaProjectDiagram, bgClass: "bg-sky-500" },
+    { label: "Experience", Icon: FaBriefcase, bgClass: "bg-orange-500" },
     { label: "Socials", Icon: FaEnvelope, bgClass: "bg-emerald-500" },
 ];
 
@@ -20,7 +21,7 @@ const SidebarItem = ({ Icon, label, bgClass }) => (
 
 const Sidebar = () => {
     return (
-        <div className="group h-[calc(100vh-64px)] w-[64px] hover:w-[200px] border-r border-gray-300 absolute bottom-0 left-0 transition-[width] duration-300 ease-in-out flex flex-col pt-4 gap-8 bg-white shadow-md">
+        <div className="group h-[calc(100vh-64px)] w-[64px] hover:w-[200px] border-r border-gray-300 fixed bottom-0 left-0 transition-[width] duration-300 ease-in-out flex flex-col pt-4 gap-8 bg-white shadow-md z-50">
             {items.map((it) => (
                 <SidebarItem key={it.label} {...it} />
             ))}
