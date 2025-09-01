@@ -1,7 +1,7 @@
 import Profile from "../../components/Profile/Profile"
 import Description from "../../components/Description/Description";
 import GithubStats from "../../components/InfoCard/GithubStats";
-import LeetCodeStats from "../../components/InfoCard/LeetcodeStats";
+import LeetCodeStats from "../../components/InfoCard/LeetCodeStats";
 
 const Home = () => {
     return (
