@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 
 const targetX = (activeIdx, selfIdx) => {
     if (activeIdx === selfIdx) return "0%";
-    return selfIdx === 0 ? `-104%` : "104%"; 
+    return selfIdx === 0 ? `-104%` : "104%";
 };
 
 const layerBase =
@@ -39,25 +39,44 @@ export default function SlidingSlot({
     const [idx, setIdx] = useState(0);
     const reduceMotion = useReducedMotion();
 
-    useEffect(() => {
-        const id = setInterval(() => setIdx(i => 1 - i), intervalMs);
-        return () => clearInterval(id);
-    }, [intervalMs]);
+    const slides = Array.isArray(children) ? children : [children];
 
-    const [first, second] = Array.isArray(children) ? children : [children];
+    useEffect(() => {
+        const id = setInterval(() => setIdx(i => (i + 1) % slides.length), intervalMs);
+        return () => clearInterval(id);
+    }, [intervalMs, slides.length]);
 
     return (
         <div className={`relative w-full h-full ${radiusClass} ${frameClass}`}>
             <div
                 className={`absolute inset-0 overflow-hidden ${radiusClass}`}
-                style={{ clipPath: `inset(0 round ${radiusClass.includes("[") ? radiusClass.match(/\[(.+?)\]/)?.[1] : "1rem"})` }}
+                style={{
+                    clipPath: `inset(0 round ${radiusClass.includes("[")
+                            ? radiusClass.match(/\[(.+?)\]/)?.[1]
+                            : "1rem"
+                        })`,
+                }}
             >
-                <Layer activeIdx={idx} selfIdx={0} reduceMotion={reduceMotion}>
-                    {first}
-                </Layer>
-                <Layer activeIdx={idx} selfIdx={1} reduceMotion={reduceMotion}>
-                    {second}
-                </Layer>
+                {slides.map((slide, i) => (
+                    <Layer
+                        key={i}
+                        activeIdx={idx}
+                        selfIdx={i}
+                        reduceMotion={reduceMotion}
+                    >
+                        {slide}
+                    </Layer>
+                ))}
+            </div>
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+                {slides.map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setIdx(i)}
+                        className={`w-2 h-2 rounded-full transition ${i === idx ? "bg-gray-800" : "bg-gray-400"
+                            }`}
+                    />
+                ))}
             </div>
         </div>
     );
