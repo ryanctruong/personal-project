@@ -20,8 +20,8 @@ const InfoCard = ({ title, image, alt, rows }) => {
                 <div className="flex flex-col items-center gap-2">
                     {rows.map(({ label, value, variant }, i) => (
                         <p key={i} className="text-lg">
-                            {label}:{" "}
-                            <span className={`font-semibold ${colorFor(variant)}`}>
+                            {label}{label && ":"}{" "}
+                            <span className={`font-semibold ${colorFor(variant)} text-center`}>
                                 {value ?? "—"}
                             </span>
                         </p>
