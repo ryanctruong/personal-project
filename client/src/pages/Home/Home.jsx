@@ -1,6 +1,7 @@
 import Profile from "../../components/Profile/Profile"
 import Description from "../../components/Description/Description";
-import InfoCard from "../../components/InfoCard/InfoCard";
+import GithubStats from "../../components/InfoCard/GithubStats";
+import LeetCodeStats from "../../components/InfoCard/LeetcodeStats";
 
 const Home = () => {
     return (
@@ -9,10 +10,9 @@ const Home = () => {
             <div className="flex flex-col items-center h-full w-[75%] gap-4">
                 <Description />
                 <div className="flex gap-4 h-[40%] w-full">
-                    <InfoCard />
-                    <InfoCard />
+                    <GithubStats />
+                    <LeetCodeStats />
                 </div>
-
             </div>
 
         </div>
