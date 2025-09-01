@@ -11,7 +11,7 @@ const colorFor = (variant = "primary") => {
     }
 };
 
-const InfoCard = ({ title, image, alt, rows }) => {
+const Card = ({ title, image, alt, rows }) => {
     return (
         <div className={`h-full w-full shadow-[0_0_0.5em_rgba(0,0,0,0.38)] flex justify-evenly items-center rounded-[50px] bg-white}`}>
             <img src={image} alt={alt ?? title} className="h-[60%] w-[35%] object-contain" />
@@ -32,7 +32,7 @@ const InfoCard = ({ title, image, alt, rows }) => {
     );
 };
 
-InfoCard.propTypes = {
+Card.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string,
     alt: PropTypes.string,
@@ -46,4 +46,4 @@ InfoCard.propTypes = {
     className: PropTypes.string
 };
 
-export default InfoCard;
+export default Card;

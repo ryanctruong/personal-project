@@ -1,4 +1,4 @@
-import InfoCard from "./InfoCard";
+import Card from "../common/Card";
 import useRepoCount from "../../services/hooks/repoCount";
 import useCommitCount from "../../services/hooks/commitCount";
 import Coder from "/images/profile-box/coder.png";
@@ -8,7 +8,7 @@ const GithubStats = () => {
     const totalCommits = useCommitCount();
 
     return (
-        <InfoCard
+        <Card
             title="GitHub Stats"
             image={Coder}
             alt="Coder"

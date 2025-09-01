@@ -1,4 +1,4 @@
-import InfoCard from "./InfoCard";
+import Card from "../common/Card";
 import useLeetCode from "../../services/hooks/leetCode";
 import Cat from "/images/profile-box/meme.png";
 
@@ -6,7 +6,7 @@ const LeetCodeStats = () => {
     const { easy, medium, hard } = useLeetCode();
 
     return (
-        <InfoCard
+        <Card
             title="LeetCode Stats"
             image={Cat}
             alt="Cat"

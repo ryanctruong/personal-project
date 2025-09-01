@@ -1,4 +1,4 @@
-import InfoCard from "./InfoCard";
+import Card from "../common/Card";
 import useWeather from "../../services/hooks/weather";
 
 import WeatherMan from "/images/profile-box/weather-man.png"
@@ -7,7 +7,7 @@ const WeatherStats = () => {
     const { location, temp, condition } = useWeather();
 
     return (
-        <InfoCard
+        <Card
             title="My Current Weather"
             image={WeatherMan}
             alt="Weather Icon"

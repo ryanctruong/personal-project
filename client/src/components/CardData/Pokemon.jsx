@@ -1,4 +1,4 @@
-import InfoCard from "./InfoCard";
+import Card from "../common/Card";
 import usePokemon from "../../services/hooks/pokemon";
 import usePokemonStore from "../../store/usePokemonStore";
 
@@ -12,7 +12,7 @@ const Pokemon = () => {
     console.log(imageUrl);
 
     return (
-        <InfoCard
+        <Card
             title="Pokemon Theme"
             image={imageUrl}
             alt={name}
